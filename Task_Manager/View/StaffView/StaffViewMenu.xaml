@@ -1,0 +1,48 @@
+﻿<Window x:Class="Task_Manager.View.StaffView.StaffViewMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Task_Manager.View.StaffView"
+        mc:Ignorable="d"
+        Title="StaffViewMenu" Height="450" Width="800">
+    <Grid Background="Transparent">
+        <Grid x:Name="panelHeader" VerticalAlignment="Top" Height="50" Background="#FF0F4E7A" MouseDown="PanelHeader_MouseDown">
+        </Grid>
+        <Frame Margin="60 50 0 0"   Opacity="{Binding FrameOpacity}"
+            Content="{Binding CurrentPage}"></Frame>
+        <Grid x:Name="sidePanel" Background="#FF0F4E7A" HorizontalAlignment="Left" Width="150">
+            <StackPanel>
+                <Grid Height="150" Background="White">
+                    <Button HorizontalAlignment="Right" Height="20" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" Click="Button_Click">
+                        <Image Source="/icons/menu.png"/>
+                    </Button>
+                </Grid>
+                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontFamily="Century Gothic" FontSize="14" Foreground="White" BorderBrush="Transparent" Background="Transparent" FontWeight="Bold">
+              
+                    <Button BorderThickness="0" Background="Transparent">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                          <Image Grid.Column="0" Source="/icons/home.png" Height="20" VerticalAlignment="Center"/>
+                          <TextBlock Grid.Column="1" Text="Главная" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Button>
+                    <Button BorderThickness="0" Background="Transparent">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/icons/msg.png" Height="20" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" Text="Входящие" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Button>
+            
+                </ListView>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
