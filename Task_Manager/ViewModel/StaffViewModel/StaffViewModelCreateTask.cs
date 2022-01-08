@@ -1,7 +1,9 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +11,7 @@ using System.Windows;
 
 namespace Task_Manager.ViewModel.StaffViewModel
 {
-  public  class StaffViewModelCreateTask
+  public  class StaffViewModelCreateTask:ViewModelBase
     {
         public DateTime DateNow { get; set; } = DateTime.Now;
         public string User { get; set; } = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
@@ -17,6 +19,8 @@ namespace Task_Manager.ViewModel.StaffViewModel
         public Model.task_book Task_Book { get; set; }
         public string name_of_the_task { get; set; }
 
+        private string filename;
+        public string FileName { get=>filename; set=>filename=value; }
         public string dep { get; set; } = "Развитие отчетности и разработки инстрементов";
         public List<string> listdep { get; set; } = new List<string>()
         { "Прогнозирование", "Развитие отчетности и разработки инстрементов","Аналитика" };
@@ -51,14 +55,41 @@ namespace Task_Manager.ViewModel.StaffViewModel
             MessageBox.Show("Запись добавлена");
         }
         public RelayCommand Openfloderfile { get; set; }
+        /// <summary>
+        /// Реализовать более элегантрую версию
+        /// </summary>
         void openfloderfile()
         {
             OpenFileDialog openFile = new OpenFileDialog();
-            if (openFile.ShowDialog() == true)
+            openFile.ShowDialog();
+            string path = openFile.FileName;
+            string pathctreatefile = @"C:\Users\lenovo\Desktop";
+            string subpath = @"Test1234";
+            DirectoryInfo dirInfo = new DirectoryInfo(pathctreatefile);
+            if (!dirInfo.Exists)
             {
-                MessageBox.Show(openFile.SafeFileName);
+                dirInfo.Create();
             }
-        }
+            dirInfo.CreateSubdirectory(subpath);
+            MessageBox.Show(dirInfo.CreateSubdirectory(subpath).FullName);
+            string newPath = $@"{dirInfo.CreateSubdirectory(subpath).FullName}\{openFile.SafeFileName}";
+            FileInfo fileInf = new FileInfo(path);
+            if (fileInf.Exists)
+            {
+                fileInf.CopyTo(newPath, true);
+                // альтернатива с помощью класса File
+                // File.Copy(path, newPath, true);
+            }
+            //if (openFile.ShowDialog() == true)
+            //{
+            filename = openFile.SafeFileName;
 
+
+            RaisePropertyChanged("FileName");
+
+            //MessageBox.Show(openFile.SafeFileName);
+        }
     }
+
+    
 }

@@ -102,19 +102,14 @@
             </TextBox>
         <Button Grid.Column="3" Grid.Row="3" MaxHeight="30" Command="{Binding Create}" Content="Создать запрос"></Button>
 
-        <!--
-        
-        
-
- 
-           
-              
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top"  Grid.Row="2" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Название файла"></TextBlock>
+            <TextBlock Grid.Column="1" Text="{Binding FileName}"></TextBlock>
         </Grid>
-       
-
-    -->
-
-
 
 
     </Grid>
