@@ -51,11 +51,10 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Content="Этапы"></Label>
-            <ListBox Grid.Column="1">
-                <ListBoxItem>1</ListBoxItem>
-                <ListBoxItem>2</ListBoxItem>
-                <ListBoxItem>3</ListBoxItem>
-            </ListBox>
+            <DataGrid Grid.Column="1" ItemsSource="{Binding list_of_stages}">
+                
+              
+            </DataGrid>
         </Grid>
         <Button Height="30" Grid.Column="3" Grid.Row="3" Content="Удалить этап"></Button>
         <Button Height="30" Grid.Column="3" Grid.Row="4" Content="Добавить этап"></Button>
@@ -103,7 +102,7 @@
             
             
         </Grid>
-        <Button Content="Сохранить изменения" Grid.Row="7" Grid.Column="3"></Button>
+        <Button Content="Сохранить изменения" MaxHeight="50" Grid.Row="7" Grid.Column="3"></Button>
         
         
     </Grid>

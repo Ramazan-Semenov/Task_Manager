@@ -18,6 +18,9 @@ namespace Task_Manager.Model
         public string executor { get; set; }
         public string priority { get; set; }
         public string status { get; set; }
-        public string User { get; set; }
+        public string Department { get; set; }
+        public string FilePath { get; set; }
+        public string Description { get; set; }
+        public string implicit_request { get; set; }
     }
 }

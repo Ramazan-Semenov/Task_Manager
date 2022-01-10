@@ -12,18 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Task_Manager.View.StaffView
+namespace Task_Manager.View.ChiefView
 {
     /// <summary>
-    /// Логика взаимодействия для StaffViewEditTask.xaml
+    /// Логика взаимодействия для ChiefViewCreateTask.xaml
     /// </summary>
-    public partial class StaffViewEditTask : Window
+    public partial class ChiefViewCreateTask : Window
     {
-        public StaffViewEditTask(Model.task_book task_Book)
+        public ChiefViewCreateTask()
         {
             InitializeComponent();
-            DataContext = new ViewModel.StaffViewModel.StaffViewModelEdit(task_Book);
         }
-     
     }
 }

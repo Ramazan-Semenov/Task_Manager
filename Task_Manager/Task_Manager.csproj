@@ -97,6 +97,11 @@
     <Compile Include="Model\CrudOperations\ICrudOperations.cs" />
     <Compile Include="Model\task_book.cs" />
     <Compile Include="Model\Users.cs" />
+    <Compile Include="ViewModel\ChiefViewModel\ChiefViewModelCreateTask.cs" />
+    <Compile Include="ViewModel\ChiefViewModel\ChiefViewModelEditTask.cs" />
+    <Compile Include="ViewModel\ChiefViewModel\ChiefViewModelListTask.cs" />
+    <Compile Include="ViewModel\ChiefViewModel\ChiefViewModelMenu.cs" />
+    <Compile Include="ViewModel\ChiefViewModel\ChiefViewModelPage.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\StaffViewModel\StaffViewModelCreateTask.cs" />
     <Compile Include="ViewModel\StaffViewModel\StaffViewModelEdit.cs" />
@@ -104,8 +109,20 @@
     <Compile Include="ViewModel\StaffViewModel\StaffViewModelMenu.cs" />
     <Compile Include="ViewModel\StaffViewModel\StaffViewModelPage.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\ChiefView\ChiefViewCreateTask.xaml.cs">
+      <DependentUpon>ChiefViewCreateTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChiefView\ChiefViewEditTask.xaml.cs">
+      <DependentUpon>ChiefViewEditTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChiefView\ChiefViewListTask.xaml.cs">
+      <DependentUpon>ChiefViewListTask.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ChiefView\ChiefViewMenu.xaml.cs">
       <DependentUpon>ChiefViewMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChiefView\ChiefViewPage.xaml.cs">
+      <DependentUpon>ChiefViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Coordinator\CoordinatorViewMenu.xaml.cs">
       <DependentUpon>CoordinatorViewMenu.xaml</DependentUpon>
@@ -141,7 +158,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ChiefView\ChiefViewCreateTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChiefView\ChiefViewEditTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChiefView\ChiefViewListTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ChiefView\ChiefViewMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChiefView\ChiefViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -198,7 +231,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModel\ChiefViewModel\" />
     <Folder Include="ViewModel\CoordinatorViewModel\" />
   </ItemGroup>
   <ItemGroup>

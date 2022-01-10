@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Task_Manager.View.StaffView"
         mc:Ignorable="d"
-        Title="StaffViewMenu" Height="450" Width="800">
+        Title="StaffViewMenu" Height="730" Width="1000">
     <Grid Background="Transparent">
         <Grid x:Name="panelHeader" VerticalAlignment="Top" Height="50" Background="#FF0F4E7A" MouseDown="PanelHeader_MouseDown">
         </Grid>

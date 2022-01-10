@@ -13,8 +13,9 @@ namespace Task_Manager.Model.CrudOperations
         public void Create(task_book item)
         {
             string txt = "INSERT INTO [dbo].[task_book] " +
-               "( [Date_of_compilation], [from_whom], [task_type], [name_of_the_task], [start_date], [end_date], [executor], [priority], [status])" +
-               " VALUES ( @Date_of_compilation, @from_whom, @task_type, @name_of_the_task, @start_date, @end_date, @executor, @priority, @status)";
+               "( [Date_of_compilation], [from_whom], [task_type], [name_of_the_task], [start_date], [end_date], [executor], [priority], [status],[Department],[FilePath],[Description],[implicit_request])" +
+               " VALUES ( @Date_of_compilation, @from_whom, @task_type, @name_of_the_task," +
+               " @start_date, @end_date, @executor, @priority, @status,@Department,@FilePath,@Description,@implicit_request)";
             using (var connection = new SqlConnection(sqlConnectionString))
             {
                 connection.Open();
@@ -30,7 +31,11 @@ namespace Task_Manager.Model.CrudOperations
                         end_date = item.end_date,
                         executor = item.executor,
                         priority = item.priority,
-                        status = item.status
+                        status = item.status,
+                        Department=item.Department,
+                        FilePath=item.FilePath,
+                        Description=item.Description,
+                        implicit_request=item.implicit_request
                     });
                 connection.Close();
             }
@@ -109,6 +114,10 @@ SET Date_of_compilation = @Date_of_compilation
 , executor = @executor
 , priority = @priority
 , status = @status
+,Department=@Department
+,FilePath=@FilePath
+,Description=@Description
+,implicit_request=@implicit_request
 WHERE Number = @Number";
             using (var connection = new SqlConnection(sqlConnectionString))
             {
@@ -124,7 +133,11 @@ WHERE Number = @Number";
                     end_date = item.end_date,
                     executor = item.executor,
                     priority = item.priority,
-                    status = item.status
+                    status = item.status,
+                    Department = item.Department,
+                    FilePath = item.FilePath,
+                    Description = item.Description,
+                    implicit_request = item.implicit_request
                 });
                 connection.Close();
             }

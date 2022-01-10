@@ -29,7 +29,7 @@ namespace Task_Manager.View.StaffView
             InitializeComponent();
             DataContext = new ViewModel.StaffViewModel.StaffViewModelMenu();
             timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 10);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             timer.Tick += Timer_Tick;
 
             panelWidth = sidePanel.Width;
@@ -38,7 +38,7 @@ namespace Task_Manager.View.StaffView
         {
             if (hidden)
             {
-                sidePanel.Width += 1;
+                sidePanel.Width += 2;
                 if (sidePanel.Width >= panelWidth)
                 {
                     timer.Stop();
@@ -47,7 +47,7 @@ namespace Task_Manager.View.StaffView
             }
             else
             {
-                sidePanel.Width -= 1;
+                sidePanel.Width -= 2;
                 if (sidePanel.Width <= 40)
                 {
                     timer.Stop();
