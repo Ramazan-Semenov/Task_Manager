@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Task_Manager.View.ChiefView"
-       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
         Title="ChiefViewMenu" Height="730" Width="1000">
     <Grid Background="Transparent">
@@ -12,7 +11,7 @@
         </Grid>
         <Frame Margin="60 50 0 0"  NavigationUIVisibility="Hidden"  Opacity="{Binding FrameOpacity}"
             Content="{Binding CurrentPage}"></Frame>
-        <Grid x:Name="sidePanel" Background="#FF0F4E7A" HorizontalAlignment="Left" MaxWidth="250">
+        <Grid x:Name="sidePanel" Background="#FF0F4E7A" HorizontalAlignment="Left" Width="250">
             <StackPanel>
                 <Grid Height="150" Background="White">
                     <Button HorizontalAlignment="Right" Height="20" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" Click="Button_Click">

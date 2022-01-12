@@ -31,7 +31,7 @@ namespace Task_Manager.View.ChiefView
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             timer.Tick += Timer_Tick;
-            sidePanel.Width = 40;
+           // sidePanel.Width = 40;
             panelWidth = sidePanel.Width;
          
         }

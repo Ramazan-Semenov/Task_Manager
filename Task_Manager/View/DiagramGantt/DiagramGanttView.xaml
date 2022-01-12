@@ -6,7 +6,63 @@
              xmlns:local="clr-namespace:Task_Manager.View.DiagramGantt"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid >
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Margin="0 70 0 0" Grid.Column="0">
+            <StackPanel x:Name="timestack" Orientation="Vertical">
+                <!--<Label Height="32">0:00</Label>
+                <Label Height="32">1:00</Label>
+                <Label Height="32">2:00</Label>
+                <Label Height="32">3:00</Label>
+                <Label Height="32">4:00</Label>
+                <Label Height="32">5:00</Label>
+                <Label Height="32">6:00</Label>
+                <Label Height="32">7:00</Label>
+                <Label Height="32">8:00</Label>
+                <Label Height="32">9:00</Label>
+                <Label Height="32">10:00</Label>
+                <Label Height="32">11:00</Label>
+                <Label Height="32">12:00</Label>-->
+
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel x:Name="stackweek" Orientation="Horizontal">
+                <!--<Label Width="90">Пн</Label>
+                <Label Width="90">Вт</Label>
+                <Label Width="90">Ср</Label>
+                <Label Width="90">Чт</Label>
+                <Label Width="90">Пт</Label>
+                <Label Width="90">Сб</Label>
+                <Label Width="90">Вс</Label>-->
+            </StackPanel>
+            <Grid x:Name="Grid1" Grid.Row="1">
+                <!--<Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>-->
+                <!--<Button Width="90" Margin="0 0 0 -32"></Button>-->
+            </Grid>
+
+            <!--<Grid Grid.Row="1">
+                <Button Margin="0,0,720,270" >Вс</Button>
+
+            </Grid>-->
+        </Grid>
     </Grid>
 </UserControl>

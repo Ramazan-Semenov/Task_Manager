@@ -57,7 +57,7 @@ namespace Task_Manager.Model.CrudOperations
         } 
         public void Delete(task_book item)
         {
-            string txt = "DELETE task_book where Number=@id";
+            string txt = "DELETE task_book where Number=@Number";
             using (var connection = new SqlConnection(sqlConnectionString))
             {
                 connection.Open();

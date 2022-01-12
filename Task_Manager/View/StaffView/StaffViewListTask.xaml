@@ -10,6 +10,16 @@
     <!--<UserControl.Resources>
         <ResourceDictionary Source="/Themes/Dictionary1.xaml"></ResourceDictionary>
     </UserControl.Resources>-->
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"></Setter>
+                </Style>
+            </Style.Resources>
+            <Setter Property="Background" Value="#b4bdce"></Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid Margin="0,0,0,4">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
