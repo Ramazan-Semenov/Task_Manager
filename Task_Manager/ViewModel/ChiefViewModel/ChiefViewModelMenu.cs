@@ -13,8 +13,8 @@ namespace Task_Manager.ViewModel.ChiefViewModel
 {
     class ChiefViewModelMenu:ViewModelBase
     {
-        private Page PageCurrent = new Page();
-        private Page ChiefViewPage =  new View.ChiefView.ChiefViewPage("Аналитика");
+        private Page PageCurrent = new Page() { ShowsNavigationUI=false};
+        private Page ChiefViewPage;
         public double FrameOpacity { get; set; } 
         public Page CurrentPage { get => PageCurrent; set { PageCurrent = value; RaisePropertyChanged(nameof(CurrentPage)); } }
 
@@ -23,14 +23,19 @@ namespace Task_Manager.ViewModel.ChiefViewModel
             //PageCurrent = ChiefViewPage;
             //MessageBox.Show(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => x.Department == "Аналитика").Count().ToString());
             FrameOpacity = 1;
-            opendf = new RelayCommand(() => {
-                 PageCurrent = ChiefViewPage; RaisePropertyChanged("CurrentPage"); 
-            }) ;
+            //opendf = new RelayCommand(() => {
+            //     PageCurrent = ChiefViewPage; RaisePropertyChanged("CurrentPage"); 
+            //}) ;
         }
        
-        public RelayCommand opendf
+        public RelayCommand<string> opendf
         {
-            get;set;
+            get
+            {
+                return new RelayCommand<string>(( string department)=> {
+                    ChiefViewPage = new View.ChiefView.ChiefViewPage(department);
+                    PageCurrent = ChiefViewPage; RaisePropertyChanged("CurrentPage"); });
+            }
         }
        
     }

@@ -131,6 +131,9 @@
     <Compile Include="View\Coordinator\CoordinatorViewMenu.xaml.cs">
       <DependentUpon>CoordinatorViewMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DiagramGantt\DiagramGanttView.xaml.cs">
+      <DependentUpon>DiagramGanttView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\StaffView\StaffViewCreateTask.xaml.cs">
       <DependentUpon>StaffViewCreateTask.xaml</DependentUpon>
     </Compile>
@@ -186,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Coordinator\CoordinatorViewMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DiagramGantt\DiagramGanttView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -251,6 +258,15 @@
     <Resource Include="icons\sent.png" />
     <Resource Include="icons\setting.png" />
     <Resource Include="icons\spam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\me.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\op.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\viewrefresh.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

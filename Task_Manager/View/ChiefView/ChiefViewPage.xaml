@@ -23,7 +23,9 @@
                 <TextBlock Text="Отдел: "></TextBlock>
                 <TextBlock Text="{Binding Department}"></TextBlock>
             </StackPanel>
-            <Button Command="{Binding Update}" Grid.Column="1" MaxWidth="100" Content="Обновить"></Button>
+            <Button Background="Transparent" BorderThickness="0" HorizontalAlignment="Right" Command="{Binding Update}" Grid.Column="1" MaxWidth="100">
+                <Image Source="/icons/viewrefresh.png" Stretch="Uniform"></Image>
+            </Button>
         </Grid>
         <TabControl Background="White" Grid.Row="1">
             <TabItem  Header="Новые запросы">
@@ -124,7 +126,7 @@
                             MaxHeight="30" 
                             MaxWidth="150"
                             Content="Подтвердить запрос"></Button>
-                    <Button Grid.Column="3" Grid.Row="3"
+                    <Button Command="{Binding Edit_TaskCommand}" CommandParameter="{Binding ElementName=FilterDataGrid, Path=SelectedItem}" Grid.Column="3" Grid.Row="3"
                             MaxHeight="30" 
                             MaxWidth="150"
                             Content="Изменить запрос" Margin="0,0,-0.333,0"></Button>

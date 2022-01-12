@@ -54,7 +54,22 @@ namespace Task_Manager.Model.CrudOperations
                     });
                 connection.Close();
             }
+        } 
+        public void Delete(task_book item)
+        {
+            string txt = "DELETE task_book where Number=@id";
+            using (var connection = new SqlConnection(sqlConnectionString))
+            {
+                connection.Open();
+                var affectedRows = connection.Execute(txt,
+                    new
+                    {
+                        Number = item.Number
+                    });
+                connection.Close();
+            }
         }
+        
 
         public task_book GetEntity(object id)
         {

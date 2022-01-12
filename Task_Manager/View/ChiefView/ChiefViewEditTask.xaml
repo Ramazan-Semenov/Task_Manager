@@ -38,14 +38,14 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Content="Этапы"></Label>
-                <DataGrid Grid.Column="1" ItemsSource="{Binding list_of_stages}" Margin="0,0,-48,0">
+                <DataGrid x:Name="list_of_stages" Grid.Column="1"  ItemsSource="{Binding list_of_stages}" Margin="0,0,-48,0">
 
 
                 </DataGrid>
             </Grid>
-            <Button VerticalAlignment="Top" Width="82" HorizontalAlignment="Right"
+            <Button Command="{Binding delete_a_stage_command}" CommandParameter="{Binding ElementName=list_of_stages, Path=SelectedItem}" VerticalAlignment="Top" Width="82" HorizontalAlignment="Right"
                     MaxHeight="30" Grid.Column="3" Grid.Row="0" Content="Удалить этап"></Button>
-            <Button VerticalAlignment="Center" MaxWidth="130" HorizontalAlignment="Right"
+            <Button Command="{Binding add_a_stage_command}" CommandParameter="{Binding ElementName=list_of_stages, Path=SelectedItem}"  VerticalAlignment="Center" MaxWidth="130" HorizontalAlignment="Right"
                     MaxHeight="30" Grid.Column="3" Grid.Row="0" Content="Добавить этап"></Button>
 
             <Grid Grid.RowSpan="5" Grid.ColumnSpan="2" Grid.Row="3"  Grid.Column="0">
