@@ -1,0 +1,12 @@
+﻿<Window x:Class="Task_Manager.View.Task_Confirmation_Window.Task_Confirmation_Window_View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Task_Manager.View.Task_Confirmation_Window"
+        mc:Ignorable="d"
+        Title="Task_Confirmation_Window_View" Height="450" Width="800">
+    <Grid>
+        
+    </Grid>
+</Window>

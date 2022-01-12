@@ -52,6 +52,7 @@ namespace Task_Manager.ViewModel.StaffViewModel
         {
             View.StaffView.StaffViewCreateTask staffViewCreateTask = new View.StaffView.StaffViewCreateTask(task);
             staffViewCreateTask.ShowDialog();
+
             //MessageBox.Show(task.Number.ToString());
         }
 

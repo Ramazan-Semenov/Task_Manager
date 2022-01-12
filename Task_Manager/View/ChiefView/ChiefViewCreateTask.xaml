@@ -4,10 +4,163 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Task_Manager.View.ChiefView"
+        xmlns:sett="clr-namespace:Task_Manager.Themes"
         mc:Ignorable="d"
-        Title="ChiefViewCreateTask" Height="600" Width="1000">
+        Height="400" Width="700"
+        Title="ChiefViewCreateTask" >
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter  Property="CornerRadius" Value="10"></Setter>
+                </Style>
+            </Style.Resources>
+            <Setter Property="Background" Value="#94d3cb"></Setter>
+
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Background" Value="#b4bdce"></Setter>
+            <Setter Property="BorderThickness" Value="3"></Setter>        
+        </Style>
+        
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition />
+            <RowDefinition Height="90"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0" MaxHeight="28">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" BorderThickness="1" BorderBrush="Black" Background="#b4bdce" Content="Пользователь" />
+            <TextBlock Text="{Binding User}" Grid.Column="1" ></TextBlock>
+        </Grid>
+        <Grid Grid.RowSpan="7" Grid.ColumnSpan="2" Grid.Row="1"  Grid.Column="0">
+
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Дата начала выполнения"></Label>
+                    <DatePicker SelectedDate="{Binding DateNow}" Grid.Column="1"/>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="190"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Дата планируемого завершения"></Label>
+                    <DatePicker  SelectedDate="{Binding Task_Book.end_date}" Text="{Binding DateNow}" Grid.Column="1"/>
+                </Grid>
+                
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70" />
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Приоритет"></Label>
+                    <ComboBox IsEditable="True"  Text="{Binding Task_Book.priority}" Grid.Column="1">
+                        <TextBlock>Высокий</TextBlock>
+                        <TextBlock>Средний</TextBlock>
+                        <TextBlock>Низкий</TextBlock>
+                    </ComboBox>
+                </Grid>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MaxWidth="140"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Наименование задачи"></Label>
+                    <ComboBox  Grid.Column="1" IsTextSearchEnabled="True" 
+                                  IsEditable="True"
+                              ItemsSource="{Binding Listname_of_the_task}" Text="{Binding Task_Book.name_of_the_task}"></ComboBox>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MaxWidth="100"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Исполнитель"></Label>
+                    <ComboBox Grid.Column="1" IsTextSearchEnabled="True" 
+                                  IsEditable="True"
+                              ItemsSource="{Binding ListStaff}" Text="{Binding Task_Book.executor}"></ComboBox>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="65"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="№ задачи"></Label>
+                    <TextBlock  Grid.Column="1" Text="{Binding Task_Book.Number}"></TextBlock>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Выбрать файл"></Label>
+                    <Button Command="{Binding Openfloderfile}" Grid.Column="1"  Content="Обзор"></Button>
+                    <TextBlock  Grid.Column="2" Text="{Binding FileName}"></TextBlock>
+                </Grid>
+               
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="65"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Статус"></Label>
+                    <ComboBox  Grid.Column="1" IsTextSearchEnabled="True" 
+                                  IsEditable="True"
+                                  ItemsSource="{Binding liststatus}" Text="{Binding Task_Book.status}"></ComboBox>
+                    <!--<Label  Grid.Column="1" Content="{Binding task_Book.status}"></Label>-->
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="65"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Отдел"></Label>
+                    <ComboBox  Grid.Column="1" IsTextSearchEnabled="True" 
+                                  IsEditable="True"
+                              ItemsSource="{Binding ListDepartment}"
+                               Text="{Binding Task_Book.Department}"></ComboBox>
+                </Grid>
+
+
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="2" Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="Описание задачи"></Label>
+            <TextBox Grid.Row="1" Text="{Binding Task_Book.Description}">
+
+                </TextBox>
+            </Grid>
+        <Button Command="{Binding Create}" Content="Создать запрос" MaxHeight="50" Grid.Row="7" Grid.Column="3"></Button>
+        <CheckBox Content="Неявный запрос"  Grid.Row="1" Grid.Column="2"></CheckBox>
+        <Label MaxHeight="40" Grid.Column="2" Content="Создание запроса"></Label>
+
+        <!--<Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -54,7 +207,9 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" BorderThickness="1" BorderBrush="Black" Background="#b4bdce" Content="Тип задачи" />
 
+            -->
             <!--<TextBox Text="{Binding Task_Book.task_type}"  Grid.Column="1" BorderThickness="1" BorderBrush="Black" ></TextBox>-->
+            <!--
 
             <ComboBox  IsEditable="True"  Text="{Binding Task_Book.task_type}"   Grid.Column="1">
                 <TextBlock>Разаработка</TextBlock>
@@ -69,8 +224,10 @@
             <Label Grid.Column="0" BorderThickness="1" BorderBrush="Black" Background="#b4bdce" Content="Отдел" />
 
             <ComboBox ItemsSource="{Binding listdep}" Grid.Column="1" Text="{Binding dep}" IsEditable="True" >
-                <!--<TextBox Text="Развитие отчетности и разработки инстрементов"  />
+                -->
+            <!--<TextBox Text="Развитие отчетности и разработки инстрементов"  />
                 <TextBlock Text="Прогнозирование"></TextBlock>-->
+            <!--
             </ComboBox>
         </Grid>
         <Grid MaxHeight="28" Grid.Column="2"  Grid.Row="1" Margin="0,70,0,0" >
@@ -109,8 +266,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="Название файла"></TextBlock>
             <TextBlock Grid.Column="1" Text="{Binding FileName}"></TextBlock>
-        </Grid>
-
+        </Grid>-->
 
     </Grid>
 </Window>

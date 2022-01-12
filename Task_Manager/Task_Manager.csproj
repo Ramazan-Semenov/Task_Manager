@@ -92,6 +92,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\StartDep.cs" />
+    <Compile Include="Themes\MarginSetter.cs" />
+    <Compile Include="ViewModel\StaffViewModel\LinkPage_CreateTask.cs" />
     <Compile Include="Model\ConnectionDataBase.cs" />
     <Compile Include="Model\CrudOperations\CrudOperations.cs" />
     <Compile Include="Model\CrudOperations\ICrudOperations.cs" />
@@ -109,6 +112,7 @@
     <Compile Include="ViewModel\StaffViewModel\StaffViewModelMenu.cs" />
     <Compile Include="ViewModel\StaffViewModel\StaffViewModelPage.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="ViewModel\ChiefViewModel\ChiefLinkPage_CreateTask.cs" />
     <Compile Include="View\ChiefView\ChiefViewCreateTask.xaml.cs">
       <DependentUpon>ChiefViewCreateTask.xaml</DependentUpon>
     </Compile>
@@ -141,6 +145,9 @@
     </Compile>
     <Compile Include="View\StaffView\StaffViewPage.xaml.cs">
       <DependentUpon>StaffViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Task_Confirmation_Window\Task_Confirmation_Window_View.xaml.cs">
+      <DependentUpon>Task_Confirmation_Window_View.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -199,6 +206,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\StaffView\StaffViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Task_Confirmation_Window\Task_Confirmation_Window_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

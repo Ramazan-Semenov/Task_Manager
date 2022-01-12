@@ -50,8 +50,11 @@ namespace Task_Manager.ViewModel.StaffViewModel
             Task_Book.from_whom = User;
             Task_Book.start_date = DateNow;
             Task_Book.Date_of_compilation = DateTime.Now;
-
+            Task_Book.Department = "Аналитика";
             new Model.CrudOperations.CrudOperations().Create(Task_Book);
+            LinkPage_CreateTask.Ref();
+       
+
             MessageBox.Show("Запись добавлена");
         }
         public RelayCommand Openfloderfile { get; set; }

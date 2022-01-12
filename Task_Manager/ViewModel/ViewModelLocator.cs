@@ -15,6 +15,8 @@
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
+using System.Collections.Generic;
 
 namespace Task_Manager.ViewModel
 {
@@ -41,6 +43,7 @@ namespace Task_Manager.ViewModel
             ////    // Create run time view services and models
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
+            //Registering:
 
             SimpleIoc.Default.Register<MainViewModel>();
         }

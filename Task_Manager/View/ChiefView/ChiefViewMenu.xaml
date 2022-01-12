@@ -45,7 +45,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <!--<Image Source="/icons/msg.png" Height="20" VerticalAlignment="Center"/>-->
-                            <TextBlock Grid.Column="1" TextWrapping="Wrap"  Text="Прогнозирование продаж ФРОВ" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" TextWrapping="WrapWithOverflow"  Text="Прогнозирование продаж ФРОВ" VerticalAlignment="Center"/>
                         </Grid>
                     </Button>
                     <Button MaxHeight="30" BorderThickness="0" Background="Transparent">
@@ -55,7 +55,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <!--<Image Source="/icons/msg.png" Height="20" VerticalAlignment="Center"/>-->
-                            <TextBlock Grid.Column="1" TextWrapping="Wrap"  Text="Развитие отчетности и разработка" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" TextWrapping="WrapWithOverflow"  Text="Развитие отчетности и разработка" VerticalAlignment="Center"/>
                         </Grid>
                     </Button>
                     <Button MaxHeight="30" BorderThickness="0" Background="Transparent">
@@ -65,7 +65,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <!--<Image Source="/icons/msg.png" Height="20" VerticalAlignment="Center"/>-->
-                            <TextBlock Grid.Column="1" TextWrapping="Wrap"  Text="Взаимодействие КМ" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" TextWrapping="WrapWithOverflow"  Text="Взаимодействие КМ" VerticalAlignment="Center"/>
                         </Grid>
                     </Button>
                     <Button MaxHeight="30" BorderThickness="0" Background="Transparent">
@@ -75,7 +75,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <!--<Image Source="/icons/msg.png" Height="20" VerticalAlignment="Center"/>-->
-                            <TextBlock Grid.Column="1" TextWrapping="Wrap"  Text="Регулярная отчетность" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" TextWrapping="WrapWithOverflow"  Text="Регулярная отчетность" VerticalAlignment="Center"/>
                         </Grid>
                     </Button>
                     

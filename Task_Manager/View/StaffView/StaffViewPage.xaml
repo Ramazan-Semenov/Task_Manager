@@ -13,10 +13,18 @@
             <RowDefinition Height="30"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Background="White">
-            <TextBlock Text="Отдел: "></TextBlock>
-            <TextBlock Text="{Binding Department}"></TextBlock>
-        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0"  Orientation="Horizontal" Background="White">
+                <TextBlock Text="Отдел: "></TextBlock>
+                <TextBlock Text="{Binding Department}"></TextBlock>
+            </StackPanel>
+            <Button Command="{Binding Update}" Grid.Column="1" MaxWidth="100" Content="Обновить"></Button>
+        </Grid>
+       
         <TabControl Background="White" Grid.Row="1">
             <TabItem  Header="Новые запросы">
                 <Grid>

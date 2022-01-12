@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,8 +25,8 @@ namespace Task_Manager.ViewModel.ChiefViewModel
         }
         static void _CreateTask()
         {
-            View.StaffView.StaffViewCreateTask staffViewCreateTask = new View.StaffView.StaffViewCreateTask();
-            staffViewCreateTask.ShowDialog();
+            View.ChiefView.ChiefViewCreateTask ChiefViewCreateTask = new View.ChiefView.ChiefViewCreateTask();
+            ChiefViewCreateTask.ShowDialog();
         }
         public static RelayCommand<task_book> Create_based_on
         {
@@ -33,15 +34,16 @@ namespace Task_Manager.ViewModel.ChiefViewModel
         }
         static void _Create_based_on(task_book task)
         {
-            View.StaffView.StaffViewCreateTask staffViewCreateTask = new View.StaffView.StaffViewCreateTask(task);
-            staffViewCreateTask.ShowDialog();
+            View.ChiefView.ChiefViewCreateTask ChiefViewCreateTask = new View.ChiefView.ChiefViewCreateTask(task);
+            ChiefViewCreateTask.ShowDialog();
+
             //MessageBox.Show(task.Number.ToString());
         }
 
         public static RelayCommand<task_book> EditTask { get; set; }
         static void _EditTask(task_book task)
         {
-            View.StaffView.StaffViewEditTask staffViewEditTask = new View.StaffView.StaffViewEditTask(task);
+            View.ChiefView.ChiefViewEditTask staffViewEditTask = new View.ChiefView.ChiefViewEditTask(task);
             staffViewEditTask.ShowDialog();
         }
 

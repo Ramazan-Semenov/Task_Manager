@@ -12,21 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Task_Manager.View.ChiefView
+namespace Task_Manager.View.Task_Confirmation_Window
 {
     /// <summary>
-    /// Логика взаимодействия для ChiefViewEditTask.xaml
+    /// Логика взаимодействия для Task_Confirmation_Window_View.xaml
     /// </summary>
-    public partial class ChiefViewEditTask : Window
+    public partial class Task_Confirmation_Window_View : Window
     {
-        public ChiefViewEditTask()
+        public Task_Confirmation_Window_View()
         {
             InitializeComponent();
-        }
-        public ChiefViewEditTask(Model.task_book task_Book)
-        {
-            InitializeComponent();
-            DataContext = new ViewModel.ChiefViewModel.ChiefViewModelEditTask(task_Book);
         }
     }
 }

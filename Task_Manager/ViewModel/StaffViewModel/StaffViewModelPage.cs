@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,12 +15,15 @@ namespace Task_Manager.ViewModel.StaffViewModel
 {
   public  class StaffViewModelPage: ViewModelBase
     {
+     
         private  ObservableCollection<task_book> task_Books;
         public  ObservableCollection<task_book> tasks
         {
             get => task_Books; set
             {
                 task_Books = value;
+                RaisePropertyChanged("tasks");
+
             }
         }
         private ObservableCollection<task_book> runtimeTask = new ObservableCollection<task_book>();
@@ -30,11 +34,11 @@ namespace Task_Manager.ViewModel.StaffViewModel
         public StaffViewModelPage()
         {
             _con = new ConnectionDataBase();
-
-            task_Books = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList());
+           
+            task_Books = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x=>x.Department==Users.Department));
+         
             Start();
         }
-        SqlTableDependency<task_book> dep;
         private void Start()
         {
 
@@ -43,20 +47,19 @@ namespace Task_Manager.ViewModel.StaffViewModel
             mapper.AddMapping(c => c.start_date, "start_date");
 
 
-            dep = new SqlTableDependency<task_book>(_con.sqlConnectionString, "task_book", mapper: mapper);
+            StartDep.dep = new SqlTableDependency<task_book>(_con.sqlConnectionString, "task_book", mapper: mapper);
 
-            if (dep.Status != TableDependency.SqlClient.Base.Enums.TableDependencyStatus.Starting)
+            if (StartDep.dep.Status != TableDependency.SqlClient.Base.Enums.TableDependencyStatus.Starting)
             {
-                dep.OnChanged += Changed;
-                dep.Start();
+                StartDep.dep.OnChanged += Changed;
+                StartDep.dep.Start();
             }
 
 
         }
         ~StaffViewModelPage()
         {
-            dep.Stop();
-            dep.Dispose();
+            StartDep.dep.Stop();
         }
         /// <summary>
         /// Позже поработать над проверкой, сделать проверку по id
@@ -77,6 +80,17 @@ namespace Task_Manager.ViewModel.StaffViewModel
 
 
         }
+
+        public RelayCommand Update { get {
+
+                return new RelayCommand(() =>
+                {
+                    task_Books = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => x.Department == Users.Department));
+                    RaisePropertyChanged("tasks");
+
+                });
+               
+            } }
 
     }
 }
