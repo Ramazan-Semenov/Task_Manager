@@ -6,91 +6,100 @@
         xmlns:local="clr-namespace:Task_Manager.View.ChiefView"
         mc:Ignorable="d"
         Title="ChiefViewMenu" Height="730" Width="1000">
+  
     <Grid Background="Transparent">
         <Grid x:Name="panelHeader" VerticalAlignment="Top" Height="50" Background="#FF0F4E7A" MouseDown="PanelHeader_MouseDown">
         </Grid>
-        <Frame Margin="60 50 0 0"  NavigationUIVisibility="Hidden"  Opacity="{Binding FrameOpacity}"
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Frame Grid.Column="1"  NavigationUIVisibility="Hidden"  Opacity="{Binding FrameOpacity}"
             Content="{Binding CurrentPage}"></Frame>
-        <Grid x:Name="sidePanel" Background="#FF0F4E7A" HorizontalAlignment="Left" Width="250">
-            <StackPanel>
-                <Grid Height="150" Background="White">
-                    <Button HorizontalAlignment="Right" Height="20" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" Click="Button_Click">
-                        <Image Source="/icons/menu.png"/>
-                    </Button>
-                </Grid>
-                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontFamily="Century Gothic" FontSize="14" Foreground="White" BorderBrush="Transparent" Background="Transparent" FontWeight="Bold">
-                    <Button BorderThickness="0" Background="Transparent">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="25"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Source="/icons/home.png" Height="20" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" Text="Главная" VerticalAlignment="Center"/>
-                        </Grid>
-                    </Button>
-                    <Button BorderThickness="0" Background="Transparent">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="25"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="/icons/msg.png" Height="20" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" Text="Входящие" VerticalAlignment="Center"/>
-                        </Grid>
-                    </Button>
-                    <Button MaxHeight="30" Command="{Binding opendf}" CommandParameter="Прогнозирование продаж ФРОВ" BorderThickness="0" Background="Transparent">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="25"/>
+            <Grid Grid.Column="0" x:Name="sidePanel" Background="#FF0F4E7A" HorizontalAlignment="Left" Width="250">
+                <StackPanel>
+                    <Grid Height="150" Background="White">
+                        <Button x:Name="slide" HorizontalAlignment="Right" Height="20" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" Click="Button_Click">
+                            <Image Source="/icons/menu.png"/>
+                        </Button>
+                    </Grid>
+                    <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontFamily="Century Gothic" FontSize="14" Foreground="White" BorderBrush="Transparent" Background="Transparent" FontWeight="Bold">
+                        <Button Command="{Binding create_request}" BorderThickness="0" Background="Transparent">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/icons/op.png" Height="20" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="1" Text="Создать шаблон запроса" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Button>
+                        <Button Command="{Binding opendiagram}" BorderThickness="0" Background="Transparent">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/icons/op.png" Height="20" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="1" Text="Диаграмма" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Button>
+                        <Button MaxHeight="30" Command="{Binding opendf}" CommandParameter="Прогнозирование продаж ФРОВ" BorderThickness="0" Background="Transparent">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25"/>
 
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="/icons/op.png" Height="20" VerticalAlignment="Center"/>
-                            <TextBlock  Grid.Column="1" TextWrapping="WrapWithOverflow"  Text="Прогнозирование продаж ФРОВ" VerticalAlignment="Center"/>
-                        </Grid>
-                    </Button>
-                    <Button Command="{Binding opendf}" CommandParameter="Развитие отчетности и разработки инстрементов" MaxHeight="30" BorderThickness="0" Background="Transparent">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="25"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="/icons/op.png" Height="20" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" TextWrapping="WrapWithOverflow"  Text="Развитие отчетности и разработки инстрементов" VerticalAlignment="Center"/>
-                        </Grid>
-                    </Button>
-                    <Button Command="{Binding opendf}" CommandParameter="Взаимодействие КМ" MaxHeight="30" BorderThickness="0" Background="Transparent">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="25"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="/icons/op.png" Height="20" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" TextWrapping="WrapWithOverflow"  Text="Взаимодействие КМ" VerticalAlignment="Center"/>
-                        </Grid>
-                    </Button>
-                    <Button Command="{Binding opendf}" CommandParameter="Регулярная отчетность"  MaxHeight="30" BorderThickness="0" Background="Transparent">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="25"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="/icons/op.png" Height="20" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" TextWrapping="WrapWithOverflow"  Text="Регулярная отчетность" VerticalAlignment="Center"/>
-                        </Grid>
-                    </Button>
-                    
-                    <!--<Button  Content="Развитие отчетности и разработка"></Button>-->
-                    <!--<Button Content="Взаимодействие КМ"></Button>-->
-                    <!--<Button Content="Регулярная отчетность"></Button>-->
-                    <Button Command="{Binding opendf}" CommandParameter="Аналитика" BorderThickness="0" Background="Transparent" Content="Аналитика"></Button>
-                    <Button Command="{Binding opendf}" CommandParameter="Бюджетирование" BorderThickness="0" Background="Transparent" Content="Бюджетирование"></Button>
-                
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/icons/op.png" Height="20" VerticalAlignment="Center"/>
+                                <TextBlock  Grid.Column="1" TextWrapping="WrapWithOverflow"  Text="Прогнозирование продаж ФРОВ" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Button>
+                        <Button Command="{Binding opendf}" CommandParameter="Развитие отчетности и разработки инстрементов" MaxHeight="30" BorderThickness="0" Background="Transparent">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/icons/op.png" Height="20" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="1" TextWrapping="WrapWithOverflow"  Text="Развитие отчетности и разработки инстрементов" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Button>
+                        <Button Command="{Binding opendf}" CommandParameter="Взаимодействие КМ" MaxHeight="30" BorderThickness="0" Background="Transparent">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/icons/op.png" Height="20" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="1" TextWrapping="WrapWithOverflow"  Text="Взаимодействие КМ" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Button>
+                        <Button Command="{Binding opendf}" CommandParameter="Регулярная отчетность"  MaxHeight="30" BorderThickness="0" Background="Transparent">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/icons/op.png" Height="20" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="1" TextWrapping="WrapWithOverflow"  Text="Регулярная отчетность" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Button>
+
+                        <!--<Button  Content="Развитие отчетности и разработка"></Button>-->
+                        <!--<Button Content="Взаимодействие КМ"></Button>-->
+                        <!--<Button Content="Регулярная отчетность"></Button>-->
+                        <Button Command="{Binding opendf}" CommandParameter="Аналитика" BorderThickness="0" Background="Transparent" Content="Аналитика"></Button>
+                        <Button Command="{Binding opendf}" CommandParameter="Бюджетирование" BorderThickness="0" Background="Transparent" Content="Бюджетирование"></Button>
 
 
-                </ListView>
-            </StackPanel>
+
+                    </ListView>
+                </StackPanel>
+            </Grid>
         </Grid>
+       
+        
     </Grid>
 </Window>

@@ -10,14 +10,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Task_Manager.ViewModel.ChiefViewModel
+namespace Task_Manager.ViewModel.CoordinatorViewModel
 {
-  public  class ChiefViewModelEditTask: ViewModelBase
+  public  class CoordinatorViewModelEditTask:ViewModelBase
     {
         private Model.task_book _task_Book;
         public Model.task_book task_Book { get => _task_Book; set => _task_Book = value; }
         public List<string> liststatus { get { return new List<string> { "принят", "в работе", "завершен" }; } }
-        public ChiefViewModelEditTask(Model.task_book task_Book)
+        public CoordinatorViewModelEditTask(Model.task_book task_Book)
         {
             if (task_Book != null)
             {
@@ -73,10 +73,14 @@ namespace Task_Manager.ViewModel.ChiefViewModel
                 });
             }
         }
-        public RelayCommand Openfloderfile { get {
+        public RelayCommand Openfloderfile
+        {
+            get
+            {
 
                 return new RelayCommand(openfloderfile);
-            } }
+            }
+        }
         void openfloderfile()
         {
             OpenFileDialog openFile = new OpenFileDialog();
@@ -102,7 +106,7 @@ namespace Task_Manager.ViewModel.ChiefViewModel
 
                 //   filename = openFile.SafeFileName;
 
-                _task_Book.FilePath= openFile.SafeFileName;
+                _task_Book.FilePath = openFile.SafeFileName;
                 RaisePropertyChanged("task_Book");
             }
 

@@ -11,14 +11,14 @@
         <ResourceDictionary Source="/Themes/Dictionary1.xaml"></ResourceDictionary>
     </UserControl.Resources>-->
     <UserControl.Resources>
-        <Style TargetType="Button">
+        <!--<Style TargetType="Button">
             <Style.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="10"></Setter>
                 </Style>
             </Style.Resources>
             <Setter Property="Background" Value="#b4bdce"></Setter>
-        </Style>
+        </Style>-->
     </UserControl.Resources>
     <Grid Margin="0,0,0,4">
         <Grid.RowDefinitions>
@@ -179,7 +179,7 @@
                     <ColumnDefinition></ColumnDefinition>
 
                 </Grid.ColumnDefinitions>
-                <Label  Content=" Сделать что-то когда-то и с кем-то" Grid.Column="0" BorderThickness="1" BorderBrush="Black" Margin="5,0,0,10" >
+                <Label  Content="{Binding ElementName=FilterDataGrid, Path=SelectedItem.Description}" Grid.Column="0" BorderThickness="1" BorderBrush="Black" Margin="5,0,0,10" >
 
                 </Label>
 

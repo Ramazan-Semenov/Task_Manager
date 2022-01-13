@@ -54,6 +54,9 @@
     <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ComponentModel.Annotations.4.4.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
@@ -94,6 +97,11 @@
     </ApplicationDefinition>
     <Compile Include="Model\StartDep.cs" />
     <Compile Include="Themes\MarginSetter.cs" />
+    <Compile Include="ViewModel\CoordinatorViewModel\CoordinatorViewModelCreateTask.cs" />
+    <Compile Include="ViewModel\CoordinatorViewModel\CoordinatorViewModelEditTask.cs" />
+    <Compile Include="ViewModel\CoordinatorViewModel\CoordinatorViewModelListTask.cs" />
+    <Compile Include="ViewModel\CoordinatorViewModel\CoordinatorViewModelMenu.cs" />
+    <Compile Include="ViewModel\CoordinatorViewModel\CoordinatorViewModelPage.cs" />
     <Compile Include="ViewModel\StaffViewModel\LinkPage_CreateTask.cs" />
     <Compile Include="Model\ConnectionDataBase.cs" />
     <Compile Include="Model\CrudOperations\CrudOperations.cs" />
@@ -128,8 +136,23 @@
     <Compile Include="View\ChiefView\ChiefViewPage.xaml.cs">
       <DependentUpon>ChiefViewPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ChiefView\create_request_template.xaml.cs">
+      <DependentUpon>create_request_template.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Coordinator\CoordinatorViewCreateTask.xaml.cs">
+      <DependentUpon>CoordinatorViewCreateTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Coordinator\CoordinatorViewEditTask.xaml.cs">
+      <DependentUpon>CoordinatorViewEditTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Coordinator\CoordinatorViewListTask.xaml.cs">
+      <DependentUpon>CoordinatorViewListTask.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Coordinator\CoordinatorViewMenu.xaml.cs">
       <DependentUpon>CoordinatorViewMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Coordinator\CoordinatorViewPage.xaml.cs">
+      <DependentUpon>CoordinatorViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DiagramGantt\DiagramGanttView.xaml.cs">
       <DependentUpon>DiagramGanttView.xaml</DependentUpon>
@@ -188,7 +211,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ChiefView\create_request_template.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Coordinator\CoordinatorViewCreateTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Coordinator\CoordinatorViewEditTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Coordinator\CoordinatorViewListTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Coordinator\CoordinatorViewMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Coordinator\CoordinatorViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -248,9 +291,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\CoordinatorViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="icons\home.png" />
     <Resource Include="icons\menu.png" />

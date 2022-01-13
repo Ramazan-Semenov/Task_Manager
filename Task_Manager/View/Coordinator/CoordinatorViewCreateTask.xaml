@@ -1,13 +1,11 @@
-﻿<Window x:Class="Task_Manager.View.ChiefView.ChiefViewCreateTask"
+﻿<Window x:Class="Task_Manager.View.Coordinator.CoordinatorViewCreateTask"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Task_Manager.View.ChiefView"
-        xmlns:sett="clr-namespace:Task_Manager.Themes"
+        xmlns:local="clr-namespace:Task_Manager.View.Coordinator"
         mc:Ignorable="d"
-        Height="400" Width="700"
-        Title="ChiefViewCreateTask" >
+        Title="CoordinatorViewCreateTask" Height="450" Width="800">
     <Window.Resources>
         <Style TargetType="Button">
             <Style.Resources>
@@ -20,9 +18,9 @@
         </Style>
         <Style TargetType="Label">
             <Setter Property="Background" Value="#b4bdce"></Setter>
-            <Setter Property="BorderThickness" Value="3"></Setter>        
+            <Setter Property="BorderThickness" Value="3"></Setter>
         </Style>
-        
+
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -68,7 +66,7 @@
                     <Label Grid.Column="0" Content="Дата планируемого завершения"></Label>
                     <DatePicker  SelectedDate="{Binding Task_Book.end_date}" Text="{Binding DateNow}" Grid.Column="1"/>
                 </Grid>
-                
+
                 <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="80" />
@@ -119,7 +117,7 @@
                     <Button Height="23" Command="{Binding Openfloderfile}" Grid.Column="1"  Content="Обзор"></Button>
                     <TextBlock  Grid.Column="2" Text="{Binding FileName}"></TextBlock>
                 </Grid>
-               
+
                 <!--<Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="65"/>
@@ -146,126 +144,18 @@
             </StackPanel>
         </Grid>
         <Grid Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="2" Grid.Row="3">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Label Grid.Row="0" Content="Описание задачи"></Label>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Описание задачи"></Label>
             <TextBox Grid.Row="1" Text="{Binding Task_Book.Description}">
 
-                </TextBox>
-            </Grid>
+            </TextBox>
+        </Grid>
         <Button Command="{Binding Create}" Content="Создать запрос" MaxHeight="50" Grid.Row="7" Grid.Column="3"></Button>
         <CheckBox Content="Неявный запрос"  Grid.Row="1" Grid.Column="2"></CheckBox>
         <Label MaxHeight="40" Grid.Column="2" Content="Создание запроса"></Label>
-
-        <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="28"/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-
-        </Grid.RowDefinitions>
-        <Grid Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" BorderThickness="1" BorderBrush="Black" Background="#b4bdce" Content="Дата составления" />
-            <DatePicker  Grid.Column="1" Background="White" SelectedDate="{Binding DateNow}" />
-        </Grid>
-        <Grid Margin="0 0 0 70" Grid.Row="1" Grid.Column="0" MaxHeight="28">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" BorderThickness="1" BorderBrush="Black" Background="#b4bdce" Content="Пользователь" />
-            <Label Content="{Binding User}" Grid.Column="1" BorderThickness="1" BorderBrush="Black"></Label>
-        </Grid>
-      
-        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" MaxHeight="28">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" BorderThickness="1" BorderBrush="Black" Background="#b4bdce" Content="Наименование задачи" />
-            <TextBox Text="{Binding Task_Book.name_of_the_task}" Grid.Column="1" BorderThickness="1" BorderBrush="Black"></TextBox>
-        </Grid>
-        <CheckBox Grid.Column="2"  Grid.Row="1" Content="Неявный запрос"></CheckBox>
-        <Grid MaxHeight="28" Grid.Column="2"  Grid.Row="1" Margin="0,0,0,70">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" BorderThickness="1" BorderBrush="Black" Background="#b4bdce" Content="Тип задачи" />
-
-            -->
-            <!--<TextBox Text="{Binding Task_Book.task_type}"  Grid.Column="1" BorderThickness="1" BorderBrush="Black" ></TextBox>-->
-            <!--
-
-            <ComboBox  IsEditable="True"  Text="{Binding Task_Book.task_type}"   Grid.Column="1">
-                <TextBlock>Разаработка</TextBlock>
-                <TextBlock>Аналитика</TextBlock>
-            </ComboBox>
-        </Grid>
-        <Grid MaxHeight="28" Grid.Column="2"  Grid.Row="1" Margin="0,50,0,50" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" BorderThickness="1" BorderBrush="Black" Background="#b4bdce" Content="Отдел" />
-
-            <ComboBox ItemsSource="{Binding listdep}" Grid.Column="1" Text="{Binding dep}" IsEditable="True" >
-                -->
-            <!--<TextBox Text="Развитие отчетности и разработки инстрементов"  />
-                <TextBlock Text="Прогнозирование"></TextBlock>-->
-            <!--
-            </ComboBox>
-        </Grid>
-        <Grid MaxHeight="28" Grid.Column="2"  Grid.Row="1" Margin="0,70,0,0" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" BorderThickness="1" BorderBrush="Black" Background="#b4bdce" Content="Инсполнитель" />
-            <TextBox Text="{Binding Task_Book.executor}"  Grid.Column="1" BorderThickness="1" BorderBrush="Black" />
-        </Grid>
-        <Button Command="{Binding Openfloderfile}" Content="Прикрипить файл"  Grid.Row="2" Grid.Column="0" MaxHeight="40">
-
-        </Button>
-        <Label Grid.Column="3" Grid.Row="0" Content="Срок вылонения: начало" ></Label>
-        <DatePicker  Grid.Row="1" Grid.Column="3" MaxHeight="30" Margin="0 0 0 100"  Background="White" SelectedDate="{Binding DateNow}" />
-        <Label MaxHeight="30" Content="Конец" Grid.Row="1" Grid.Column="3" Margin="0 0 0 30" ></Label>
-        <DatePicker  SelectedDate="{Binding Task_Book.end_date}" Text="{Binding DateNow}" MaxHeight="30" Grid.Row="1" Grid.Column="3" Margin="0 70 0 0"  Background="White" />
-        <Label Grid.Row="2" Grid.Column="3" Content="Приоритет" ></Label>
-        <ComboBox Grid.Row="2" MaxHeight="30" Grid.Column="3" IsEditable="True" Text="{Binding Task_Book.priority}" Margin="0,0,0,24" >
-            <TextBlock Background="Red">Высокий</TextBlock>
-            <TextBlock Background="Yellow" >Средний</TextBlock>
-            <TextBlock Background="Green" >Низкий</TextBlock>
-
-        </ComboBox>
-
-
-        <Label MaxHeight="30" Grid.Row="3" Grid.Column="0" Background="#b4bdce" Content="Описание задачи"  VerticalAlignment="Top"></Label>
-        <TextBox Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="1" Text="{Binding desctription}">
-        </TextBox>
-        <Button Grid.Column="3" Grid.Row="3" MaxHeight="30" Command="{Binding Create}" Content="Создать запрос"></Button>
-
-        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top"  Grid.Row="2" Grid.Column="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Название файла"></TextBlock>
-            <TextBlock Grid.Column="1" Text="{Binding FileName}"></TextBlock>
-        </Grid>-->
 
     </Grid>
 </Window>

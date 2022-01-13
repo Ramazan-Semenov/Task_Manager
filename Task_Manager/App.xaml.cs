@@ -17,13 +17,13 @@ namespace Task_Manager
         System.Threading.Mutex mutex;
         private void App_Startup(object sender, StartupEventArgs e)
         {
-            bool createdNew;
-            string mutName = "Приложение";
-            mutex = new System.Threading.Mutex(true, mutName, out createdNew);
-            if (!createdNew)
-            {
-                this.Shutdown();
-            }
+            //bool createdNew;
+            //string mutName = "Приложение";
+            //mutex = new System.Threading.Mutex(true, mutName, out createdNew);
+            //if (!createdNew)
+            //{
+            //    this.Shutdown();
+            //}
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)
