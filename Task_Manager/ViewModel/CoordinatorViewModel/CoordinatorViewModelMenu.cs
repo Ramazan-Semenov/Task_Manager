@@ -48,13 +48,23 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
                 });
 
             }
+        }  public RelayCommand ListStaffDiagramCommand
+        {
+            get
+            {
+                return new RelayCommand(() => {
+                    PageCurrent = new View.Coordinator.CoordinatorListStaffDiagramView();
+                    RaisePropertyChanged("CurrentPage");
+                });
+
+            }
         }
         public RelayCommand opendiagram
         {
             get
             {
                 return new RelayCommand(() => {
-                    PageCurrent = new View.DiagramGantt.DiagramGanttView();
+                    PageCurrent = new View.ChiefView.create_request_template();
                     RaisePropertyChanged("CurrentPage");
                 });
 

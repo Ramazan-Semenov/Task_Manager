@@ -54,7 +54,7 @@ namespace Task_Manager.ViewModel.ChiefViewModel
             get
             {
                 return new RelayCommand(() => {
-                    PageCurrent = new View.DiagramGantt.DiagramGanttView();
+                    PageCurrent = new View.ChiefView.create_request_template();
                     RaisePropertyChanged("CurrentPage");
                 });
                              

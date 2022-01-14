@@ -17,7 +17,7 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
             CreateTask = new RelayCommand(_CreateTask);
             Create_based_on = new RelayCommand<task_book>(_Create_based_on);
             EditTask = new RelayCommand<task_book>(_EditTask);
-          //  Selected = new RelayCommand(_Selected);
+            Selected = new RelayCommand<task_book>(_Selected);
 
         }
         public static RelayCommand CreateTask
@@ -38,7 +38,6 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
             View.Coordinator.CoordinatorViewCreateTask ChiefViewCreateTask = new View.Coordinator.CoordinatorViewCreateTask(task);
             ChiefViewCreateTask.ShowDialog();
 
-            //MessageBox.Show(task.Number.ToString());
         }
 
         public static RelayCommand<task_book> EditTask { get; set; }
@@ -47,39 +46,12 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
             View.Coordinator.CoordinatorViewEditTask staffViewEditTask = new View.Coordinator.CoordinatorViewEditTask(task);
             staffViewEditTask.ShowDialog();
         }
-        //public static RelayCommand<task_book> Selected { get; set; }
-        //static void _Selected(task_book task)
-        //{
-        //    View.Coordinator.CoordinatorViewEditTask staffViewEditTask = new View.Coordinator.CoordinatorViewEditTask(task);
-        //    staffViewEditTask.ShowDialog();
-        //}
-      // public static string Selected { get; set; }
-
-        public static event PropertyChangedEventHandler StaticPropertyChanged;
-
-        private static void OnStaticPropertyChanged(string propertyName)
+        public static RelayCommand<task_book> Selected { get; set; }
+        static void _Selected(task_book task)
         {
-            StaticPropertyChanged?.Invoke(null, new PropertyChangedEventArgs(propertyName));
+            View.Viewing_a_task.Viewing_a_task_View viewing_A_Task_View = new View.Viewing_a_task.Viewing_a_task_View(task);
+            viewing_A_Task_View.ShowDialog();
         }
-
-        private static string selected; // backing field
-
-        public static string Selected
-        {
-            get { MessageBox.Show(selected); return selected; }
-            set
-            {
-                selected = value;
-                OnStaticPropertyChanged("Property");
-            }
-        }
-
-        
-        //static void _Selected()
-        //{
-        //    MessageBox.Show("OK");
-        //}
-
 
     }
 }

@@ -79,7 +79,7 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
             Task_Book.from_whom = User;
             Task_Book.start_date = DateNow;
             Task_Book.Date_of_compilation = DateTime.Now;
-            Task_Book.FilePath = FileName;
+            Task_Book.FilePath =""+ FileName;
             new Model.CrudOperations.CrudOperations().Create(Task_Book);
             //n.chiefLinkPage_.tasks =  new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList());
             //ChiefLinkPage_CreateTask.Ref();
@@ -96,16 +96,17 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
             if (openFile.ShowDialog() == true)
             {
                 string path = openFile.FileName;
-                string pathctreatefile = @"C:\Users\lenovo\Desktop";
-                string subpath = @"Test1234";
-                DirectoryInfo dirInfo = new DirectoryInfo(pathctreatefile);
+                //string pathctreatefile = @"C:\Users\lenovo\Desktop";
+                //string subpath = @"Test1234";
+                DirectoryInfo dirInfo = new DirectoryInfo(Model.SettingPath.DefaultFilePath);
                 if (!dirInfo.Exists)
                 {
                     dirInfo.Create();
                 }
-                dirInfo.CreateSubdirectory(subpath);
-                string fullName = dirInfo.CreateSubdirectory(subpath).FullName;
-                string newPath = $@"{dirInfo.CreateSubdirectory(subpath).FullName}\{openFile.SafeFileName}";
+                //dirInfo.CreateSubdirectory(subpath);
+                //string fullName = dirInfo.CreateSubdirectory(subpath).FullName;
+                //string newPath = $@"{dirInfo.CreateSubdirectory(subpath).FullName}\{openFile.SafeFileName}";
+                string newPath = Model.SettingPath.DefaultFilePath + "\\" + openFile.SafeFileName;
                 FileInfo fileInf = new FileInfo(path);
                 if (fileInf.Exists)
                 {

@@ -95,8 +95,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\SettingPath.cs" />
     <Compile Include="Model\StartDep.cs" />
     <Compile Include="Themes\MarginSetter.cs" />
+    <Compile Include="ViewModel\CoordinatorViewModel\CoordinatorListStaffDiagramViewModel.cs" />
     <Compile Include="ViewModel\CoordinatorViewModel\CoordinatorViewModelCreateTask.cs" />
     <Compile Include="ViewModel\CoordinatorViewModel\CoordinatorViewModelEditTask.cs" />
     <Compile Include="ViewModel\CoordinatorViewModel\CoordinatorViewModelListTask.cs" />
@@ -119,6 +121,7 @@
     <Compile Include="ViewModel\StaffViewModel\StaffViewModelListTask.cs" />
     <Compile Include="ViewModel\StaffViewModel\StaffViewModelMenu.cs" />
     <Compile Include="ViewModel\StaffViewModel\StaffViewModelPage.cs" />
+    <Compile Include="ViewModel\Viewing_a_task_ViewModel\Viewing_a_task_ViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\ChiefViewModel\ChiefLinkPage_CreateTask.cs" />
     <Compile Include="View\ChiefView\ChiefViewCreateTask.xaml.cs">
@@ -138,6 +141,9 @@
     </Compile>
     <Compile Include="View\ChiefView\create_request_template.xaml.cs">
       <DependentUpon>create_request_template.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Coordinator\CoordinatorListStaffDiagramView.xaml.cs">
+      <DependentUpon>CoordinatorListStaffDiagramView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Coordinator\CoordinatorViewCreateTask.xaml.cs">
       <DependentUpon>CoordinatorViewCreateTask.xaml</DependentUpon>
@@ -174,6 +180,9 @@
     </Compile>
     <Compile Include="View\Task_Confirmation_Window\Task_Confirmation_Window_View.xaml.cs">
       <DependentUpon>Task_Confirmation_Window_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Viewing_a_task\Viewing_a_task_View.xaml.cs">
+      <DependentUpon>Viewing_a_task_View.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -212,6 +221,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ChiefView\create_request_template.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Coordinator\CoordinatorListStaffDiagramView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -260,6 +273,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Task_Confirmation_Window\Task_Confirmation_Window_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Viewing_a_task\Viewing_a_task_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

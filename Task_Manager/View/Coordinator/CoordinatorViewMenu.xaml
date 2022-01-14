@@ -9,14 +9,10 @@
     <Grid Background="Transparent">
         <Grid x:Name="panelHeader" VerticalAlignment="Top" Height="50" Background="#FF0F4E7A" MouseDown="PanelHeader_MouseDown">
         </Grid>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Frame Grid.Column="1"  NavigationUIVisibility="Hidden"  Opacity="{Binding FrameOpacity}"
+        
+            <Frame Margin="70 50 0 0"   NavigationUIVisibility="Hidden"  Opacity="{Binding FrameOpacity}"
             Content="{Binding CurrentPage}"></Frame>
-            <Grid Grid.Column="0" x:Name="sidePanel" Background="#FF0F4E7A" HorizontalAlignment="Left" Width="250">
+            <Grid  x:Name="sidePanel" Background="#FF0F4E7A" HorizontalAlignment="Left" Width="250">
                 <StackPanel>
                     <Grid Height="150" Background="White">
                         <Button x:Name="slide" HorizontalAlignment="Right" Height="20" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" Click="Button_Click">
@@ -85,8 +81,17 @@
                                 <TextBlock Grid.Column="1" TextWrapping="WrapWithOverflow"  Text="Регулярная отчетность" VerticalAlignment="Center"/>
                             </Grid>
                         </Button>
-
-                        <!--<Button  Content="Развитие отчетности и разработка"></Button>-->
+                    <Button Command="{Binding ListStaffDiagramCommand}"  MaxHeight="30" BorderThickness="0" Background="Transparent">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/icons/op.png" Height="20" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" TextWrapping="WrapWithOverflow"  Text="Занятость сотрудников" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Button>
+                    <!--<Button  Content="Развитие отчетности и разработка"></Button>-->
                         <!--<Button Content="Взаимодействие КМ"></Button>-->
                         <!--<Button Content="Регулярная отчетность"></Button>-->
                         <Button Command="{Binding opendf}" CommandParameter="Аналитика" BorderThickness="0" Background="Transparent" Content="Аналитика"></Button>
@@ -96,7 +101,6 @@
 
                     </ListView>
                 </StackPanel>
-            </Grid>
         </Grid>
 
 

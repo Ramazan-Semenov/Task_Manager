@@ -10,7 +10,7 @@
              xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
 
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             >
     <Grid Margin="0,0,0,4">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
@@ -31,56 +31,9 @@
             </Button>
         </Grid>
 
-        <StackPanel Background="Transparent" Grid.Row="1" >
-            <Grid>
-                <!--Command="{Binding CreateTask}"-->
-
-
-
-
-
-                <!--<Button Content="Удалить" HorizontalAlignment="Right" Width="100" Margin="0,13,265,-13" >
-                    -->
-                <!--<Button.Content>
-                        <TextBlock FontFamily="SimSun-ExtB" VerticalAlignment="Center">Создать задачу на
-							<LineBreak/>основании
-                        </TextBlock>
-                    </Button.Content>-->
-                <!--
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
-
-                        </Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="#94d3cb"></Setter>
-                        </Style>
-                    </Button.Resources>
-                </Button>-->
-
-            </Grid>
-        </StackPanel>
+       
         <StackPanel  Grid.Row="1">
             <Grid Height="350">
-                <!--<control:FilterDataGrid
-            Grid.Row="4"
-            Margin="10,10,0,2"
-            AlternatingRowBackground="WhiteSmoke"
-            AlternationCount="2"
-                     GridLinesVisibility="None"
-            AutoGenerateColumns="True"
-            Background="Transparent"
-            CanUserAddRows="False"
-            FilterLanguage="Russian"
-            ItemsSource="{Binding Employes, UpdateSourceTrigger=PropertyChanged}"
-            RowHeaderWidth="30"
-            ShowElapsedTime="True"
-            ShowStatusBar="True"
-                     ColumnWidth="Auto" 
-                    CellStyle="{StaticResource cellStyle}" 
-            VerticalScrollBarVisibility="Visible"
-            VirtualizingStackPanel.IsVirtualizing="True"
-            Visibility="Visible" />-->
                 <control:FilterDataGrid
             x:Name="FilterDataGrid"
             Grid.Row="2"
@@ -100,77 +53,13 @@
             VerticalGridLinesBrush="LightGray"
             VerticalScrollBarVisibility="Visible"
             VirtualizingStackPanel.IsVirtualizing="True">
-                    <!--<DataGrid.ItemContainerStyle>
-                        
-                        <Style TargetType="DataGridRow">
-                            <EventSetter Event="MouseDoubleClick" >
-                                
-                            </EventSetter>
-                        </Style>
-                    </DataGrid.ItemContainerStyle>-->
-
-                    <!--<i:Interaction.Triggers>
+                    <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDoubleClick">
-                            <cmd:EventToCommand Command="{x:Static viewmodel:CoordinatorViewModelListTask.Selected}"
+                            <cmd:EventToCommand Command="{x:Static viewmodel:CoordinatorViewModelListTask.Selected}" CommandParameter="{Binding ElementName=FilterDataGrid, Path=SelectedItem}"
                             PassEventArgsToCommand="True" />
                         </i:EventTrigger>
-                    </i:Interaction.Triggers>-->
-                    <!--  <control:FilterDataGrid.Columns>
-                        <control:DataGridTemplateColumn
-                    FieldName="Numder"
-                    Header="Номер"
-                    IsColumnFiltered="True"
-                    SortMemberPath="Numder">
-                            <control:DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate >
-                                    <TextBlock Text="{Binding Number}" />
-                                </DataTemplate>
-                            </control:DataGridTemplateColumn.CellTemplate>
-                        </control:DataGridTemplateColumn>
-
-                        <control:DataGridTextColumn
-                    Binding="{Binding Date_of_compilation}"
-                    Header="Дата составления"
-                    IsColumnFiltered="True" />
-
-                        <control:DataGridTextColumn
-                    Binding="{Binding from_whom}"
-                    Header="От кого"
-                    IsColumnFiltered="True" />
-
-                        <control:DataGridTextColumn
-                    Binding="{Binding task_type}"
-                    Header="Тип задачи"
-                    IsColumnFiltered="True" />
-
-                        <control:DataGridTextColumn
-                    Binding="{Binding name_of_the_task}"
-                    Header="Наименование задачи"
-                    IsColumnFiltered="True" />
-
-                        <control:DataGridTextColumn
-                    Binding="{Binding start_date}"
-                    Header="Дата начала"
-                    IsColumnFiltered="True" />
-                        <control:DataGridTextColumn
-                    Binding="{Binding end_date}"
-                    Header="Дата окончания"
-                    IsColumnFiltered="True" />
-                        <control:DataGridTextColumn
-                    Binding="{Binding executor}"
-                    Header="Исполнитель"
-                    IsColumnFiltered="True" />
-                        <control:DataGridTextColumn
-                    Binding="{Binding priority}"
-                    Header="Приоритет"
-                    IsColumnFiltered="True" />
-                        <control:DataGridTextColumn
-                    Binding="{Binding status}"
-                    Header="Статус"
-                    IsColumnFiltered="True" />
-                    </control:FilterDataGrid.Columns>-->
+                    </i:Interaction.Triggers>
                 </control:FilterDataGrid>
-
             </Grid>
         </StackPanel>
         <StackPanel  Grid.Row="2" >

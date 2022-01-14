@@ -7,14 +7,17 @@
              d1p1:Ignorable="d" xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
   <Application.Resources>
     <ResourceDictionary>
-            <!--<Style TargetType="Button">
+            <Style TargetType="Button">
                 <Style.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"></Setter>
                     </Style>
                 </Style.Resources>
                 <Setter Property="Background" Value="#b4bdce"></Setter>
-            </Style>-->
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="Background" Value="#b4bdce"></Setter>
+            </Style>
             <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:Task_Manager.ViewModel" />
     </ResourceDictionary>
   </Application.Resources>
@@ -23,3 +26,4 @@
 c:\users\lenovo\source\repos\task_manager\task_manager\view\diagramgantt\diagramganttview.xaml.cs-->
 <!--StartupUri="View/ChiefView/ChiefViewMenu.xaml"-->
 
+<!--c:\users\lenovo\source\repos\task_manager\task_manager\view\coordinator\coordinatorviewmenu.xaml-->

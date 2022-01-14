@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,135 +13,158 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Task_Manager.Model;
 
 namespace Task_Manager.View.DiagramGantt
 {
     /// <summary>
     /// Логика взаимодействия для DiagramGanttView.xaml
     /// </summary>
-    public partial class DiagramGanttView : Page
+    public partial class DiagramGanttView : UserControl
     {
+
+     
+        public IList<task_book> Task_Book
+        {
+            get
+            {
+                return (IList<task_book>)GetValue(Task_BookProperty);
+            }
+            set
+            {
+                SetValue(Task_BookProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty Task_BookProperty =
+            DependencyProperty.Register(
+                "Task_Book",
+                typeof(IList<task_book>),
+                typeof(DiagramGanttView),
+                new PropertyMetadata(default(IList<task_book>), OnTask_BookPropertyChanged));
+
+        private static void OnTask_BookPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            DiagramGanttView source = d as DiagramGanttView;
+
+            source.OnCustomerChanged();
+             }
+        protected virtual void OnCustomerChanged()
+            {
+            Grid1time.Children.Clear();
+          //  button.Click -= Button_Click;
+            foreach (var item in Task_Book)
+            {
+
+                if ((item.start_date.Hour - 8) >= 0 & (item.end_date.Day - item.start_date.Day) >= 0 && (item.end_date.Hour - item.start_date.Hour) >= 0)
+                {
+                    Button button = new Button() { Tag=item, Content = item.name_of_the_task, Background = Brushes.LightGreen };
+                    button.Click += Button_Click;
+                    Grid.SetColumn(button, item.start_date.Day - 1);
+                    Grid.SetColumnSpan(button, (item.end_date.Day - item.start_date.Day) + 1);
+
+                    Grid.SetRow(button, item.start_date.Hour - 8);
+                    Grid.SetRowSpan(button, (item.end_date.Hour - item.start_date.Hour) + 1 );
+                    Grid1time.Children.Add(button);
+
+                }
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            View.Viewing_a_task.Viewing_a_task_View viewing_A_Task_ = new Viewing_a_task.Viewing_a_task_View(((sender as Button).Tag as Model.task_book));
+            viewing_A_Task_.Show();
+        }
+
+        public static readonly DependencyProperty SliderVerticalProperty = DependencyProperty.Register(
+       nameof(SliderVertical), typeof(Visibility), typeof(DiagramGanttView), new FrameworkPropertyMetadata(Visibility.Collapsed,
+          FrameworkPropertyMetadataOptions.None));
+
+        public Visibility SliderVertical
+        {
+            get { return (Visibility)GetValue(SliderVerticalProperty); }
+            set { SetValue(SliderVerticalProperty, value); }
+        } 
+        public static readonly DependencyProperty HorizontalVerticalProperty = DependencyProperty.Register(
+       nameof(HorizontalVertical), typeof(Visibility), typeof(DiagramGanttView), new FrameworkPropertyMetadata(Visibility.Collapsed,
+          FrameworkPropertyMetadataOptions.None));
+
+        public Visibility HorizontalVertical
+        {
+            get { return (Visibility)GetValue(HorizontalVerticalProperty); }
+            set { SetValue(HorizontalVerticalProperty, value); }
+        }
         public DiagramGanttView()
         {
             InitializeComponent();
+           Loaded += DiagramGanttView_Loaded;
+          
+            
 
-            for (int i = 0; i < 12; i++)
-            {
-                Grid1time.RowDefinitions.Add(new RowDefinition() {});
-                Grid1.RowDefinitions.Add(new RowDefinition());
-               
+        }
 
-            }
+        private void DiagramGanttView_Loaded(object sender, RoutedEventArgs e)
+        {
+            NowDate.Text = string.Format("{0}\n{1}", DateTime.Now.ToString("d/M/yy"), CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek));
             for (int i = 0; i < 11; i++)
             {
-                Button button = new Button() { Background=Brushes.Transparent,Content = string.Format("{0}:00", i + 8) };
-
-                Grid.SetColumn(button, 0);
-                Grid.SetRow(button, i + 1);
-                Grid1time.Children.Add(button);
-
+                TimeLine.Children.Add(new Button { Width = 30, Height = 30, Content = string.Format("{0}:00", i + 8) });
+                RowDefinition row = new RowDefinition();
+                row.Height = new GridLength(30);
+                Grid1time.RowDefinitions.Add(row);
 
             }
-            for (int i = 0; i < 34; i++)
+
+
+            for (int i = 1; i < 32; i++)
             {
-                var b = new ColumnDefinition();
-                b.Width = new GridLength(40);
-                    Grid1.ColumnDefinitions.Add( b);
-               
-            } 
-            for (int i = 0; i < 31; i++)
-            {
-            
-                    Button button = new Button() { Background = Brushes.Transparent, Content = i+1};
+                Button button = new Button() { Width = 30, Height = 40 };
+                button.Content = (i).ToString() + "." + DateTime.Now.Month + "\n " + CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetAbbreviatedDayName(DateTime.Parse(string.Format("{0}.{1}.{2}", i, DateTime.Now.Month, DateTime.Now.Year)).DayOfWeek); /*+ DateTime.Parse(string.Format("{0}.{1}.{2}", i, DateTime.Now.Month, DateTime.Now.Year)).DayOfWeek.ToString().Replace("Friday","Чт")*/  /*string.Format("{0:00}:{1:00}", span.Hours, span.Minutes);*/
 
-                Grid.SetColumn(button, i );
-                Grid.SetRow(button, 0);
+                DateLine.Children.Add(button/*new Button { Width = 30, Height = 30, Content = string.Format("{0}", i) }*/);
+                ColumnDefinition column = new ColumnDefinition();
+                column.Width = new GridLength(30);
+                Grid1time.ColumnDefinitions.Add(column);
 
-                    Grid1.Children.Add(button);
-
-                
             }
-            Model.task_book task_ = new Model.task_book();
-            task_.start_date = DateTime.Parse("16/12/2021 08:00:00");
-            task_.end_date = DateTime.Parse("16/12/2021 09:00:00");
-            var t = new TaskSchedules()
-            {
-                Description = "Сделать что-то когда-то и с кем-то",
-                task = "Какая-то абстрактная задача №1",
-                end = task_.end_date,
-                start = task_.start_date
-                                ,
-                Status = "В работе",
-                id = 0
+            //foreach (var item in Task_Book)
+            //{
 
-            };
-            var g = new TaskSchedules()
-            {
-                Description = "Сделать что-то когда-то и с кем-то",
-                task = "Какая-то абстрактная задача №1123",
-                end = DateTime.Parse("3/12/2021 16:00:00"),
-                start = DateTime.Parse("1/12/2021 13:00:00")
-                                ,
-                Status = "Принят",
-                id = 1
+            //    if ((item.start_date.Hour - 8) >= 0 & (item.end_date.Day - item.start_date.Day) >= 0 && (item.end_date.Hour - item.start_date.Hour) >= 0)
+            //    {
+            //        Button button = new Button() { Content = item.name_of_the_task, Background = Brushes.LightGreen };
+            //        Grid.SetColumn(button, item.start_date.Day - 1);
+            //        Grid.SetColumnSpan(button, (item.end_date.Day - item.start_date.Day) + 1);
 
-            };
-            var r = new TaskSchedules()
-            {
-                Description = "Сделать что-то когда-то и с кем-то",
-                task = "Какая-то абстрактная задача №12",
-                end = DateTime.Parse("6/12/2021 11:00:00"),
-                start = DateTime.Parse("4/12/2021 10:00:00")
-                ,
-                Status = "Завершен",
-                id = 2
-            };
-          var  tasks = new List<TaskSchedules>();
-            tasks.Add(g);
-            tasks.Add(t);
-           tasks.Add(r);
-            foreach (var item in tasks)
-            {
-                but button = new but() { Content = item.task, Background = Brushes.LightGreen };
-                Grid.SetColumn(button, item.start.Day-1);
-                Grid.SetColumnSpan(button, (item.end.Day - item.start.Day)+1);
+            //        Grid.SetRow(button, item.start_date.Hour - 8);
+            //        Grid.SetRowSpan(button, (item.end_date.Hour - item.start_date.Hour) + 1 /*item.end.Hour-12*/);
+            //        Grid1time.Children.Add(button);
 
-                Grid.SetRow(button, item.start.Hour-7);
-                Grid.SetRowSpan(button, (item.end.Hour- item.start.Hour)+1/*item.end.Hour-12*/);
-                Grid1.Children.Add(button);
-            }
-           
+            //    }
+            //}
         }
-        int j = 1;
 
         private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
+            DateLineScroll.ScrollToHorizontalOffset(Grid1timeScroll.HorizontalOffset);
+            TimeLineScroll.ScrollToVerticalOffset(Grid1timeScroll.VerticalOffset);
             //  MessageBox.Show((sender as ScrollViewer).HorizontalOffset.ToString());
+
+        }
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            DateLineScroll.ScrollToHorizontalOffset(cv.Value);
+            Grid1timeScroll.ScrollToHorizontalOffset(cv.Value);
+        }
+
+        private void c_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            TimeLineScroll.ScrollToVerticalOffset(c.Value);
+            Grid1timeScroll.ScrollToVerticalOffset(c.Value);
 
         }
     }
 
-
-    public class TaskSchedules
-    {
-        public object id { get; set; }
-        public string Description { get; set; }
-        public string Status { get; set; }
-        public string task { get; set; }
-        public DateTime start { get; set; }
-        public DateTime end { get; set; }
-        public List<string> statuslist { get; set; } = new List<string> { "Принят", "Завершен", "В работе" };
-
-    }
-    /// <summary>
-    /// Все состаяния "Принят", "Завершен", "В работе"
-    /// </summary>
-    enum State
-    {
-
-    }
-    class but : Button
-    {
-        public string Description { get; set; }
-    }
 }

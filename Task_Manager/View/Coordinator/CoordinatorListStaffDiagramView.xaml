@@ -1,0 +1,63 @@
+﻿<Page x:Class="Task_Manager.View.Coordinator.CoordinatorListStaffDiagramView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Task_Manager.View.Coordinator"
+      mc:Ignorable="d" 
+         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+
+             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+      xmlns:diagram="clr-namespace:Task_Manager.View.DiagramGantt" 
+      xmlns:coordinatorviewmodel="clr-namespace:Task_Manager.ViewModel.CoordinatorViewModel"
+      d:DataContext="{d:DesignInstance Type=coordinatorviewmodel:CoordinatorListStaffDiagramViewModel}"
+      Height="450" Width="850"
+      Title="CoordinatorListStaffDiagramView">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TabControl   Grid.Column="1" x:Name="Tab"  >
+            <TabItem Header="Прогнозирование продаж ФРОВ">
+                
+            </TabItem>
+            <TabItem Header="Развитие отчетности и разработка">
+            </TabItem>
+            <TabItem Header="Взаимодействие КМ">
+               
+            </TabItem>
+            <TabItem Header="Регулярная отчетность">
+               
+            </TabItem>
+            <TabItem Header="Аналитика">
+                
+            </TabItem>
+            <TabItem Header="Бюджетирование">
+                
+            </TabItem>
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseUp">
+                    <cmd:EventToCommand Command="{Binding click}" CommandParameter="{Binding ElementName=Tab, Path=SelectedItem.Header}"
+                            PassEventArgsToCommand="True" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TabControl>
+        <ListBox SelectedItem="{Binding SelectedItem}" x:Name="Lists"  ItemsSource="{Binding ListStaff, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1">
+     
+        </ListBox>
+        <diagram:DiagramGanttView HorizontalVertical="Visible" Grid.Column="1" Grid.Row="1" Task_Book="{Binding B}"></diagram:DiagramGanttView>
+        <Border BorderBrush="Black" BorderThickness="1">
+            <TextBlock FontSize="11" Text="Список сотрудников в отделе" TextWrapping="WrapWithOverflow">
+
+            </TextBlock>
+        </Border>
+      
+    </Grid>
+</Page>
