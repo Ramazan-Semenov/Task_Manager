@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,7 +25,30 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
         public List<string> liststatus { get { return new List<string> { "принят", "в работе", "завершен" }; } }
 
 
+        public List<string> list_implicit_request { get; set; } = new List<string>();
+        
+        
+        public List<View.ChiefView.tecon> implicit_request_template
+        {
+            get
+            {
+                string txt = File.ReadAllText(@"C:\Users\lenovo\Desktop\eccccccccccccccccccccccccccccccccccccr.json");
+                List<View.ChiefView.gridelement> lis = JsonConvert.DeserializeObject<List<View.ChiefView.gridelement>>(txt); ;
+                List<View.ChiefView.tecon> tecons = new List<View.ChiefView.tecon>();
+                if (lis != null)
+                {
 
+
+                    foreach (var item in lis)
+                    {
+                        tecons.Add(new View.ChiefView.tecon { Content = item.userelement1.Content.ToString(), Text = item.userelement2.Content.ToString() });
+                    }
+                    return tecons;
+                }
+                return new List<View.ChiefView.tecon>();
+            }
+        
+        }/*= new List<View.ChiefView.tecon>();*/
         public List<string> ListDepartment
         {
             get

@@ -140,21 +140,50 @@
                                Text="{Binding Task_Book.Department}"></ComboBox>
                 </Grid>
 
+                <Grid Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="2" Grid.Row="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Описание задачи"></Label>
+                    <TextBox  Height="100" Grid.Row="1" Text="{Binding Task_Book.Description}">
 
+                    </TextBox>
+                </Grid>
             </StackPanel>
+       
         </Grid>
-        <Grid Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="2" Grid.Row="3">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Label Grid.Row="0" Content="Описание задачи"></Label>
-            <TextBox Grid.Row="1" Text="{Binding Task_Book.Description}">
+        <Grid Grid.Column="2" Grid.Row="1" Grid.RowSpan="3" >
+            <ListBox ItemsSource="{Binding list_implicit_request}">
+                
+            </ListBox>
+        </Grid>
+        <Grid Grid.Column="2" Grid.Row="4"  Grid.RowSpan="3" Grid.ColumnSpan="2">
+            <ItemsControl BorderThickness="1" BorderBrush="Black" x:Name="tStack"  ItemsSource="{Binding implicit_request_template}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
 
-            </TextBox>
+                        <StackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label BorderThickness="1" BorderBrush="Black" Grid.Column="0" Content="{Binding Content}"/>
+                            <TextBox IsReadOnly="True" Grid.Column="1" Text="{Binding Text}"></TextBox>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </Grid>
+        
         <Button Command="{Binding Create}" Content="Создать запрос" MaxHeight="50" Grid.Row="7" Grid.Column="3"></Button>
-        <CheckBox Content="Неявный запрос"  Grid.Row="1" Grid.Column="2"></CheckBox>
+        <CheckBox Content="Неявный запрос"  Grid.Row="1" Grid.Column="3"></CheckBox>
         <Label MaxHeight="40" Grid.Column="2" Content="Создание запроса"></Label>
 
     </Grid>

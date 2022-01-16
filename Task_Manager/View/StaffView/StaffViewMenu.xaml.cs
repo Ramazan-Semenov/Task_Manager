@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,6 +34,8 @@ namespace Task_Manager.View.StaffView
             timer.Tick += Timer_Tick;
 
             panelWidth = sidePanel.Width;
+
+
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
