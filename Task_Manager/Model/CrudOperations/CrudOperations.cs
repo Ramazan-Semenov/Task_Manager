@@ -91,6 +91,40 @@ namespace Task_Manager.Model.CrudOperations
             }
             return task_Book;
         }
+        public IEnumerable<list_implicit_request> GetImplicit_requestList()
+        {
+            List<list_implicit_request> list_implicit_request = new List<list_implicit_request>();
+            string txt = "Select * from list_implicit_request";
+
+            using (var connection = new SqlConnection(sqlConnectionString))
+            {
+                connection.Open();
+                list_implicit_request = connection.Query<list_implicit_request>(txt).AsParallel().ToList();
+                connection.Close();
+            }
+
+            return list_implicit_request;
+        }
+          public IEnumerable<list_implicit_request> GetImplicit_requestList(string department )
+        {
+            List<list_implicit_request> list_implicit_request = new List<list_implicit_request>();
+            string txt = "Select * from list_implicit_request where department=@department";
+
+            using (var connection = new SqlConnection(sqlConnectionString))
+            {
+                connection.Open();
+                list_implicit_request = connection.Query<list_implicit_request>(txt, new {
+
+                    department = department
+                }).AsParallel().ToList();
+                connection.Close();
+            }
+
+            return list_implicit_request;
+        }
+
+
+
 
         public IEnumerable<task_book> GetEntityList()
         {
@@ -111,12 +145,7 @@ namespace Task_Manager.Model.CrudOperations
 
         public void Update(task_book item)
         {
-            //"([Numder], [Date_of_compilation], [from_whom], [task_type], [name_of_the_task], [start_date], [end_date], [executor], [priority], [status])" +
-            //" VALUES (@Numder,
-            //@Date_of_compilation,
-            //@from_whom,
-            //@task_type, @name_of_the_task, @start_date,
-            //@end_date, @executor, @priority, @status)";
+           
 
             string txt = @"
 UPDATE task_book

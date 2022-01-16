@@ -16,7 +16,7 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
     {
         private Model.task_book _task_Book;
         public Model.task_book task_Book { get => _task_Book; set => _task_Book = value; }
-        public List<string> liststatus { get { return new List<string> { "принят", "в работе", "завершен" }; } }
+        public List<string> liststatus = Model.ListElement.ListElement.List_Status;
         public CoordinatorViewModelEditTask(Model.task_book task_Book)
         {
             if (task_Book != null)

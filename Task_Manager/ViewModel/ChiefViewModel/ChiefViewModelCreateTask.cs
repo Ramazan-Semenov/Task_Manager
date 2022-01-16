@@ -23,17 +23,11 @@ namespace Task_Manager.ViewModel.ChiefViewModel
 
         private string filename;
         public string FileName { get => filename; set => filename = value; }
-        public List<string> liststatus { get { return new List<string> { "принят", "в работе", "завершен" }; } }
+        public List<string> liststatus = Model.ListElement.ListElement.List_Status;
 
 
 
-        public List<string> ListDepartment { get {
-
-                return new List<string> { "Прогнозирование продаж ФРОВ",
-                    "Развитие отчетности и разработки инстрементов", "Аналитика","Взаимодействие КМ",
-                "Регулярная отчетность",
-                "Бюджетирование"};
-            } }  
+        public List<string> ListDepartment = Model.ListElement.ListElement.ListDepartment;
         public List<string> Listname_of_the_task
         { get {
 

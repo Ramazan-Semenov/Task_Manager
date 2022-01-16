@@ -17,7 +17,7 @@
         <StackPanel x:Name="root">
 
         </StackPanel>
-        <ItemsControl Background="Aqua" x:Name="tStack" Grid.Column="2">
+        <!--<ItemsControl Background="Aqua" x:Name="tStack" Grid.Column="2">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                   
@@ -37,30 +37,35 @@
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        </ItemsControl>-->
 
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="60"/>
                 
             </Grid.RowDefinitions>
-            <StackPanel>
+        
+
+            <StackPanel Grid.Row="0" Grid.RowSpan="3">
                 <Button Content="Добавить элемент" Click="Button_Click" ></Button>
                 <Button Content="Сохранить изменения" Click="Button_Click_2"  />
-            </StackPanel>
-
-            <StackPanel Grid.Row="1">
                 <Label Content="Content"></Label>
                 <TextBox x:Name="text" Grid.Row="1" Height="44" />
-
+              
+                <Label Content="Название шаблона"></Label>
+                <TextBox x:Name="Nametemplate" Grid.Row="1" Height="44" />
+                <Label Content="Выберите отдел"></Label>
+                <ComboBox Name="ListDepartment"></ComboBox>
             </StackPanel>
-            <StackPanel Grid.Row="2">
+            <StackPanel Grid.Row="3">
                 <Button Content="Сохранить шаблон"  Click="Button_Click_1"  ></Button>
 
             </StackPanel>
         </Grid>
-   
+        <Grid Grid.Column="2">
+            <ListBox ></ListBox>
+        </Grid>
     </Grid>
 </Page>

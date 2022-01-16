@@ -20,13 +20,8 @@ namespace Task_Manager.ViewModel.ChiefViewModel
 
         public ChiefViewModelMenu()
         {
-            //PageCurrent = ChiefViewPage;
-            //MessageBox.Show(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => x.Department == "Аналитика").Count().ToString());
             FrameOpacity = 1;
-            //opendf = new RelayCommand(() => {
-            //     PageCurrent = ChiefViewPage; RaisePropertyChanged("CurrentPage"); 
-            //}) ;
-           
+
       
         }
        

@@ -95,6 +95,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\CrudOperations\list_implicit_request.cs" />
+    <Compile Include="Model\ListElement\ListElement.cs" />
     <Compile Include="Model\SettingPath.cs" />
     <Compile Include="Model\StartDep.cs" />
     <Compile Include="Themes\MarginSetter.cs" />

@@ -22,7 +22,7 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
 
         private string filename;
         public string FileName { get => filename; set => filename = value; }
-        public List<string> liststatus { get { return new List<string> { "принят", "в работе", "завершен" }; } }
+        public List<string> liststatus = Model.ListElement.ListElement.List_Status;
 
 
         public List<string> list_implicit_request { get; set; } = new List<string>();
@@ -32,7 +32,7 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
         {
             get
             {
-                string txt = File.ReadAllText(@"C:\Users\lenovo\Desktop\eccccccccccccccccccccccccccccccccccccr.json");
+                string txt = new Model.CrudOperations.CrudOperations().GetImplicit_requestList().Where(x=>x.id==1).Select(x=>x.implicit_request_json).First();
                 List<View.ChiefView.gridelement> lis = JsonConvert.DeserializeObject<List<View.ChiefView.gridelement>>(txt); ;
                 List<View.ChiefView.tecon> tecons = new List<View.ChiefView.tecon>();
                 if (lis != null)
@@ -49,17 +49,8 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
             }
         
         }/*= new List<View.ChiefView.tecon>();*/
-        public List<string> ListDepartment
-        {
-            get
-            {
-
-                return new List<string> { "Прогнозирование продаж ФРОВ",
-                    "Развитие отчетности и разработки инстрементов", "Аналитика","Взаимодействие КМ",
-                "Регулярная отчетность",
-                "Бюджетирование"};
-            }
-        }
+        public List<string> ListDepartment = Model.ListElement.ListElement.ListDepartment;
+       
         public List<string> Listname_of_the_task
         {
             get

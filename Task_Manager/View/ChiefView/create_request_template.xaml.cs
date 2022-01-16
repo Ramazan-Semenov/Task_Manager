@@ -29,7 +29,7 @@ namespace Task_Manager.View.ChiefView
             InitializeComponent();
             string txt = File.ReadAllText(@"C:\Users\lenovo\Desktop\eccccccccccccccccccccccccccccccccccccr.json");
             List<gridelement> lis = JsonConvert.DeserializeObject<List<gridelement>>(txt); ;
-            List<tecon> tecons = new List<tecon>();
+            //List<tecon> tecons = new List<tecon>();
             if (lis!=null)
             {
 
@@ -37,7 +37,7 @@ namespace Task_Manager.View.ChiefView
                 foreach (var item in lis)
                 {
                     root.Children.Add(new CustomElement(item.userelement1, item.userelement2)._Grid);
-                    tecons.Add(new tecon { Content = item.userelement1.Content.ToString(), Text=item.userelement2.Content.ToString() }) ;
+                    //tecons.Add(new tecon { Content = item.userelement1.Content.ToString(), Text=item.userelement2.Content.ToString() }) ;
                 }
                 foreach (UIElement item in root.Children)
                 {
@@ -51,7 +51,7 @@ namespace Task_Manager.View.ChiefView
 
                 }
             }
-            tStack.ItemsSource = tecons;
+            //tStack.ItemsSource = tecons;
 
         }
         private void _Label_MouseDoubleClick(object sender, MouseButtonEventArgs e)
