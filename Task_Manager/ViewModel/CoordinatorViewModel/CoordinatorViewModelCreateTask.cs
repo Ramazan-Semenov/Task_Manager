@@ -32,24 +32,24 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
         {
             get
             {
-                string txt = new Model.CrudOperations.CrudOperations().GetImplicit_requestList().Where(x=>x.id==1).Select(x=>x.implicit_request_json).First();
-                List<View.ChiefView.gridelement> lis = JsonConvert.DeserializeObject<List<View.ChiefView.gridelement>>(txt); ;
-                List<View.ChiefView.tecon> tecons = new List<View.ChiefView.tecon>();
-                if (lis != null)
-                {
+                //string txt = new Model.CrudOperations.CrudOperations().GetImplicit_requestList().Where(x=>x.id==1).Select(x=>x.implicit_request_json).First();
+                //List<View.ChiefView.gridelement> lis = JsonConvert.DeserializeObject<List<View.ChiefView.gridelement>>(txt); ;
+                //List<View.ChiefView.tecon> tecons = new List<View.ChiefView.tecon>();
+                //if (lis != null)
+                //{
 
 
-                    foreach (var item in lis)
-                    {
-                        tecons.Add(new View.ChiefView.tecon { Content = item.userelement1.Content.ToString(), Text = item.userelement2.Content.ToString() });
-                    }
-                    return tecons;
-                }
+                //    foreach (var item in lis)
+                //    {
+                //        tecons.Add(new View.ChiefView.tecon { Content = item.userelement1.Content.ToString(), Text = item.userelement2.Content.ToString() });
+                //    }
+                //    return tecons;
+                //}
                 return new List<View.ChiefView.tecon>();
             }
         
         }/*= new List<View.ChiefView.tecon>();*/
-        public List<string> ListDepartment = Model.ListElement.ListElement.ListDepartment;
+        public List<string> ListDepartment { get; set; } = Model.ListElement.ListElement.ListDepartment;
        
         public List<string> Listname_of_the_task
         {
