@@ -20,7 +20,7 @@ namespace Task_Manager.ViewModel.Viewing_a_task
         public Viewing_a_task_ViewModel(Model.task_book task_Book)
         {
             _task_Book = task_Book;
-            list_of_stages = new ObservableCollection<Model.task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => x.name_of_the_task == _task_Book.name_of_the_task));
+            list_of_stages = new ObservableCollection<Model.task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => (x.name_of_the_task == _task_Book.name_of_the_task)&(x.Department==_task_Book.Department)));
         }
 
 

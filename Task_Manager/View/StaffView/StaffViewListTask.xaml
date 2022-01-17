@@ -6,6 +6,9 @@
              xmlns:local="clr-namespace:Task_Manager.View.StaffView" xmlns:control="http://filterdatagrid.control.com/2021"
              mc:Ignorable="d" 
              xmlns:viewmodel="clr-namespace:Task_Manager.ViewModel.StaffViewModel"
+                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+
+             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
              >
     <!--<UserControl.Resources>
         <ResourceDictionary Source="/Themes/Dictionary1.xaml"></ResourceDictionary>
@@ -93,8 +96,6 @@
             Grid.Row="2"
             Margin="10,10,0,2"
             AlternatingRowBackground="WhiteSmoke"
-            AlternationCount="2"
-            AutoGenerateColumns="False"
             Background="Transparent"
             CanUserAddRows="False"
                     GridLinesVisibility="None"
@@ -111,13 +112,19 @@
             VerticalGridLinesBrush="LightGray"
             VerticalScrollBarVisibility="Visible"
             VirtualizingStackPanel.IsVirtualizing="True">
-                    <control:FilterDataGrid.Columns>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <cmd:EventToCommand Command="{x:Static viewmodel:StaffViewModelListTask.Selected}" CommandParameter="{Binding ElementName=FilterDataGrid, Path=SelectedItem}"
+                            PassEventArgsToCommand="True" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                <!--<control:FilterDataGrid.Columns>
                         <control:DataGridTemplateColumn
                     FieldName="Numder"
                     Header="Номер"
                     IsColumnFiltered="True"
                     SortMemberPath="Numder">
-                            <control:DataGridTemplateColumn.CellTemplate>
+                             <control:DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate >
                                     <TextBlock Text="{Binding Number}" />
                                 </DataTemplate>
@@ -164,7 +171,7 @@
                     Binding="{Binding status}"
                     Header="Статус"
                     IsColumnFiltered="True" />
-                    </control:FilterDataGrid.Columns>
+                    </control:FilterDataGrid.Columns>-->
                 </control:FilterDataGrid>
 
             </Grid>

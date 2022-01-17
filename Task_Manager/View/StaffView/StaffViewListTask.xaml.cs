@@ -22,14 +22,14 @@ namespace Task_Manager.View.StaffView
     /// </summary>
     public partial class StaffViewListTask : UserControl
     {
-        public static readonly DependencyProperty Task_BooksProperty = DependencyProperty.Register(
-          nameof(Task_Book), typeof(IList<task_book>), typeof(StaffViewListTask), new FrameworkPropertyMetadata(null,
+        public static readonly DependencyProperty Task_BookProperty = DependencyProperty.Register(
+          nameof(Task_Book), typeof(IList<task_book>), typeof(StaffViewListTask), new FrameworkPropertyMetadata(new List<task_book>(),
              FrameworkPropertyMetadataOptions.None));
 
         public IList<task_book> Task_Book
         {
-            get { return (IList<task_book>)GetValue(Task_BooksProperty); }
-            set { SetValue(Task_BooksProperty, value); }
+            get { return (IList<task_book>)GetValue(Task_BookProperty); }
+            set { SetValue(Task_BookProperty, value); }
         }
         public StaffViewListTask()
         {

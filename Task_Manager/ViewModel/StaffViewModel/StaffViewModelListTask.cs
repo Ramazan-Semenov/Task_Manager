@@ -13,27 +13,13 @@ namespace Task_Manager.ViewModel.StaffViewModel
 {
   public  class StaffViewModelListTask : ViewModelBase
     {
-        //private static ObservableCollection<task_book> task_Books;
-        //public static ObservableCollection<task_book> Task_Books
-        //{
-        //    get => task_Books; set
-        //    {
-        //        task_Books = value; /*OnPropertyChanged(nameof(Task_Books))*/;
-        //    }
-        //}
-      //  public static  task_book Selected { get; set; }
-
-  
-        //public StaffViewModelListTask()
-        //{
-        //    task_Books = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList());
-        //}
+        
         static StaffViewModelListTask()
         {
             CreateTask = new RelayCommand(_CreateTask);
             Create_based_on = new RelayCommand<task_book>(_Create_based_on);
             EditTask = new RelayCommand<task_book>(_EditTask);
-
+            Selected = new RelayCommand<task_book>(_Selected);
         }
         public static RelayCommand CreateTask
         {
@@ -62,6 +48,11 @@ namespace Task_Manager.ViewModel.StaffViewModel
             View.StaffView.StaffViewEditTask staffViewEditTask = new View.StaffView.StaffViewEditTask(task);
             staffViewEditTask.ShowDialog();
         }
-
+        public static RelayCommand<task_book> Selected { get; set; }
+        static void _Selected(task_book task)
+        {
+            View.Viewing_a_task.Viewing_a_task_View viewing_A_Task_View = new View.Viewing_a_task.Viewing_a_task_View(task);
+            viewing_A_Task_View.ShowDialog();
+        }
     }
 }

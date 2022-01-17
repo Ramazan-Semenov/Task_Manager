@@ -79,6 +79,7 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
             {
                 if (e.Entity.Department == Department)
                 {
+                    MessageBox.Show("Ok");
                     App.Current.Dispatcher.Invoke((Action)delegate
                     {
                         runtimeTask.Add(e.Entity);

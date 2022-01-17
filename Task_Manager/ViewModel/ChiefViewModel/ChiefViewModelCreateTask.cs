@@ -81,17 +81,37 @@ namespace Task_Manager.ViewModel.ChiefViewModel
             OpenFileDialog openFile = new OpenFileDialog();
             if (openFile.ShowDialog()==true)
             {
+                //string path = openFile.FileName;
+                //string pathctreatefile = @"C:\Users\lenovo\Desktop";
+                //string subpath = @"Test1234";
+                //DirectoryInfo dirInfo = new DirectoryInfo(pathctreatefile);
+                //if (!dirInfo.Exists)
+                //{
+                //    dirInfo.Create();
+                //}
+                //dirInfo.CreateSubdirectory(subpath);
+                //string fullName = dirInfo.CreateSubdirectory(subpath).FullName;
+                //string newPath = $@"{dirInfo.CreateSubdirectory(subpath).FullName}\{openFile.SafeFileName}";
+                //FileInfo fileInf = new FileInfo(path);
+                //if (fileInf.Exists)
+                //{
+                //    fileInf.CopyTo(newPath, true);
+
+                //}
+
+                //filename = openFile.SafeFileName;
+
+
+                //RaisePropertyChanged("FileName");
                 string path = openFile.FileName;
-                string pathctreatefile = @"C:\Users\lenovo\Desktop";
-                string subpath = @"Test1234";
-                DirectoryInfo dirInfo = new DirectoryInfo(pathctreatefile);
+             
+                DirectoryInfo dirInfo = new DirectoryInfo(Model.SettingPath.DefaultFilePath);
                 if (!dirInfo.Exists)
                 {
                     dirInfo.Create();
                 }
-                dirInfo.CreateSubdirectory(subpath);
-                string fullName = dirInfo.CreateSubdirectory(subpath).FullName;
-                string newPath = $@"{dirInfo.CreateSubdirectory(subpath).FullName}\{openFile.SafeFileName}";
+
+                string newPath = Model.SettingPath.DefaultFilePath + "\\" + openFile.SafeFileName;
                 FileInfo fileInf = new FileInfo(path);
                 if (fileInf.Exists)
                 {

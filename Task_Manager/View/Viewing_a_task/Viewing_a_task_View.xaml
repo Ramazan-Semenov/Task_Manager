@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Task_Manager.View.Viewing_a_task"
         mc:Ignorable="d"
-        Title="Viewing_a_task_View" Height="450" Width="800">
+        Title="Viewing_a_task_View" >
     <Window.Resources>
         <Style TargetType="Label">
             <Setter Property="BorderBrush" Value="Black"></Setter>

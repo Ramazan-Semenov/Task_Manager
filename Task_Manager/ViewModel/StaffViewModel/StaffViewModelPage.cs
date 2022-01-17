@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TableDependency.SqlClient;
 using TableDependency.SqlClient.Base;
 using TableDependency.SqlClient.Base.EventArgs;
@@ -34,7 +35,8 @@ namespace Task_Manager.ViewModel.StaffViewModel
         public StaffViewModelPage()
         {
             _con = new ConnectionDataBase();
-           
+            runtimeTask = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => (x.executor==Users.Name)&(x.Department == Department) & (x.status == null)));
+
             task_Books = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x=>x.Department==Users.Department));
          
             Start();
@@ -69,7 +71,7 @@ namespace Task_Manager.ViewModel.StaffViewModel
         private void Changed(object sender, RecordChangedEventArgs<task_book> e)
         {
           
-            if ((e.Entity.executor == Users.Name)&(true))
+            if ((e.Entity.executor == Users.Name)&(e.Entity.status==null))
             {
                 App.Current.Dispatcher.Invoke((Action)delegate
                 {
@@ -80,17 +82,64 @@ namespace Task_Manager.ViewModel.StaffViewModel
 
 
         }
-
-        public RelayCommand Update { get {
+        public RelayCommand Update
+        {
+            get
+            {
 
                 return new RelayCommand(() =>
                 {
-                    task_Books = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => x.Department == Users.Department));
+
+                    task_Books = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => x.Department == Department));
+                    runtimeTask = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => (x.Department == Department) & (x.status == string.Empty)));
+
                     RaisePropertyChanged("tasks");
+                    RaisePropertyChanged("RuntimeTask");
+
 
                 });
-               
-            } }
+
+            }
+        }
+        public RelayCommand<task_book> Task_Confirmation
+        {
+            get
+            {
+                return new RelayCommand<task_book>((task_book task_book) => {
+                    task_book.status = "принят";
+                    new Model.CrudOperations.CrudOperations().Update(task_book);
+                    App.Current.Dispatcher.Invoke((Action)delegate
+                    {
+                        runtimeTask.Remove(task_book);
+                    });
+
+                    RaisePropertyChanged("RuntimeTask");
+                    MessageBox.Show(string.Format("Задача под номером: '{0}' подверждена", task_book.Number));
+                });
+            }
+        }
+        public RelayCommand<task_book> Edit_TaskCommand
+        {
+            get
+            {
+                return new RelayCommand<task_book>((task_book task_book) => {
+                    View.StaffView.StaffViewEditTask editTask = new View.StaffView.StaffViewEditTask(task_book);
+                    editTask.ShowDialog();
+
+                    RaisePropertyChanged("RuntimeTask");
+                });
+            }
+        }
+        //public RelayCommand Update { get {
+
+        //        return new RelayCommand(() =>
+        //        {
+        //            task_Books = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => x.Department == Users.Department));
+        //            RaisePropertyChanged("tasks");
+
+        //        });
+
+        //    } }
 
     }
 }
