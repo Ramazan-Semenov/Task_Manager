@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using TableDependency.SqlClient;
 using TableDependency.SqlClient.Base;
@@ -43,7 +45,32 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
             //MessageBox.Show(Department);
             task_Books = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => x.Department == Department));
             //MessageBox.Show(task_Books.Count.ToString());
-            Start();
+            //     Start();
+            // milliseconds to one hour
+
+            /*TaskMetod(interval60Minutes);*/
+            Thread thread = new Thread(TaskMetod);
+            thread.Start();
+        }
+
+        private void TaskMetod()
+        {
+            const double interval60Minutes = 300000;
+           System.Timers.Timer checkForTime = new System.Timers.Timer(interval60Minutes);
+           checkForTime.Elapsed += new ElapsedEventHandler(checkForTime_Elapsed);
+            checkForTime.Enabled = true;
+        }
+
+        void checkForTime_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            //MessageBox.Show("ok");
+                App.Current.Dispatcher.Invoke((Action)delegate
+                {
+                    runtimeTask = null;
+                    runtimeTask = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => (x.Department == Department) & (x.status == null)));
+                });
+            
+            RaisePropertyChanged("RuntimeTask");
         }
         private void Start()
         {
@@ -65,7 +92,7 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
         }
         ~CoordinatorViewModelPage()
         {
-            StartDep.dep.Stop();
+           // StartDep.dep.Stop();
         }
         /// <summary>
         /// Позже поработать над проверкой, сделать проверку по id

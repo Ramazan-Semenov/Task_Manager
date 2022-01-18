@@ -310,7 +310,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="icons\TextFile1.txt" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="icons\home.png" />
     <Resource Include="icons\menu.png" />

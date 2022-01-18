@@ -12,10 +12,11 @@ namespace Task_Manager.Model.CrudOperations
 
         public void Create(task_book item)
         {
-            string txt = "INSERT INTO [dbo].[task_book] " +
-               "( [Date_of_compilation], [from_whom], [task_type], [name_of_the_task], [start_date], [end_date], [executor], [priority], [status],[Department],[FilePath],[Description],[implicit_request])" +
-               " VALUES ( @Date_of_compilation, @from_whom, @task_type, @name_of_the_task," +
-               " @start_date, @end_date, @executor, @priority, @status,@Department,@FilePath,@Description,@implicit_request)";
+            //string txt = "INSERT INTO [dbo].[task_book] " +
+            //   "( [Date_of_compilation], [from_whom], [task_type], [name_of_the_task], [start_date], [end_date], [executor], [priority], [status],[Department],[FilePath],[Description],[implicit_request])" +
+            //   " VALUES ( @Date_of_compilation, @from_whom, @task_type, @name_of_the_task," +
+            //   " @start_date, @end_date, @executor, @priority, @status,@Department,@FilePath,@Description,@implicit_request)";       
+            string txt = "[dbo].[sp_InsertTask_book]";
             using (var connection = new SqlConnection(sqlConnectionString))
             {
                 connection.Open();
@@ -36,7 +37,7 @@ namespace Task_Manager.Model.CrudOperations
                         FilePath=item.FilePath,
                         Description=item.Description,
                         implicit_request=item.implicit_request
-                    });
+                    }, commandType: System.Data.CommandType.StoredProcedure);
                 connection.Close();
             }
         }
@@ -147,22 +148,23 @@ namespace Task_Manager.Model.CrudOperations
         {
            
 
-            string txt = @"
-UPDATE task_book
-SET Date_of_compilation = @Date_of_compilation
-, from_whom = @from_whom
-, task_type = @task_type
-, name_of_the_task = @name_of_the_task
-, start_date = @start_date
-, end_date = @end_date
-, executor = @executor
-, priority = @priority
-, status = @status
-,Department=@Department
-,FilePath=@FilePath
-,Description=@Description
-,implicit_request=@implicit_request
-WHERE Number = @Number";
+//            string txt = @"
+//UPDATE task_book
+//SET Date_of_compilation = @Date_of_compilation
+//, from_whom = @from_whom
+//, task_type = @task_type
+//, name_of_the_task = @name_of_the_task
+//, start_date = @start_date
+//, end_date = @end_date
+//, executor = @executor
+//, priority = @priority
+//, status = @status
+//,Department=@Department
+//,FilePath=@FilePath
+//,Description=@Description
+//,implicit_request=@implicit_request
+//WHERE Number = @Number";
+            string txt = "[dbo].[sp_UpdateTask_book]";
             using (var connection = new SqlConnection(sqlConnectionString))
             {
                 connection.Open();
@@ -182,7 +184,7 @@ WHERE Number = @Number";
                     FilePath = item.FilePath,
                     Description = item.Description,
                     implicit_request = item.implicit_request
-                });
+                }, commandType: System.Data.CommandType.StoredProcedure);
                 connection.Close();
             }
         }
