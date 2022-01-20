@@ -16,7 +16,7 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
     {
         private Model.task_book _task_Book;
         public Model.task_book task_Book { get => _task_Book; set => _task_Book = value; }
-        public List<string> liststatus = Model.ListElement.ListElement.List_Status;
+        public List<string> liststatus { get; set; } = Model.ListElement.ListElement.List_Status;
         public CoordinatorViewModelEditTask(Model.task_book task_Book)
         {
             if (task_Book != null)
@@ -31,11 +31,63 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
                 MessageBox.Show("Задача не выбрана");
             }
         }
+     private    string state { get; set; }
+        public CoordinatorViewModelEditTask(Model.task_book task_Book, string state)
+        {
+            if (task_Book != null)
+            {
+                _task_Book = task_Book;
+                this.state = state;
+
+                list_of_stages = new ObservableCollection<Model.task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => x.name_of_the_task == _task_Book.name_of_the_task));
+
+            }
+            else
+            {
+                MessageBox.Show("Задача не выбрана");
+            }
+        }
 
 
         public ObservableCollection<Model.task_book> list_of_stages { get; set; }
 
 
+        public List<string> ListDepartment { get; set; } = Model.ListElement.ListElement.ListDepartment;
+
+        public string selectedDepartment { get; set; }
+
+        public string SelectedDepartment
+        {
+            get
+            {
+
+                Task.Run(AsyncSelectListStaffTask);
+
+
+                return selectedDepartment;
+            }
+            set => selectedDepartment = value;
+        }
+
+        private async Task AsyncSelectListStaffTask()
+        {
+            ListStaff=null;
+            Listname_of_the_task=null;
+            ListStaff = Model.ListElement.ListElement.Task_Books.Where(x => x.Department == selectedDepartment).GroupBy(x => x.executor).Select(x => x.Key).ToList();
+            Listname_of_the_task = Model.ListElement.ListElement.Task_Books.Where(x => x.Department == selectedDepartment).GroupBy(x => x.name_of_the_task).Select(x => x.Key).ToList();
+            RaisePropertyChanged("ListStaff");
+            RaisePropertyChanged("Listname_of_the_task");
+        }
+
+        public List<string> Listname_of_the_task
+        {
+            get; set;
+        }
+        public List<string> ListStaff
+        {
+            get; set;
+
+        }
 
 
         public RelayCommand Save
@@ -45,6 +97,7 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
                 return new RelayCommand(() =>
                 {
                     new Model.CrudOperations.CrudOperations().Update(task_Book);
+                    MessageBox.Show("");
                 });
             }
         }

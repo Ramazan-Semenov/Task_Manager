@@ -1,9 +1,9 @@
 ﻿<Window x:Class="Task_Manager.View.Coordinator.CoordinatorViewCreateTask"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Task_Manager.View.Coordinator"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:local="clr-namespace:Task_Manager.View.Coordinator"
         mc:Ignorable="d"
         Title="CoordinatorViewCreateTask" Height="450" Width="800">
     <Window.Resources>
@@ -14,13 +14,11 @@
                 </Style>
             </Style.Resources>
             <Setter Property="Background" Value="#94d3cb"></Setter>
-
         </Style>
         <Style TargetType="Label">
             <Setter Property="Background" Value="#b4bdce"></Setter>
             <Setter Property="BorderThickness" Value="3"></Setter>
         </Style>
-
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -48,7 +46,6 @@
             <TextBlock Text="{Binding User}" Grid.Column="1" ></TextBlock>
         </Grid>
         <Grid Grid.RowSpan="7" Grid.ColumnSpan="2" Grid.Row="1"  Grid.Column="0">
-
             <StackPanel>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -66,7 +63,6 @@
                     <Label Grid.Column="0" Content="Дата планируемого завершения"></Label>
                     <DatePicker  SelectedDate="{Binding Task_Book.end_date}" Text="{Binding DateNow}" Grid.Column="1"/>
                 </Grid>
-
                 <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="80" />
@@ -99,14 +95,6 @@
                                   IsEditable="True"
                               ItemsSource="{Binding ListStaff}" Text="{Binding Task_Book.executor}"></ComboBox>
                 </Grid>
-                <!--<Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="65"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Content="№ задачи"></Label>
-                    <TextBlock  Grid.Column="1" Text="{Binding Task_Book.Number}"></TextBlock>
-                </Grid>-->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="90"/>
@@ -117,17 +105,6 @@
                     <Button Height="23" Command="{Binding Openfloderfile}" Grid.Column="1"  Content="Обзор"></Button>
                     <TextBlock  Grid.Column="2" Text="{Binding FileName}"></TextBlock>
                 </Grid>
-
-                <!--<Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="65"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Content="Статус"></Label>
-                    <ComboBox  Grid.Column="1" IsTextSearchEnabled="True" 
-                                  IsEditable="True"
-                                  ItemsSource="{Binding liststatus}" Text="{Binding Task_Book.status}"></ComboBox>
-                </Grid>-->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="65"/>
@@ -136,33 +113,27 @@
                     <Label Grid.Column="0" Content="Отдел"></Label>
                     <ComboBox  Grid.Column="1" IsTextSearchEnabled="True" 
                                   IsEditable="True"
+                               SelectedValue="{Binding SelectedDepartment}"
                               ItemsSource="{Binding ListDepartment}"
                                Text="{Binding Task_Book.Department}"></ComboBox>
                 </Grid>
-
                 <Grid Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="2" Grid.Row="3">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Content="Описание задачи"></Label>
-                    <TextBox  Height="100" Grid.Row="1" Text="{Binding Task_Book.Description}">
-
-                    </TextBox>
+                    <TextBox  Height="100" Grid.Row="1" Text="{Binding Task_Book.Description}"></TextBox>
                 </Grid>
             </StackPanel>
-       
         </Grid>
         <Grid Grid.Column="2" Grid.Row="1" Grid.RowSpan="3" >
-            <ListBox ItemsSource="{Binding list_implicit_request}">
-                
-            </ListBox>
+            <ListBox Visibility="{Binding list_implicit_requestVisibility}" x:Name="list_implicit_request" SelectedItem="{Binding implicit_requestItem}" ItemsSource="{Binding list_implicit_request}"></ListBox>
         </Grid>
         <Grid Grid.Column="2" Grid.Row="4"  Grid.RowSpan="3" Grid.ColumnSpan="2">
-            <ItemsControl BorderThickness="1" BorderBrush="Black" x:Name="tStack"  ItemsSource="{Binding implicit_request_template}">
+            <ItemsControl Visibility="{Binding implicit_request_templateVisibility}"  BorderThickness="1" BorderBrush="Black" x:Name="tStack"  ItemsSource="{Binding implicit_request_template}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-
                         <StackPanel />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
@@ -173,7 +144,6 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-
                             <Label BorderThickness="1" BorderBrush="Black" Grid.Column="0" Content="{Binding Content}"/>
                             <TextBox IsReadOnly="True" Grid.Column="1" Text="{Binding Text}"></TextBox>
                         </Grid>
@@ -181,10 +151,8 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </Grid>
-        
         <Button Command="{Binding Create}" Content="Создать запрос" MaxHeight="50" Grid.Row="7" Grid.Column="3"></Button>
-        <CheckBox Content="Неявный запрос"  Grid.Row="1" Grid.Column="3"></CheckBox>
+        <CheckBox Content="Неявный запрос" IsChecked="{Binding IsChecked}" x:Name="d"  Grid.Row="1" Grid.Column="3"></CheckBox>
         <Label MaxHeight="40" Grid.Column="2" Content="Создание запроса"></Label>
-
     </Grid>
 </Window>

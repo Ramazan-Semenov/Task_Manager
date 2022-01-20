@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Task_Manager.ViewModel.Viewing_a_task
 {
@@ -20,7 +21,7 @@ namespace Task_Manager.ViewModel.Viewing_a_task
         public Viewing_a_task_ViewModel(Model.task_book task_Book)
         {
             _task_Book = task_Book;
-            list_of_stages = new ObservableCollection<Model.task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => (x.name_of_the_task == _task_Book.name_of_the_task)&(x.Department==_task_Book.Department)));
+            list_of_stages = new ObservableCollection<Model.task_book>(Model.ListElement.ListElement.Task_Books.Where(x => (x.name_of_the_task == _task_Book.name_of_the_task)&(x.Department==_task_Book.Department)));
         }
 
 
@@ -35,38 +36,27 @@ namespace Task_Manager.ViewModel.Viewing_a_task
         }
         void openfloderfile()
         {
-            OpenFileDialog openFile = new OpenFileDialog();
-
-            string FileNamePath = _task_Book.FilePath;
-
+  
+            SaveFileDialog openFile = new SaveFileDialog();
+            openFile.FileName = _task_Book.FilePath;
             if (openFile.ShowDialog() == true)
             {
-                //string path = openFile.FileName;
-                //string pathctreatefile = @"C:\Users\lenovo\Desktop";
-                //string subpath = @"Test1234";
-                //DirectoryInfo dirInfo = new DirectoryInfo(pathctreatefile);
-                //if (!dirInfo.Exists)
-                //{
-                //    dirInfo.Create();
-                //}
-                //dirInfo.CreateSubdirectory(subpath);
-                //string fullName = dirInfo.CreateSubdirectory(subpath).FullName;
-                //string newPath = $@"{dirInfo.CreateSubdirectory(subpath).FullName}\{openFile.SafeFileName}";
-                //FileInfo fileInf = new FileInfo(path);
-                //if (fileInf.Exists)
-                //{
-                //    fileInf.CopyTo(newPath, true);
+                string path = openFile.FileName;
+                DirectoryInfo dirInfo = new DirectoryInfo(Model.SettingPath.DefaultFilePath);
+                if (!dirInfo.Exists)
+                {
+                    dirInfo.Create();
+                }
+                FileInfo fileInf = new FileInfo(Model.SettingPath.DefaultFilePath + "\\"+_task_Book.FilePath);
+                if (fileInf.Exists)
+                {
+                    fileInf.CopyTo(path, true);
 
-                //}
+                }
 
-                //   filename = openFile.SafeFileName;
-
-                _task_Book.FilePath = openFile.SafeFileName;
-                RaisePropertyChanged("task_Book");
+                RaisePropertyChanged("FileName");
             }
 
-
-            //MessageBox.Show(openFile.SafeFileName);
         }
     }
 }

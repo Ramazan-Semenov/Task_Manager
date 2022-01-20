@@ -11,7 +11,6 @@
             <Setter Property="BorderBrush" Value="Black"></Setter>
             <Setter Property="BorderThickness" Value="1"></Setter>
             <Setter Property="Background" Value="#b4bdce"></Setter>
-
         </Style>
     </Window.Resources>
     <Grid>
@@ -134,11 +133,11 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="90"/>
-                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="70"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Content="Выбрать файл"></Label>
-                        <Button Command="{Binding Openfloderfile}" Grid.Column="1"  Content="Обзор"></Button>
+                        <Button Command="{Binding Openfloderfile}" Grid.Column="1"  Content="Сохранить"></Button>
                         <!--<Label  Grid.Column="2" Content="{Binding task_Book.FilePath}"></Label>-->
                         <Border BorderBrush="Black" BorderThickness="1"  Grid.Column="2" >
                             <TextBlock Text="{Binding task_Book.FilePath}"></TextBlock>

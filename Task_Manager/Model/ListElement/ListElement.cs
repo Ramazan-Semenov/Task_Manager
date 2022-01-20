@@ -22,5 +22,6 @@ namespace Task_Manager.Model.ListElement
                 "Бюджетирование"};
             }
         }
+        public static IEnumerable<task_book> Task_Books { get; } = new Model.CrudOperations.CrudOperations().GetEntityList();
     }
 }

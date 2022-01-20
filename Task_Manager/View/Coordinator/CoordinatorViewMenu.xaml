@@ -5,13 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Task_Manager.View.Coordinator"
         mc:Ignorable="d"
-        Title="CoordinatorViewMenu" Height="730" Width="1000">
+          xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+
+             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+        Title="CoordinatorViewMenu" Height="auto" Width="1000">
     <Grid Background="Transparent">
-        <Grid x:Name="panelHeader" VerticalAlignment="Top" Height="50" Background="#FF0F4E7A" MouseDown="PanelHeader_MouseDown">
-        </Grid>
-        
-            <Frame Margin="70 50 0 0"   NavigationUIVisibility="Hidden"  Opacity="{Binding FrameOpacity}"
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="panelHeader" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Background="#FF0F4E7A" MouseDown="PanelHeader_MouseDown">
+            </Grid>
+            <TabControl Visibility="{Binding visibility}"   BorderThickness="0.5" BorderBrush="Black" Grid.Column="2" Grid.RowSpan="2"  TabStripPlacement="Right"  Grid.Row="1" x:Name="Tab"  >
+                <TabItem Header="Прогнозирование продаж ФРОВ">
+
+                </TabItem>
+                <TabItem Header="Развитие отчетности и разработка">
+                </TabItem>
+                <TabItem Header="Взаимодействие КМ">
+
+                </TabItem>
+                <TabItem Header="Регулярная отчетность">
+
+                </TabItem>
+                <TabItem Header="Аналитика">
+
+                </TabItem>
+                <TabItem Header="Бюджетирование">
+
+                </TabItem>
+
+                <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseUp">
+                    <cmd:EventToCommand Command="{Binding click}" CommandParameter="{Binding ElementName=Tab, Path=SelectedItem.Header}"
+                            PassEventArgsToCommand="True" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            </TabControl>
+            <Frame  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="70 0 0 0"   NavigationUIVisibility="Hidden" 
             Content="{Binding CurrentPage}"></Frame>
+        </Grid>
+       
+       
+  
+        
             <Grid  x:Name="sidePanel" Background="#FF0F4E7A" HorizontalAlignment="Left" Width="250">
                 <StackPanel>
                     <Grid Height="150" Background="White">
@@ -20,7 +64,17 @@
                         </Button>
                     </Grid>
                     <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontFamily="Century Gothic" FontSize="14" Foreground="White" BorderBrush="Transparent" Background="Transparent" FontWeight="Bold">
-                        <Button Command="{Binding create_request}" BorderThickness="0" Background="Transparent">
+                    <Button Command="{Binding main_menu}" BorderThickness="0" Background="Transparent">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/icons/op.png" Height="20" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" Text="Главное меню" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Button>
+                    <Button Command="{Binding create_request}" BorderThickness="0" Background="Transparent">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="25"/>
@@ -30,17 +84,8 @@
                                 <TextBlock Grid.Column="1" Text="Создать шаблон запроса" VerticalAlignment="Center"/>
                             </Grid>
                         </Button>
-                        <Button Command="{Binding opendiagram}" BorderThickness="0" Background="Transparent">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="25"/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Image Source="/icons/op.png" Height="20" VerticalAlignment="Center"/>
-                                <TextBlock Grid.Column="1" Text="Диаграмма" VerticalAlignment="Center"/>
-                            </Grid>
-                        </Button>
-                        <Button MaxHeight="30" Command="{Binding opendf}" CommandParameter="Прогнозирование продаж ФРОВ" BorderThickness="0" Background="Transparent">
+
+                        <!--<Button MaxHeight="30" Command="{Binding opendf}" CommandParameter="Прогнозирование продаж ФРОВ" BorderThickness="0" Background="Transparent">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="25"/>
@@ -60,8 +105,8 @@
                                 <Image Source="/icons/op.png" Height="20" VerticalAlignment="Center"/>
                                 <TextBlock Grid.Column="1" TextWrapping="WrapWithOverflow"  Text="Развитие отчетности и разработки инстрементов" VerticalAlignment="Center"/>
                             </Grid>
-                        </Button>
-                        <Button Command="{Binding opendf}" CommandParameter="Взаимодействие КМ" MaxHeight="30" BorderThickness="0" Background="Transparent">
+                        </Button>-->
+                        <!--<Button Command="{Binding opendf}" CommandParameter="Взаимодействие КМ" MaxHeight="30" BorderThickness="0" Background="Transparent">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="25"/>
@@ -80,7 +125,7 @@
                                 <Image Source="/icons/op.png" Height="20" VerticalAlignment="Center"/>
                                 <TextBlock Grid.Column="1" TextWrapping="WrapWithOverflow"  Text="Регулярная отчетность" VerticalAlignment="Center"/>
                             </Grid>
-                        </Button>
+                        </Button>-->
                     <Button Command="{Binding ListStaffDiagramCommand}"  MaxHeight="30" BorderThickness="0" Background="Transparent">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -94,8 +139,8 @@
                     <!--<Button  Content="Развитие отчетности и разработка"></Button>-->
                         <!--<Button Content="Взаимодействие КМ"></Button>-->
                         <!--<Button Content="Регулярная отчетность"></Button>-->
-                        <Button Command="{Binding opendf}" CommandParameter="Аналитика" BorderThickness="0" Background="Transparent" Content="Аналитика"></Button>
-                        <Button Command="{Binding opendf}" CommandParameter="Бюджетирование" BorderThickness="0" Background="Transparent" Content="Бюджетирование"></Button>
+                        <!--<Button Command="{Binding opendf}" CommandParameter="Аналитика" BorderThickness="0" Background="Transparent" Content="Аналитика"></Button>
+                        <Button Command="{Binding opendf}" CommandParameter="Бюджетирование" BorderThickness="0" Background="Transparent" Content="Бюджетирование"></Button>-->
 
 
 

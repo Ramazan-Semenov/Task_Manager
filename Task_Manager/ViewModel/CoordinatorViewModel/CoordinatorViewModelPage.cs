@@ -21,6 +21,7 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
 
 
         private ObservableCollection<task_book> task_Books;
+       
         public ObservableCollection<task_book> tasks
         {
             get => task_Books; set

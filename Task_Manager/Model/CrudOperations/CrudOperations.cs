@@ -106,23 +106,7 @@ namespace Task_Manager.Model.CrudOperations
 
             return list_implicit_request;
         }
-          public IEnumerable<list_implicit_request> GetImplicit_requestList(string department )
-        {
-            List<list_implicit_request> list_implicit_request = new List<list_implicit_request>();
-            string txt = "Select * from list_implicit_request where department=@department";
-
-            using (var connection = new SqlConnection(sqlConnectionString))
-            {
-                connection.Open();
-                list_implicit_request = connection.Query<list_implicit_request>(txt, new {
-
-                    department = department
-                }).AsParallel().ToList();
-                connection.Close();
-            }
-
-            return list_implicit_request;
-        }
+   
 
 
 

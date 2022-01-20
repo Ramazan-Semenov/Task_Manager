@@ -105,7 +105,9 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Content="Исполнитель"></Label>
-                        <TextBox Grid.Column="1" Text="{Binding task_Book.executor}"></TextBox>
+                        <ComboBox Grid.Column="1" IsTextSearchEnabled="True" 
+                                  IsEditable="True"
+                              ItemsSource="{Binding ListStaff}" Text="{Binding task_Book.executor}"></ComboBox>
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -150,7 +152,11 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Content="Отдел"></Label>
-                        <TextBox  Grid.Column="1" Text="{Binding task_Book.Department}"></TextBox>
+                        <ComboBox  Grid.Column="1" IsTextSearchEnabled="True" 
+                                  IsEditable="True"
+                               SelectedValue="{Binding SelectedDepartment}"
+                              ItemsSource="{Binding ListDepartment}"
+                               Text="{Binding task_Book.Department}"></ComboBox>
                     </Grid>
 
 
