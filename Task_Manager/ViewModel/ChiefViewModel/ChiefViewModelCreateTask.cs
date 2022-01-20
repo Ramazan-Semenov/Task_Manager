@@ -3,17 +3,13 @@ using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using Task_Manager.Model;
 
 namespace Task_Manager.ViewModel.ChiefViewModel
 {
-   public class ChiefViewModelCreateTask: ViewModelBase
+    public class ChiefViewModelCreateTask : ViewModelBase
     {
         public DateTime DateNow { get; set; } = DateTime.Now;
         public string User { get; set; } = Users.Name;
@@ -29,16 +25,22 @@ namespace Task_Manager.ViewModel.ChiefViewModel
 
         public List<string> ListDepartment = Model.ListElement.ListElement.ListDepartment;
         public List<string> Listname_of_the_task
-        { get {
+        {
+            get
+            {
 
                 return new List<string>();
-            } }  
+            }
+        }
         public List<string> ListStaff
-        { get {
+        {
+            get
+            {
 
                 return new List<string>();
-            } } 
-        
+            }
+        }
+
         public ChiefViewModelCreateTask()
         {
             Task_Book = new Model.task_book();
@@ -79,7 +81,7 @@ namespace Task_Manager.ViewModel.ChiefViewModel
         void openfloderfile()
         {
             OpenFileDialog openFile = new OpenFileDialog();
-            if (openFile.ShowDialog()==true)
+            if (openFile.ShowDialog() == true)
             {
                 //string path = openFile.FileName;
                 //string pathctreatefile = @"C:\Users\lenovo\Desktop";
@@ -104,7 +106,7 @@ namespace Task_Manager.ViewModel.ChiefViewModel
 
                 //RaisePropertyChanged("FileName");
                 string path = openFile.FileName;
-             
+
                 DirectoryInfo dirInfo = new DirectoryInfo(Model.SettingPath.DefaultFilePath);
                 if (!dirInfo.Exists)
                 {
@@ -123,8 +125,8 @@ namespace Task_Manager.ViewModel.ChiefViewModel
 
 
                 RaisePropertyChanged("FileName");
-            }   
-           
+            }
+
 
             //MessageBox.Show(openFile.SafeFileName);
         }

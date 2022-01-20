@@ -1,18 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Task_Manager.Model;
 
 namespace Task_Manager.View.DiagramGantt
@@ -23,7 +14,7 @@ namespace Task_Manager.View.DiagramGantt
     public partial class DiagramGanttView : UserControl
     {
 
-     
+
         public IList<task_book> Task_Book
         {
             get
@@ -48,23 +39,23 @@ namespace Task_Manager.View.DiagramGantt
             DiagramGanttView source = d as DiagramGanttView;
 
             source.OnCustomerChanged();
-             }
+        }
         protected virtual void OnCustomerChanged()
-            {
+        {
             Grid1time.Children.Clear();
-          //  button.Click -= Button_Click;
+            //  button.Click -= Button_Click;
             foreach (var item in Task_Book)
             {
 
                 if ((item.start_date.Hour - 8) >= 0 & (item.end_date.Day - item.start_date.Day) >= 0 && (item.end_date.Hour - item.start_date.Hour) >= 0)
                 {
-                    Button button = new Button() { Tag=item, Content = item.name_of_the_task, Background = Brushes.LightGreen };
+                    Button button = new Button() { Tag = item, Content = item.name_of_the_task, Background = Brushes.LightGreen };
                     button.Click += Button_Click;
                     Grid.SetColumn(button, item.start_date.Day - 1);
                     Grid.SetColumnSpan(button, (item.end_date.Day - item.start_date.Day) + 1);
 
                     Grid.SetRow(button, item.start_date.Hour - 8);
-                    Grid.SetRowSpan(button, (item.end_date.Hour - item.start_date.Hour) + 1 );
+                    Grid.SetRowSpan(button, (item.end_date.Hour - item.start_date.Hour) + 1);
                     Grid1time.Children.Add(button);
 
                 }
@@ -85,7 +76,7 @@ namespace Task_Manager.View.DiagramGantt
         {
             get { return (Visibility)GetValue(SliderVerticalProperty); }
             set { SetValue(SliderVerticalProperty, value); }
-        } 
+        }
         public static readonly DependencyProperty HorizontalVerticalProperty = DependencyProperty.Register(
        nameof(HorizontalVertical), typeof(Visibility), typeof(DiagramGanttView), new FrameworkPropertyMetadata(Visibility.Collapsed,
           FrameworkPropertyMetadataOptions.None));
@@ -98,9 +89,9 @@ namespace Task_Manager.View.DiagramGantt
         public DiagramGanttView()
         {
             InitializeComponent();
-           Loaded += DiagramGanttView_Loaded;
-          
-            
+            Loaded += DiagramGanttView_Loaded;
+
+
 
         }
 

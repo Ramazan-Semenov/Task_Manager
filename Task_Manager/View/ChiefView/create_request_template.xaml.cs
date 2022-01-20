@@ -1,19 +1,11 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Task_Manager.View.ChiefView
 {
@@ -23,22 +15,22 @@ namespace Task_Manager.View.ChiefView
     public partial class create_request_template : Page
     {
         static string guid = "";
-        static UIElement guidgrid=new UIElement();
+        static UIElement guidgrid = new UIElement();
         static string output = "";
         static Model.CrudOperations.list_implicit_request list_Implicit_Request = new Model.CrudOperations.list_implicit_request();
         static string Dep = "";
         public create_request_template()
         {
             InitializeComponent();
-           // Initform();
+            // Initform();
             //tStack.ItemsSource = tecons;
-              ListDepartment.ItemsSource = Model.ListElement.ListElement.ListDepartment;
+            ListDepartment.ItemsSource = Model.ListElement.ListElement.ListDepartment;
         }
 
-        private void Initform(string Json="")
+        private void Initform(string Json = "")
         {
             //string txt = File.ReadAllText(@"C:\Users\lenovo\Desktop\eccccccccccccccccccccccccccccccccccccr.json");
-            if (Json!=null)
+            if (Json != null)
             {
                 List<gridelement> lis = JsonConvert.DeserializeObject<List<gridelement>>(Json); ;
                 //List<tecon> tecons = new List<tecon>();
@@ -64,7 +56,7 @@ namespace Task_Manager.View.ChiefView
                     }
                 }
             }
-        
+
         }
 
         private void Create_request_template_LostFocus(object sender, RoutedEventArgs e)
@@ -81,7 +73,7 @@ namespace Task_Manager.View.ChiefView
         {
             foreach (UIElement item in root.Children)
             {
-               (item as Grid).Background = Brushes.White; 
+                (item as Grid).Background = Brushes.White;
             }
                     (sender as Grid).Background = Brushes.LightSkyBlue;
             guidgrid = (sender as Grid);
@@ -113,17 +105,20 @@ namespace Task_Manager.View.ChiefView
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             List<gridelement> b = new List<gridelement>();
-            
+
             foreach (var item in root.Children)
             {
 
-                if ((item as Grid)!=null)
+                if ((item as Grid) != null)
                 {
                     var v1 = (item as Grid).Children[0];
 
-                  var v2 = (item as Grid).Children[1];
-                    b.Add(new gridelement() { userelement1 = new userelement { Content = (v1 as Label).Content },
-                        userelement2 =new userelement { Content = (v2 as TextBox).Text } });
+                    var v2 = (item as Grid).Children[1];
+                    b.Add(new gridelement()
+                    {
+                        userelement1 = new userelement { Content = (v1 as Label).Content },
+                        userelement2 = new userelement { Content = (v2 as TextBox).Text }
+                    });
 
                 }
 
@@ -134,7 +129,7 @@ namespace Task_Manager.View.ChiefView
             list_Implicit_Request.name = Nametemplate.Text;
             list_Implicit_Request.implicit_request_json = output;
             list_Implicit_Request.department = ListDepartment.Text;
-            if ((list_Implicit_Request.name.Length>0)&& (list_Implicit_Request.implicit_request_json.Length>0)&&(list_Implicit_Request.department.Length>0))
+            if ((list_Implicit_Request.name.Length > 0) && (list_Implicit_Request.implicit_request_json.Length > 0) && (list_Implicit_Request.department.Length > 0))
             {
                 new Model.CrudOperations.Crud_Operations_Implicit_Request().Create(list_Implicit_Request);
                 ListNameTemplate.ItemsSource = new Model.CrudOperations.Crud_Operations_Implicit_Request().GetEntityList().Where(x => x.department == Dep).Select(x => x.name);
@@ -153,17 +148,17 @@ namespace Task_Manager.View.ChiefView
         {
             foreach (UIElement item in root.Children)
             {
-               
-                if((item as Grid).Children[0].Uid== guid)
+
+                if ((item as Grid).Children[0].Uid == guid)
                 {
 
                     ((item as Grid).Children[0] as Label).Content = text.Text;
                 }
 
-                
+
 
             }
-           
+
             //else
             //{
             //    MessageBox.Show("Сохранение зафиксированы");
@@ -171,7 +166,7 @@ namespace Task_Manager.View.ChiefView
 
         }
 
-    
+
 
         private void text_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -189,7 +184,7 @@ namespace Task_Manager.View.ChiefView
             }
         }
 
-      
+
 
         private void ListDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -203,8 +198,8 @@ namespace Task_Manager.View.ChiefView
             list_Implicit_Request = new Model.CrudOperations.list_implicit_request();
             //MessageBox.Show(); ;
             string f = "";
-            if (new Model.CrudOperations.Crud_Operations_Implicit_Request().GetEntityList().Where(x => x.department == F).Count()>0)
-           
+            if (new Model.CrudOperations.Crud_Operations_Implicit_Request().GetEntityList().Where(x => x.department == F).Count() > 0)
+
             {
                 f = new Model.CrudOperations.Crud_Operations_Implicit_Request().GetEntityList().Where(x => x.department == F).FirstOrDefault().implicit_request_json.ToString(); ;
 
@@ -214,15 +209,15 @@ namespace Task_Manager.View.ChiefView
             //    Initform(f);
 
             //}
-           
-            ListNameTemplate.ItemsSource = new Model.CrudOperations.Crud_Operations_Implicit_Request().GetEntityList().Where(x => x.department == F).Select(x=>x.name);
+
+            ListNameTemplate.ItemsSource = new Model.CrudOperations.Crud_Operations_Implicit_Request().GetEntityList().Where(x => x.department == F).Select(x => x.name);
 
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             root.Children.Remove(guidgrid);
-           
+
         }
 
         private void ListNameTemplate_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -230,10 +225,10 @@ namespace Task_Manager.View.ChiefView
             root.Children.Clear();
             // MessageBox.Show( );
             string F = "";
-            if (e.AddedItems.Count>0)
+            if (e.AddedItems.Count > 0)
             {
                 F = e.AddedItems[0].ToString();
-                Model.CrudOperations.list_implicit_request implicit_Request = new Model.CrudOperations.Crud_Operations_Implicit_Request().GetEntityList().Where(x => (x.name == F)&(x.department==Dep)).FirstOrDefault();
+                Model.CrudOperations.list_implicit_request implicit_Request = new Model.CrudOperations.Crud_Operations_Implicit_Request().GetEntityList().Where(x => (x.name == F) & (x.department == Dep)).FirstOrDefault();
                 Nametemplate.Text = implicit_Request.name;
                 list_Implicit_Request.id = implicit_Request.id;
                 if (implicit_Request.implicit_request_json.Length > 0)
@@ -243,7 +238,7 @@ namespace Task_Manager.View.ChiefView
                 }
             }
 
-          
+
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
@@ -291,20 +286,20 @@ namespace Task_Manager.View.ChiefView
     }
 
 
-    public  class CustomElement:FrameworkElement
+    public class CustomElement : FrameworkElement
     {
-        public Grid _Grid = new Grid() { Uid = Guid.NewGuid().ToString()  };
+        public Grid _Grid = new Grid() { Uid = Guid.NewGuid().ToString() };
 
         public TextBox textBox { get; set; } = new TextBox { };
 
-        public Label _Label { get; set; } = new Label() { Uid= Guid.NewGuid().ToString(),  Content = "Lable", BorderThickness= new Thickness(1), BorderBrush=Brushes.Black};
-      public  CustomElement()
+        public Label _Label { get; set; } = new Label() { Uid = Guid.NewGuid().ToString(), Content = "Lable", BorderThickness = new Thickness(1), BorderBrush = Brushes.Black };
+        public CustomElement()
         {
             _Grid.ColumnDefinitions.Add(new ColumnDefinition());
             _Grid.ColumnDefinitions.Add(new ColumnDefinition());
 
             Grid.SetColumn(_Label, 0);
-            Grid.SetColumn(textBox,1);
+            Grid.SetColumn(textBox, 1);
             _Grid.Children.Add(_Label);
             _Grid.Children.Add(textBox);
 
@@ -315,7 +310,7 @@ namespace Task_Manager.View.ChiefView
             _Label.Content = userelement1.Content;
             _Grid.ColumnDefinitions.Add(new ColumnDefinition());
             _Grid.ColumnDefinitions.Add(new ColumnDefinition());
-            _Label.Uid = userelement1.Guid.ToString() ;
+            _Label.Uid = userelement1.Guid.ToString();
             Grid.SetColumn(_Label, 0);
             Grid.SetColumn(textBox, 1);
             _Grid.Children.Add(_Label);
@@ -323,22 +318,22 @@ namespace Task_Manager.View.ChiefView
 
         }
 
-       
+
     }
     public class tecon
     {
         public string Text { get; set; }
         public string Content { get; set; }
     }
-    public  class gridelement
+    public class gridelement
     {
-     public   userelement userelement1 { get; set; }
+        public userelement userelement1 { get; set; }
         public userelement userelement2 { get; set; }
     }
-  public  class userelement
+    public class userelement
     {
         public Object Content { get; set; }
-        
+
         public Guid Guid { get { return Guid.NewGuid(); } }
 
     }

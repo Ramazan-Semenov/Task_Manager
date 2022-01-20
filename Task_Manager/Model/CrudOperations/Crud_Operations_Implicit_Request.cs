@@ -3,12 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task_Manager.Model.CrudOperations
 {
-    class Crud_Operations_Implicit_Request :ConnectionDataBase, ICrudOperations<list_implicit_request>
+    class Crud_Operations_Implicit_Request : ConnectionDataBase, ICrudOperations<list_implicit_request>
     {
         public void Create(list_implicit_request item)
         {
@@ -19,10 +17,10 @@ namespace Task_Manager.Model.CrudOperations
                 var affectedRows = connection.Execute(txt,
                     new
                     {
-                        name=item.name,
+                        name = item.name,
                         department = item.department,
                         implicit_request_json = item.implicit_request_json
-                    }) ;
+                    });
             }
         }
 

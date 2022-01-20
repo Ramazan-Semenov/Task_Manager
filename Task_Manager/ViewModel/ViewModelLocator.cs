@@ -13,10 +13,7 @@
 */
 
 using CommonServiceLocator;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Messaging;
-using System.Collections.Generic;
 
 namespace Task_Manager.ViewModel
 {
@@ -55,7 +52,7 @@ namespace Task_Manager.ViewModel
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
-        
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

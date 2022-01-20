@@ -1,19 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using Task_Manager.Model;
 
 namespace Task_Manager.ViewModel.StaffViewModel
 {
-  public  class StaffViewModelListTask : ViewModelBase
+    public class StaffViewModelListTask : ViewModelBase
     {
-        
+
         static StaffViewModelListTask()
         {
             CreateTask = new RelayCommand(_CreateTask);
@@ -43,7 +36,7 @@ namespace Task_Manager.ViewModel.StaffViewModel
         }
 
         public static RelayCommand<task_book> EditTask { get; set; }
-       static void _EditTask(task_book task)
+        static void _EditTask(task_book task)
         {
             View.StaffView.StaffViewEditTask staffViewEditTask = new View.StaffView.StaffViewEditTask(task);
             staffViewEditTask.ShowDialog();

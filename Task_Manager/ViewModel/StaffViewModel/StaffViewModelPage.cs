@@ -1,11 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using TableDependency.SqlClient;
 using TableDependency.SqlClient.Base;
@@ -14,11 +11,11 @@ using Task_Manager.Model;
 
 namespace Task_Manager.ViewModel.StaffViewModel
 {
-  public  class StaffViewModelPage: ViewModelBase
+    public class StaffViewModelPage : ViewModelBase
     {
-     
-        private  ObservableCollection<task_book> task_Books;
-        public  ObservableCollection<task_book> tasks
+
+        private ObservableCollection<task_book> task_Books;
+        public ObservableCollection<task_book> tasks
         {
             get => task_Books; set
             {
@@ -29,16 +26,16 @@ namespace Task_Manager.ViewModel.StaffViewModel
         }
         private ObservableCollection<task_book> runtimeTask = new ObservableCollection<task_book>();
 
-        public ObservableCollection<task_book> RuntimeTask { get=> runtimeTask; set=> runtimeTask=value; }
+        public ObservableCollection<task_book> RuntimeTask { get => runtimeTask; set => runtimeTask = value; }
         public string Department { get; set; } = Users.Department;
         private Model.ConnectionDataBase _con;
         public StaffViewModelPage()
         {
             _con = new ConnectionDataBase();
-            runtimeTask = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => (x.executor==Users.Name)&(x.Department == Department) & (x.status == null)));
+            runtimeTask = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => (x.executor == Users.Name) & (x.Department == Department) & (x.status == null)));
 
-            task_Books = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x=>x.Department==Users.Department));
-         
+            task_Books = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => x.Department == Users.Department));
+
             Start();
         }
         private void Start()
@@ -70,15 +67,15 @@ namespace Task_Manager.ViewModel.StaffViewModel
         /// <param name="e"></param>
         private void Changed(object sender, RecordChangedEventArgs<task_book> e)
         {
-          
-            if ((e.Entity.executor == Users.Name)&(e.Entity.status==null))
+
+            if ((e.Entity.executor == Users.Name) & (e.Entity.status == null))
             {
                 App.Current.Dispatcher.Invoke((Action)delegate
                 {
                     runtimeTask.Add(e.Entity);
                 });
             }
-           RaisePropertyChanged("RuntimeTask");
+            RaisePropertyChanged("RuntimeTask");
 
 
         }
@@ -105,7 +102,8 @@ namespace Task_Manager.ViewModel.StaffViewModel
         {
             get
             {
-                return new RelayCommand<task_book>((task_book task_book) => {
+                return new RelayCommand<task_book>((task_book task_book) =>
+                {
                     task_book.status = "принят";
                     new Model.CrudOperations.CrudOperations().Update(task_book);
                     App.Current.Dispatcher.Invoke((Action)delegate
@@ -122,7 +120,8 @@ namespace Task_Manager.ViewModel.StaffViewModel
         {
             get
             {
-                return new RelayCommand<task_book>((task_book task_book) => {
+                return new RelayCommand<task_book>((task_book task_book) =>
+                {
                     View.StaffView.StaffViewEditTask editTask = new View.StaffView.StaffViewEditTask(task_book);
                     editTask.ShowDialog();
 

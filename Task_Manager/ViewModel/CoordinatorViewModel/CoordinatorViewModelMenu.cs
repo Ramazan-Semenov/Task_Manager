@@ -1,10 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -50,7 +45,8 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
         {
             get
             {
-                return new RelayCommand<string>((string department) => {
+                return new RelayCommand<string>((string department) =>
+                {
                     ChiefViewPage = new View.Coordinator.CoordinatorViewPage(department);
                     PageCurrent = ChiefViewPage; RaisePropertyChanged("CurrentPage");
                 });
@@ -60,7 +56,8 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
         {
             get
             {
-                return new RelayCommand(() => {
+                return new RelayCommand(() =>
+                {
                     visibility = Visibility.Collapsed;
 
                     PageCurrent = new View.ChiefView.create_request_template();
@@ -69,25 +66,28 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
                 });
 
             }
-        }     public RelayCommand main_menu
+        }
+        public RelayCommand main_menu
         {
             get
             {
-                return new RelayCommand(() => {
+                return new RelayCommand(() =>
+                {
                     visibility = Visibility.Visible;
 
-                    PageCurrent = null ;
+                    PageCurrent = null;
                     RaisePropertyChanged("CurrentPage");
                     RaisePropertyChanged("visibility");
                 });
 
             }
-        }  
+        }
         public RelayCommand ListStaffDiagramCommand
         {
             get
             {
-                return new RelayCommand(() => {
+                return new RelayCommand(() =>
+                {
                     visibility = Visibility.Collapsed;
                     PageCurrent = new View.Coordinator.CoordinatorListStaffDiagramView();
                     RaisePropertyChanged("CurrentPage");
@@ -101,7 +101,8 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
         {
             get
             {
-                return new RelayCommand(() => {
+                return new RelayCommand(() =>
+                {
                     PageCurrent = new View.ChiefView.create_request_template();
                     RaisePropertyChanged("CurrentPage");
                 });

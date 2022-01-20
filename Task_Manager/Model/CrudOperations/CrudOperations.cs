@@ -33,10 +33,10 @@ namespace Task_Manager.Model.CrudOperations
                         executor = item.executor,
                         priority = item.priority,
                         status = item.status,
-                        Department=item.Department,
-                        FilePath=item.FilePath,
-                        Description=item.Description,
-                        implicit_request=item.implicit_request
+                        Department = item.Department,
+                        FilePath = item.FilePath,
+                        Description = item.Description,
+                        implicit_request = item.implicit_request
                     }, commandType: System.Data.CommandType.StoredProcedure);
                 connection.Close();
             }
@@ -55,7 +55,7 @@ namespace Task_Manager.Model.CrudOperations
                     });
                 connection.Close();
             }
-        } 
+        }
         public void Delete(task_book item)
         {
             string txt = "DELETE task_book where Number=@Number";
@@ -70,7 +70,7 @@ namespace Task_Manager.Model.CrudOperations
                 connection.Close();
             }
         }
-        
+
 
         public task_book GetEntity(object id)
         {
@@ -106,7 +106,7 @@ namespace Task_Manager.Model.CrudOperations
 
             return list_implicit_request;
         }
-   
+
 
 
 
@@ -130,24 +130,24 @@ namespace Task_Manager.Model.CrudOperations
 
         public void Update(task_book item)
         {
-           
 
-//            string txt = @"
-//UPDATE task_book
-//SET Date_of_compilation = @Date_of_compilation
-//, from_whom = @from_whom
-//, task_type = @task_type
-//, name_of_the_task = @name_of_the_task
-//, start_date = @start_date
-//, end_date = @end_date
-//, executor = @executor
-//, priority = @priority
-//, status = @status
-//,Department=@Department
-//,FilePath=@FilePath
-//,Description=@Description
-//,implicit_request=@implicit_request
-//WHERE Number = @Number";
+
+            //            string txt = @"
+            //UPDATE task_book
+            //SET Date_of_compilation = @Date_of_compilation
+            //, from_whom = @from_whom
+            //, task_type = @task_type
+            //, name_of_the_task = @name_of_the_task
+            //, start_date = @start_date
+            //, end_date = @end_date
+            //, executor = @executor
+            //, priority = @priority
+            //, status = @status
+            //,Department=@Department
+            //,FilePath=@FilePath
+            //,Description=@Description
+            //,implicit_request=@implicit_request
+            //WHERE Number = @Number";
             string txt = "[dbo].[sp_UpdateTask_book]";
             using (var connection = new SqlConnection(sqlConnectionString))
             {

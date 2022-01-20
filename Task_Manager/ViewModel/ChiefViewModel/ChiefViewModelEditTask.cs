@@ -1,18 +1,15 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Task_Manager.ViewModel.ChiefViewModel
 {
-  public  class ChiefViewModelEditTask: ViewModelBase
+    public class ChiefViewModelEditTask : ViewModelBase
     {
         private Model.task_book _task_Book;
         public Model.task_book task_Book { get => _task_Book; set => _task_Book = value; }
@@ -73,10 +70,14 @@ namespace Task_Manager.ViewModel.ChiefViewModel
                 });
             }
         }
-        public RelayCommand Openfloderfile { get {
+        public RelayCommand Openfloderfile
+        {
+            get
+            {
 
                 return new RelayCommand(openfloderfile);
-            } }
+            }
+        }
         void openfloderfile()
         {
             OpenFileDialog openFile = new OpenFileDialog();
@@ -102,7 +103,7 @@ namespace Task_Manager.ViewModel.ChiefViewModel
 
                 //   filename = openFile.SafeFileName;
 
-                _task_Book.FilePath= openFile.SafeFileName;
+                _task_Book.FilePath = openFile.SafeFileName;
                 RaisePropertyChanged("task_Book");
             }
 

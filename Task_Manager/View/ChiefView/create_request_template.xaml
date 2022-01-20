@@ -1,53 +1,26 @@
 ﻿<Page x:Class="Task_Manager.View.ChiefView.create_request_template"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Task_Manager.View.ChiefView"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:Task_Manager.View.ChiefView"
       mc:Ignorable="d" 
       Height="450" Width="800"
       Title="create_request_template">
-
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel x:Name="root">
-
-        </StackPanel>
-        <!--<ItemsControl Background="Aqua" x:Name="tStack" Grid.Column="2">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                  
-                    <StackPanel />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-
-                        <Label BorderThickness="1" BorderBrush="Black" Grid.Column="0" Content="{Binding Content}"/>
-                       <TextBox Grid.Column="1" Text="{Binding Text}"></TextBox>
-                    </Grid>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>-->
-
+        <StackPanel x:Name="root"></StackPanel>
+        <!--<ItemsControl Background="Aqua" x:Name="tStack" Grid.Column="2"><ItemsControl.ItemsPanel><ItemsPanelTemplate><StackPanel /></ItemsPanelTemplate></ItemsControl.ItemsPanel><ItemsControl.ItemTemplate><DataTemplate><Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions><Label BorderThickness="1" BorderBrush="Black" Grid.Column="0" Content="{Binding Content}"/><TextBox Grid.Column="1" Text="{Binding Text}"></TextBox></Grid></DataTemplate></ItemsControl.ItemTemplate></ItemsControl>-->
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition Height="60"/>
-                
             </Grid.RowDefinitions>
-        
-
             <StackPanel Grid.Row="0" Grid.RowSpan="3">
                 <Button IsEnabled="False" Name="Add" Content="Добавить элемент" Click="Button_Click" ></Button>
                 <Button Content="Удалить элемент" Click="Button_Click_3" ></Button>
@@ -55,18 +28,14 @@
                 <Button Content="Зафиксировать изменения" Click="Button_Click_2"  />
                 <Label Content="Content"></Label>
                 <TextBox x:Name="text" Grid.Row="1" Height="44" />
-              
                 <Label Content="Название шаблона"></Label>
                 <TextBox x:Name="Nametemplate" Grid.Row="1" Height="44" />
                 <Label Content="Выберите отдел"></Label>
-                <ComboBox SelectionChanged="ListDepartment_SelectionChanged"  Name="ListDepartment">
-                  
-                </ComboBox>
+                <ComboBox SelectionChanged="ListDepartment_SelectionChanged"  Name="ListDepartment"></ComboBox>
             </StackPanel>
             <StackPanel Grid.Row="3">
                 <Button Content="Обновить запись" Click="Button_Click_5"></Button>
                 <Button Content="Сохранить шаблон"  Click="Button_Click_1"  ></Button>
-
             </StackPanel>
         </Grid>
         <Grid Grid.Column="2">

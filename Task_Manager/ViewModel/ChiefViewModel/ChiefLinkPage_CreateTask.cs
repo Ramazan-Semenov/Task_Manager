@@ -1,14 +1,4 @@
-﻿using GalaSoft.MvvmLight;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using Task_Manager.Model;
-
-namespace Task_Manager.ViewModel.ChiefViewModel
+﻿namespace Task_Manager.ViewModel.ChiefViewModel
 {
 
     //public class ChiefLinkPage_CreateTask : ViewModelBase
@@ -22,12 +12,12 @@ namespace Task_Manager.ViewModel.ChiefViewModel
     //            RaisePropertyChanged("tasks");
     //        }
     //    }
-      
+
     //}
 
     //public static class n
     //{
     //  public static ChiefLinkPage_CreateTask chiefLinkPage_ = new ChiefLinkPage_CreateTask();
-       
+
     //}
 }

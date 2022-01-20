@@ -1,13 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Task_Manager.ViewModel.StaffViewModel
@@ -196,13 +192,13 @@ namespace Task_Manager.ViewModel.StaffViewModel
             if (openFile.ShowDialog() == true)
             {
                 string path = openFile.FileName;
-             
+
                 DirectoryInfo dirInfo = new DirectoryInfo(Model.SettingPath.DefaultFilePath);
                 if (!dirInfo.Exists)
                 {
                     dirInfo.Create();
                 }
-   
+
                 string newPath = Model.SettingPath.DefaultFilePath + "\\" + openFile.SafeFileName;
                 FileInfo fileInf = new FileInfo(path);
                 if (fileInf.Exists)

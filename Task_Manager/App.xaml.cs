@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using Task_Manager.Model;
 
 namespace Task_Manager
@@ -28,11 +21,11 @@ namespace Task_Manager
 
 
         }
-   
+
         private void Application_Exit(object sender, ExitEventArgs e)
         {
 
-            if (StartDep.dep!=null)
+            if (StartDep.dep != null)
             {
                 StartDep.dep.Dispose();
 

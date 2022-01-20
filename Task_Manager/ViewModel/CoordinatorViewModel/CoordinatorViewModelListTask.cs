@@ -1,16 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using Task_Manager.Model;
 
 namespace Task_Manager.ViewModel.CoordinatorViewModel
 {
-  public  class CoordinatorViewModelListTask
+    public class CoordinatorViewModelListTask
     {
         static CoordinatorViewModelListTask()
         {
