@@ -42,16 +42,16 @@ namespace Task_Manager.ViewModel
             ////}
             //Registering:
 
-            SimpleIoc.Default.Register<MainViewModel>();
+           // SimpleIoc.Default.Register<MainViewModel>();
         }
 
-        public MainViewModel Main
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
-            }
-        }
+        //public MainViewModel Main
+        //{
+        //    get
+        //    {
+        //        return ServiceLocator.Current.GetInstance<MainViewModel>();
+        //    }
+        //}
 
         public static void Cleanup()
         {

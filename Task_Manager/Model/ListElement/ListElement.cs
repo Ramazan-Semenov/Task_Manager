@@ -18,6 +18,6 @@ namespace Task_Manager.Model.ListElement
                 "Бюджетирование"};
             }
         }
-        public static IEnumerable<task_book> Task_Books { get; } = new Model.CrudOperations.CrudOperations().GetEntityList();
+        public static List<task_book> Task_Books { get; } =new List<task_book>( new Model.CrudOperations.CrudOperations().GetEntityList());
     }
 }

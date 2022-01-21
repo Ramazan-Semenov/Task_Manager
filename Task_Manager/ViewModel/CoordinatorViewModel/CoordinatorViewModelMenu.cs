@@ -17,11 +17,6 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
 
         public CoordinatorViewModelMenu()
         {
-            //PageCurrent = ChiefViewPage;
-            //MessageBox.Show(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => x.Department == "Аналитика").Count().ToString());
-            //opendf = new RelayCommand(() => {
-            //     PageCurrent = ChiefViewPage; RaisePropertyChanged("CurrentPage"); 
-            //}) ;
 
 
         }
@@ -33,10 +28,7 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
                 {
                     ChiefViewPage = new View.Coordinator.CoordinatorViewPage(h);
                     PageCurrent = ChiefViewPage; RaisePropertyChanged("CurrentPage");
-                    //B = new List<Model.task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => x.Department == h));
-                    //ListStaff = B.GroupBy(x => x.executor).Select(x => x.Key).Where(x => x != null).ToList();
-                    //RaisePropertyChanged("ListStaff");
-                    //RaisePropertyChanged("B");
+
 
                 }); ;
             }
