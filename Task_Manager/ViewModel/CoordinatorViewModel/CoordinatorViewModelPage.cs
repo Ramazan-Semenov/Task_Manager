@@ -4,6 +4,7 @@ using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Timers;
@@ -15,7 +16,7 @@ using Task_Manager.Model;
 
 namespace Task_Manager.ViewModel.CoordinatorViewModel
 {
-    class CoordinatorViewModelPage : ViewModelBase
+    class CoordinatorViewModelPage : ViewModelBase, IDisposable
     {
         private ObservableCollection<task_book> task_Books;
 
@@ -32,7 +33,7 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
         public ObservableCollection<task_book> RuntimeTask { get => runtimeTask; set => runtimeTask = value; }
         public string Department { get; set; }
         private Model.ConnectionDataBase _con;
-
+        ChangeDataTask_Book changeDataTask;
         public CoordinatorViewModelPage(string Department)
         {
 
@@ -40,34 +41,32 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
             this.Department = Department;
             runtimeTask = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => (x.Department == Department) & (x.status == null)));
             task_Books = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => x.Department == Department));
-
-            ChangeDataTask_Book changeDataTask = new ChangeDataTask_Book();
+            changeDataTask = new ChangeDataTask_Book();
             changeDataTask.ChangeData(df);
         }
         private void df(IEnumerable<task_book> task_Book, ConditionOper condition)
         {
             if (condition== ConditionOper.Insert||condition== ConditionOper.Update)
             {
-                foreach (var item in task_Book)
-                {
-                    new ToastContentBuilder()
-                        .AddArgument("action", "viewConversation")
-                        .AddArgument("conversationId", 9813)
-                        .AddText(item.Department)
-                        .AddText("Новый запрос").Show();
-                }
+
+                //new ToastContentBuilder()
+                //        .AddArgument("action", "viewConversation")
+                //        .AddArgument("conversationId", 9813)
+                //        .AddText(task_Book.First().Department)
+                //        .AddText(condition.ToString()).Show();
+                Debug.WriteLine("++++++++++++++");
                 runtimeTask = null;
                 runtimeTask = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => (x.Department == Department) & (x.status == null)));
-                RaisePropertyChanged("RuntimeTask");
+                Debug.WriteLine("================");
             }
-
-        
-
-
+            Debug.WriteLine("*****************");
 
         }
-   
-  
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
 
         public RelayCommand Update
         {

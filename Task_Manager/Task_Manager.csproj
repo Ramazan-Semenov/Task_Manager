@@ -86,6 +86,7 @@
     <Compile Include="ViewModel\ChiefViewModel\ChiefViewModelListTask.cs" />
     <Compile Include="ViewModel\ChiefViewModel\ChiefViewModelMenu.cs" />
     <Compile Include="ViewModel\ChiefViewModel\ChiefViewModelPage.cs" />
+    <Compile Include="ViewModel\StaffViewModel\StaffDiagramViewModel.cs" />
     <Compile Include="ViewModel\StaffViewModel\StaffViewModelCreateTask.cs" />
     <Compile Include="ViewModel\StaffViewModel\StaffViewModelEdit.cs" />
     <Compile Include="ViewModel\StaffViewModel\StaffViewModelListTask.cs" />
@@ -132,6 +133,9 @@
     </Compile>
     <Compile Include="View\DiagramGantt\DiagramGanttView.xaml.cs">
       <DependentUpon>DiagramGanttView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StaffView\StaffDiagramView.xaml.cs">
+      <DependentUpon>StaffDiagramView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StaffView\StaffViewCreateTask.xaml.cs">
       <DependentUpon>StaffViewCreateTask.xaml</DependentUpon>
@@ -219,6 +223,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DiagramGantt\DiagramGanttView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StaffView\StaffDiagramView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

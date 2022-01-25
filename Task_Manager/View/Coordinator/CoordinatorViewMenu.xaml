@@ -35,7 +35,7 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </TabControl>
-            <Frame  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="70 0 0 0"   NavigationUIVisibility="Hidden" 
+            <Frame MouseDown="PanelHeader_MouseDown"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="70 0 0 0"   NavigationUIVisibility="Hidden" 
             Content="{Binding CurrentPage}"></Frame>
         </Grid>
         <Grid  x:Name="sidePanel" Background="#FF0F4E7A" HorizontalAlignment="Left" Width="250">

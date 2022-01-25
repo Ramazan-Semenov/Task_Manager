@@ -1,6 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.Toolkit.Uwp.Notifications;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -27,16 +29,35 @@ namespace Task_Manager.ViewModel.StaffViewModel
         private ObservableCollection<task_book> runtimeTask = new ObservableCollection<task_book>();
 
         public ObservableCollection<task_book> RuntimeTask { get => runtimeTask; set => runtimeTask = value; }
+        ChangeDataTask_Book changeDataTask;
         public string Department { get; set; } = Users.Department;
         private Model.ConnectionDataBase _con;
         public StaffViewModelPage()
         {
             _con = new ConnectionDataBase();
-            runtimeTask = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => (x.executor == Users.Name) & (x.Department == Department) & (x.status == null)));
+            runtimeTask = new ObservableCollection<task_book>(Model.ListElement.ListElement.Task_Books.Where(x => (x.Department == Users.Department) & (x.executor == Users.Name) &( (x.status == null) || (x.status ==string.Empty)))) ;
 
-            task_Books = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => x.Department == Users.Department));
+            task_Books = new ObservableCollection<task_book>(Model.ListElement.ListElement.Task_Books.Where(x => (x.Department == Users.Department) & (x.executor == Users.Name) & ((x.status != null) & (x.status != string.Empty))));
+            changeDataTask = new ChangeDataTask_Book();
+          changeDataTask.ChangeData(DataChanfe);
+          //  Start();
+        }
+        private void DataChanfe(IEnumerable<task_book> task_Book, ConditionOper condition)
+        {
+            if (condition == ConditionOper.Insert || condition == ConditionOper.Update)
+            {
+                
+                new ToastContentBuilder()
+                        .AddArgument("action", "viewConversation")
+                        .AddArgument("conversationId", 9813)
+                        .AddText(task_Book.First().Department)
+                        .AddText(condition.ToString()).Show();
+                runtimeTask = null;
+                runtimeTask = new ObservableCollection<task_book>(Model.ListElement.ListElement.Task_Books.Where(x => (x.Department == Users.Department) & (x.executor == Users.Name) & ((x.status == null) || (x.status == string.Empty))));
+                RaisePropertyChanged("RuntimeTask");
 
-            Start();
+            }
+
         }
         private void Start()
         {
@@ -58,7 +79,7 @@ namespace Task_Manager.ViewModel.StaffViewModel
         }
         ~StaffViewModelPage()
         {
-            StartDep.dep.Stop();
+            //StartDep.dep.Stop();
         }
         /// <summary>
         /// Позже поработать над проверкой, сделать проверку по id
@@ -87,9 +108,9 @@ namespace Task_Manager.ViewModel.StaffViewModel
                 return new RelayCommand(() =>
                 {
 
-                    task_Books = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => x.Department == Department));
-                    runtimeTask = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => (x.Department == Department) & (x.status == string.Empty)));
-
+                    task_Books = new ObservableCollection<task_book>(Model.ListElement.ListElement.Task_Books.Where(x => (x.Department == Users.Department) & (x.executor == Users.Name) & ((x.status != null) & (x.status != string.Empty))));
+                    //     runtimeTask = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => (x.Department == Department) & (x.status == string.Empty)));
+                    runtimeTask = new ObservableCollection<task_book>(Model.ListElement.ListElement.Task_Books.Where(x => (x.Department == Users.Department) & (x.executor == Users.Name) & ((x.status == null) || (x.status == string.Empty))));
                     RaisePropertyChanged("tasks");
                     RaisePropertyChanged("RuntimeTask");
 

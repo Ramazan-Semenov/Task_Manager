@@ -144,10 +144,10 @@
             </StackPanel>
         </Grid>
         <Grid Grid.Column="2" Grid.Row="1" Grid.RowSpan="3" >
-            <ListBox ItemsSource="{Binding list_implicit_request}"></ListBox>
+            <ListBox Visibility="{Binding list_implicit_requestVisibility}" x:Name="list_implicit_request" SelectedItem="{Binding implicit_requestItem}" ItemsSource="{Binding list_implicit_request}"></ListBox>
         </Grid>
         <Grid Grid.Column="2" Grid.Row="4"  Grid.RowSpan="3" Grid.ColumnSpan="2">
-            <ItemsControl BorderThickness="1" BorderBrush="Black" x:Name="tStack"  ItemsSource="{Binding implicit_request_template}">
+            <ItemsControl Visibility="{Binding implicit_request_templateVisibility}"  BorderThickness="1" BorderBrush="Black" x:Name="tStack"  ItemsSource="{Binding implicit_request_template}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel />
@@ -168,7 +168,6 @@
             </ItemsControl>
         </Grid>
         <Button Command="{Binding Create}" Content="Создать запрос" MaxHeight="50" Grid.Row="7" Grid.Column="3"></Button>
-        <CheckBox Content="Неявный запрос"  Grid.Row="1" Grid.Column="3"></CheckBox>
-        <Label MaxHeight="40" Grid.Column="2" Content="Создание запроса"></Label>
+        <CheckBox Content="Неявный запрос" IsChecked="{Binding IsChecked}" x:Name="d"  Grid.Row="1" Grid.Column="3"></CheckBox>
     </Grid>
 </Window>

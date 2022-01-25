@@ -25,10 +25,10 @@ namespace Task_Manager.Model
         public void ChangeData(mycallback mycallback)
         {
             Thread thread = new Thread(() => {
-                const double interval60Minutes = 6000;
+                const double interval60Minutes = 1000;
                 System.Timers.Timer checkForTime = new System.Timers.Timer(interval60Minutes);
                 checkForTime.Elapsed += new ElapsedEventHandler((s, e) => {
-                    List<task_book> task_Books2 = new Model.CrudOperations.CrudOperations().GetEntityList().ToList() ;
+                    List<task_book> task_Books2 = new CrudOperations.CrudOperations().GetEntityList().ToList() ;
                     var g = new HashSet<task_book>(task_Books1).SetEquals(task_Books2);
 
                     if (g == false)
@@ -37,17 +37,19 @@ namespace Task_Manager.Model
                         {
                             mycallback(task_Books2.Except(task_Books1), ConditionOper.Insert);
                             task_Books1 = task_Books2;
-                           // MessageBox.Show("Insert");
+
+                         //   MessageBox.Show("Insert");
 
 
                         }
                         if (task_Books2.Count < task_Books1.Count)
                         {
                           
-                                mycallback(task_Books1.Except(task_Books2), ConditionOper.Delete);
+                          mycallback(task_Books1.Except(task_Books2), ConditionOper.Delete);
                          
                             task_Books1 = task_Books2;
-                           // MessageBox.Show("Delete");
+
+                            // MessageBox.Show("Delete");
 
 
 
@@ -56,16 +58,15 @@ namespace Task_Manager.Model
                         {
                             mycallback(task_Books2.Except(task_Books1), ConditionOper.Update);
                             task_Books1 = task_Books2;
-
-                          //  MessageBox.Show("Update");
+                          //  MessageBox.Show("uPDATE");
 
                         }
+                        task_Books1 = task_Books2;
+
                     }
-                    task_Books1 = task_Books2;
-                    //  MessageBox.Show(new HashSet<task_book>(task_Books1).SetEquals(task_Books2).ToString());
                     GC.Collect(0, GCCollectionMode.Forced);
                     GC.WaitForPendingFinalizers();
-                    GC.GetGeneration(task_Books2);
+                    //GC.GetGeneration(task_Books2);
                 });
                 checkForTime.Enabled = true;
             });

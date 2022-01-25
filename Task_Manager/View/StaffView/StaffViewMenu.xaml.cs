@@ -59,6 +59,8 @@ namespace Task_Manager.View.StaffView
             {
                 DragMove();
             }
+            hidden = false;
+            timer.Start();
         }
     }
 }

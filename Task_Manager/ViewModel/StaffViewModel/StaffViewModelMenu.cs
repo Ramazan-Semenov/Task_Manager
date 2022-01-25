@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System.Windows.Controls;
 
 namespace Task_Manager.ViewModel.StaffViewModel
@@ -13,10 +14,23 @@ namespace Task_Manager.ViewModel.StaffViewModel
         public StaffViewModelMenu()
         {
 
-            PageCurrent = StaffViewPage;
+            //PageCurrent = StaffViewPage;
         }
 
 
-
+        public RelayCommand MainPage
+        {
+            get
+            {
+                return new RelayCommand(()=> { PageCurrent = StaffViewPage; RaisePropertyChanged(nameof(CurrentPage)); });
+            }
+        }
+        public RelayCommand OpenDiagramm
+        {
+            get
+            {
+                return new RelayCommand(()=> { PageCurrent = new View.StaffView.StaffDiagramView(); RaisePropertyChanged(nameof(CurrentPage)); });
+            }
+        }
     }
 }
