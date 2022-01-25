@@ -73,9 +73,9 @@
                             Content="Подтвердить запрос" Margin="0,0,-0.333,0"></Button>
                 </Grid>
             </TabItem>
-            <TabItem Header="Текущие задачи">
+            <!--<TabItem Header="Текущие задачи">
                 <local:CoordinatorViewListTask Task_Book="{Binding tasks}"></local:CoordinatorViewListTask>
-            </TabItem>
+            </TabItem>-->
         </TabControl>
     </Grid>
 </Page>

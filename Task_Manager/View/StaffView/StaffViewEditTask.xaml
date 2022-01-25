@@ -3,10 +3,25 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:local="clr-namespace:Task_Manager.View.StaffView"
+	xmlns:local="clr-namespace:Task_Manager.View.StaffView" xmlns:control="http://filterdatagrid.control.com/2021"
         mc:Ignorable="d"
+        Height="700"
+        Width="800"
         Title="StaffViewEditTask" >
-    <!--<Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions><Grid.RowDefinitions><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/></Grid.RowDefinitions><TextBlock Grid.Row="0" Grid.Column="1" Text="Редактирование запроса"></TextBlock><StackPanel Grid.Row="1" Grid.Column="0" Margin="10 0 0 0"><Label Content="№ задачи"></Label><TextBlock Margin="5,0,0,0" Text="{Binding task_Book.Number}"></TextBlock></StackPanel><Grid Height="30"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"><Grid.ColumnDefinitions><ColumnDefinition MaxWidth="100"/><ColumnDefinition/></Grid.ColumnDefinitions><Label Grid.Column="0" Content="Исполнитель"></Label><TextBox Grid.Column="1" Text="{Binding task_Book.executor}"></TextBox></Grid><Grid Height="30"  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"><Grid.ColumnDefinitions><ColumnDefinition MaxWidth="140"/><ColumnDefinition/></Grid.ColumnDefinitions><Label Grid.Column="0" Content="Наименование задачи"></Label><TextBox Grid.Column="1" Text="{Binding task_Book.name_of_the_task}"></TextBox></Grid><Grid  Grid.RowSpan="2" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"><Grid.ColumnDefinitions><ColumnDefinition Width="50"/><ColumnDefinition/></Grid.ColumnDefinitions><Label Grid.Column="0" Content="Этапы"></Label><DataGrid Grid.Column="1" ItemsSource="{Binding list_of_stages}"></DataGrid></Grid><Button Height="30" Grid.Column="3" Grid.Row="3" Content="Удалить этап"></Button><Button Height="30" Grid.Column="3" Grid.Row="4" Content="Добавить этап"></Button><Grid Grid.RowSpan="3" Grid.ColumnSpan="2" Grid.Row="5" Grid.Column="0"><StackPanel><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="150"/><ColumnDefinition/></Grid.ColumnDefinitions><Label Grid.Column="0" Content="Дата начала выполнения"></Label><DatePicker SelectedDate="{Binding task_Book.start_date}" Grid.Column="1"/></Grid><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="190"/><ColumnDefinition/></Grid.ColumnDefinitions><Label Grid.Column="0" Content="Дата планируемого завершения"></Label><DatePicker SelectedDate="{Binding task_Book.end_date}" Grid.Column="1"/></Grid><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="190"/><ColumnDefinition/></Grid.ColumnDefinitions><Label Grid.Column="0" Content="Дата фактического завершения"></Label><DatePicker SelectedDate="{Binding task_Book.end_date}" Grid.Column="1"/></Grid><Grid ><Grid.ColumnDefinitions><ColumnDefinition Width="70" /><ColumnDefinition/></Grid.ColumnDefinitions><Label Grid.Column="0" Content="Приоритет"></Label><ComboBox IsEditable="True"  Text="{Binding task_Book.priority}" Grid.Column="1"><TextBlock>Высокий</TextBlock><TextBlock>Средний</TextBlock><TextBlock>Низкий</TextBlock></ComboBox></Grid></StackPanel></Grid><Button Content="Сохранить изменения" MaxHeight="50" Grid.Row="7" Grid.Column="3"></Button></Grid>-->
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter  Property="CornerRadius" Value="10"></Setter>
+                </Style>
+            </Style.Resources>
+            <Setter Property="Background" Value="#94d3cb"></Setter>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Background" Value="#b4bdce"></Setter>
+            <Setter Property="BorderThickness" Value="3"></Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -33,21 +48,84 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Content="Этапы"></Label>
-                <DataGrid CanUserAddRows="False"
+                <control:FilterDataGrid
+         
+            AlternatingRowBackground="WhiteSmoke"
+            Background="Transparent"
+            CanUserAddRows="False"
+                    AutoGenerateColumns="False"
                     GridLinesVisibility="None"
+            DateFormatString="d"
+            FilterLanguage="Russian"
             HorizontalGridLinesBrush="LightGray"
             IsReadOnly="True"
-                          x:Name="list_of_stages" Grid.Column="1"  ItemsSource="{Binding list_of_stages}" Margin="0,0,-48,0"></DataGrid>
+                          x:Name="list_of_stages" Grid.Column="1"  ItemsSource="{Binding list_of_stages}" Margin="0,0,-48,0">
+                    <control:FilterDataGrid.Columns>
+                        <control:DataGridTemplateColumn
+                    FieldName="Numder"
+                    Header="Номер"
+                    IsColumnFiltered="True"
+                    SortMemberPath="Numder">
+                            <control:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate >
+                                    <TextBlock Text="{Binding Number}" />
+                                </DataTemplate>
+                            </control:DataGridTemplateColumn.CellTemplate>
+                        </control:DataGridTemplateColumn>
+                        <control:DataGridTextColumn
+                    Binding="{Binding Date_of_compilation}"
+                    Header="Дата составления"
+                    IsColumnFiltered="True" />
+                        <control:DataGridTextColumn
+                    Binding="{Binding from_whom}"
+                    Header="От кого"
+                    IsColumnFiltered="True" />
+                        <control:DataGridTextColumn
+                    Binding="{Binding task_type}"
+                    Header="Тип задачи"
+                    IsColumnFiltered="True" />
+                        <control:DataGridTextColumn
+                    Binding="{Binding name_of_the_task}"
+                    Header="Наименование задачи"
+                    IsColumnFiltered="True" />
+                        <control:DataGridTextColumn
+                    Binding="{Binding start_date}"
+                    Header="Дата начала"
+                    IsColumnFiltered="True" />
+                        <control:DataGridTextColumn
+                    Binding="{Binding end_date}"
+                    Header="Дата окончания"
+                    IsColumnFiltered="True" />
+                        <control:DataGridTextColumn
+                    Binding="{Binding executor}"
+                    Header="Исполнитель"
+                    IsColumnFiltered="True" />
+                        <control:DataGridTextColumn
+                    Binding="{Binding priority}"
+                    Header="Приоритет"
+                    IsColumnFiltered="True" />
+                        <control:DataGridTextColumn
+                    Binding="{Binding status}"
+                    Header="Статус"
+                    IsColumnFiltered="True" />
+                    </control:FilterDataGrid.Columns>
+
+
+
+                </control:FilterDataGrid>
             </Grid>
-            <Button Command="{Binding delete_a_stage_command}" CommandParameter="{Binding ElementName=list_of_stages, Path=SelectedItem}" VerticalAlignment="Top" Width="82" HorizontalAlignment="Right"
-                    MaxHeight="30" Grid.Column="3" Grid.Row="0" Content="Удалить этап"></Button>
-            <Button Command="{Binding add_a_stage_command}" CommandParameter="{Binding ElementName=list_of_stages, Path=SelectedItem}"  VerticalAlignment="Center" MaxWidth="130" HorizontalAlignment="Right"
+            <StackPanel  Grid.Column="3">
+                <Button Command="{Binding delete_a_stage_command}" CommandParameter="{Binding ElementName=list_of_stages, Path=SelectedItem}" VerticalAlignment="Top" Width="82" HorizontalAlignment="Right"
+                    MaxHeight="30" Grid.Row="0" Content="Удалить этап"></Button>
+                <Button Command="{Binding add_a_stage_command}" CommandParameter="{Binding ElementName=list_of_stages, Path=SelectedItem}"  VerticalAlignment="Center" MaxWidth="130" HorizontalAlignment="Right"
                     MaxHeight="30" Grid.Column="3" Grid.Row="0" Content="Добавить этап"></Button>
+            </StackPanel>
+           
             <Grid Grid.RowSpan="5" Grid.ColumnSpan="2" Grid.Row="3"  Grid.Column="0">
-                <StackPanel>
+                <!--<StackPanel>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="160"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Content="Дата начала выполнения"></Label>
@@ -55,16 +133,16 @@
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="190"/>
+                            <ColumnDefinition Width="195"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Content="Дата планируемого завершения"></Label>
                         <DatePicker SelectedDate="{Binding task_Book.end_date}" Grid.Column="1"/>
                     </Grid>
-                    <!--<Grid><Grid.ColumnDefinitions><ColumnDefinition Width="190"/><ColumnDefinition/></Grid.ColumnDefinitions><Label Grid.Column="0" Content="Дата фактического завершения"></Label><DatePicker SelectedDate="{Binding task_Book.end_date}" Grid.Column="1"/></Grid>-->
+                    --><!--<Grid><Grid.ColumnDefinitions><ColumnDefinition Width="190"/><ColumnDefinition/></Grid.ColumnDefinitions><Label Grid.Column="0" Content="Дата фактического завершения"></Label><DatePicker SelectedDate="{Binding task_Book.end_date}" Grid.Column="1"/></Grid>--><!--
                     <Grid >
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="80" />
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Content="Приоритет"></Label>
@@ -92,33 +170,42 @@
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="65"/>
+                            <ColumnDefinition MaxWidth="80"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Content="№ задачи"></Label>
-                        <Label  Grid.Column="1" Content="{Binding task_Book.Number}"></Label>
+                        <Label Grid.Column="0" Content="Тип задачи"></Label>
+                        <ComboBox  Grid.Column="1" IsTextSearchEnabled="True" 
+                                  IsEditable="True"
+                              ItemsSource="{Binding List_task_type}" Text="{Binding task_Book.task_type}"></ComboBox>
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="№ задачи"></Label>
+                        <TextBox IsReadOnly="True"  Grid.Column="1" Text="{Binding task_Book.Number}"></TextBox>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="50"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Content="Выбрать файл"></Label>
                         <Button Command="{Binding Openfloderfile}" Grid.Column="1"  Content="Обзор"></Button>
-                        <Label  Grid.Column="2" Content="{Binding task_Book.FilePath}"></Label>
+                        <TextBlock  Grid.Column="2" Text="{Binding task_Book.FilePath}"></TextBlock>
                     </Grid>
-                    <!--<Grid><Grid.ColumnDefinitions><ColumnDefinition Width="65"/><ColumnDefinition/></Grid.ColumnDefinitions><Label Grid.Column="0" Content="№ задачи"></Label><Label  Grid.Column="2" Content="{Binding task_Book.Number}"></Label></Grid>-->
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="65"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Content="Статус"></Label>
-                        <!--<ComboBox  Grid.Column="1" IsTextSearchEnabled="True" 
+                        --><!--<ComboBox  Grid.Column="1" IsTextSearchEnabled="True" 
                                   IsEditable="True"
-                                  Text="{Binding task_Book.status}"></ComboBox>-->
-                        <Label  Grid.Column="1" Content="{Binding task_Book.status}"></Label>
+                                  Text="{Binding task_Book.status}"></ComboBox>--><!--
+                        <TextBox IsReadOnly="True"  Grid.Column="1" Text="{Binding task_Book.status}"></TextBox>
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -128,16 +215,158 @@
                         <Label Grid.Column="0" Content="Отдел"></Label>
                         <TextBox IsReadOnly="True" Grid.Column="1" Text="{Binding task_Book.Department}"></TextBox>
                     </Grid>
+                </StackPanel>-->
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Дата начала выполнения"></Label>
+                        <DatePicker SelectedDate="{Binding task_Book.start_date}" Grid.Column="1"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="190"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Дата планируемого завершения"></Label>
+                        <DatePicker   SelectedDate="{Binding task_Book.end_date}" Grid.Column="1"/>
+                    </Grid>
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Приоритет"></Label>
+                        <ComboBox IsEditable="True"  Text="{Binding task_Book.priority}" Grid.Column="1">
+                            <TextBlock>Высокий</TextBlock>
+                            <TextBlock>Средний</TextBlock>
+                            <TextBlock>Низкий</TextBlock>
+                        </ComboBox>
+                    </Grid>
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="140"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Наименование задачи"></Label>
+                        <ComboBox  Grid.Column="1" IsTextSearchEnabled="True" 
+                                  IsEditable="True"
+                              ItemsSource="{Binding Listname_of_the_task}" Text="{Binding task_Book.name_of_the_task}"></ComboBox>
+                    </Grid>
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="80"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Тип задачи"></Label>
+                        <ComboBox  Grid.Column="1" IsTextSearchEnabled="True" 
+                                  IsEditable="True"
+                              ItemsSource="{Binding List_task_type}" Text="{Binding task_Book.task_type}"></ComboBox>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="100"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Исполнитель"></Label>
+                        <ComboBox Grid.Column="1" IsTextSearchEnabled="True" 
+                                  IsEditable="True"
+                              ItemsSource="{Binding ListStaff}" Text="{Binding task_Book.executor}"></ComboBox>
+                    </Grid>
+                    <!--<Grid><Grid.ColumnDefinitions><ColumnDefinition Width="65"/><ColumnDefinition/></Grid.ColumnDefinitions><Label Grid.Column="0" Content="№ задачи"></Label><TextBlock  Grid.Column="1" Text="{Binding Task_Book.Number}"></TextBlock></Grid>-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Выбрать файл"></Label>
+                        <Button Height="23" Command="{Binding Openfloderfile}" Grid.Column="1"  Content="Обзор"></Button>
+                        <TextBlock  Grid.Column="2" Text="{Binding task_Book.FilePath}"></TextBlock>
+                    </Grid>
+                    <!--<Grid><Grid.ColumnDefinitions><ColumnDefinition Width="65"/><ColumnDefinition/></Grid.ColumnDefinitions><Label Grid.Column="0" Content="Статус"></Label><ComboBox  Grid.Column="1" IsTextSearchEnabled="True" 
+                                  IsEditable="True"
+                                  ItemsSource="{Binding liststatus}" Text="{Binding Task_Book.status}"></ComboBox></Grid>-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="65"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Отдел"></Label>
+                        <!--<ComboBox  Grid.Column="1" IsTextSearchEnabled="True" 
+                                  IsEditable="True"
+                              ItemsSource="{Binding ListDepartment}"
+                               Text="{Binding Task_Book.Department}"></ComboBox>-->
+                        <TextBox Text="{Binding task_Book.Department}" Grid.Column="1" IsReadOnly="True"></TextBox>
+                    </Grid>
+                    <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="65"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="От кого"></Label>
+                    <!--<ComboBox  Grid.Column="1" IsTextSearchEnabled="True" 
+                                  IsEditable="True"
+                              ItemsSource="{Binding ListDepartment}"
+                               Text="{Binding Task_Book.Department}"></ComboBox>-->
+                        <TextBox Text="{Binding task_Book.from_whom}" Grid.Column="1" IsReadOnly="True"></TextBox>
+                         </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="65"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Статус"></Label>
+                        <TextBox  Grid.Column="1" IsReadOnly="True"
+                                  Text="{Binding task_Book.status}"></TextBox>
+                    </Grid>
+            
                 </StackPanel>
             </Grid>
-            <Grid Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="2" Grid.Row="3">
+            
+            <!--<Grid Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="2" Grid.Row="3">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Content="Описание задачи"></Label>
                 <TextBox Grid.Row="1" Text="{Binding task_Book.Description}"></TextBox>
-            </Grid>
+            </Grid>-->
+            <StackPanel Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="2" Grid.Row="3">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="120"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Описание задачи"></Label>
+                    <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1">
+                        <TextBox  Text="{Binding task_Book.Description}"/>
+                    </Border>
+                </Grid>
+                <Grid>
+                    <ItemsControl  Height="150"  x:Name="tStack"  ItemsSource="{Binding implicit_request_template}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label BorderThickness="1" BorderBrush="Black" Grid.Column="0" Content="{Binding Content}"/>
+                                    <TextBox IsReadOnly="True" Grid.Column="1" Text="{Binding Text}"></TextBox>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </StackPanel>
             <Button Command="{Binding Save}" Content="Сохранить изменения" MaxHeight="50" Grid.Row="7" Grid.Column="3"></Button>
         </Grid>
     </Grid>

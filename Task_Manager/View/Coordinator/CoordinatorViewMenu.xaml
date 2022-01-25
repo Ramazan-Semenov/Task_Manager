@@ -42,7 +42,7 @@
             <StackPanel>
                 <Grid Height="150" Background="White">
                     <Button x:Name="slide" HorizontalAlignment="Right" Height="20" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" Click="Button_Click">
-                        <Image Source="/icons/menu.png"/>
+                        <Image Source="/icons/menu.png" LostFocus="Image_LostFocus"/>
                     </Button>
                 </Grid>
                 <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontFamily="Century Gothic" FontSize="14" Foreground="White" BorderBrush="Transparent" Background="Transparent" FontWeight="Bold">

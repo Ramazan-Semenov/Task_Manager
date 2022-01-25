@@ -19,6 +19,14 @@ namespace Task_Manager.Model.ListElement
                 "Бюджетирование"};
             }
         }
+        public static List<string> List_type_task
+        {
+            get
+            {
+
+                return new List<string> { "Разработка", "Прогноз"};
+            }
+        }
         public static List<task_book> Task_Books { get; } =new List<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList());
 
 

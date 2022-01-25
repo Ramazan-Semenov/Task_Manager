@@ -8,13 +8,13 @@
         Title="StaffViewMenu" Height="730" Width="1000">
     <Grid Background="Transparent">
         <Grid x:Name="panelHeader" VerticalAlignment="Top" Height="50" Background="#FF0F4E7A" MouseDown="PanelHeader_MouseDown"></Grid>
-        <Frame Margin="60 50 0 0" NavigationUIVisibility="Hidden"  Opacity="{Binding FrameOpacity}"
+        <Frame  MouseDown="Frame_MouseDown" Margin="60 50 0 0" NavigationUIVisibility="Hidden"  Opacity="{Binding FrameOpacity}"
             Content="{Binding CurrentPage}"></Frame>
         <Grid x:Name="sidePanel" Background="#FF0F4E7A" HorizontalAlignment="Left" Width="150">
             <StackPanel>
                 <Grid Height="150" Background="White">
                     <Button HorizontalAlignment="Right" Height="20" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" Click="Button_Click">
-                        <Image Source="/icons/menu.png"/>
+                        <Image Source="/icons/menu.png" />
                     </Button>
                 </Grid>
                 <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontFamily="Century Gothic" FontSize="14" Foreground="White" BorderBrush="Transparent" Background="Transparent" FontWeight="Bold">
@@ -37,6 +37,16 @@
                             <Image Source="/icons/op.png" Height="20" VerticalAlignment="Center"/>
                             <TextBlock Grid.Column="1" Text="Диаграмма" VerticalAlignment="Center"/>
                         </Grid>
+                    </Button>
+                    <Button Command="{Binding Outgoing_tasks_Command}" BorderThickness="0" Background="Transparent">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="/icons/op.png" Height="20" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" Text="Исходящие" VerticalAlignment="Center"/>
+                    </Grid>
                     </Button>
                 </ListView>
             </StackPanel>

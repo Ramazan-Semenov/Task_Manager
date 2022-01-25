@@ -39,8 +39,10 @@ namespace Task_Manager.ViewModel.CoordinatorViewModel
 
             _con = new ConnectionDataBase();
             this.Department = Department;
-            runtimeTask = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => (x.Department == Department) & (x.status == null)));
-            task_Books = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => x.Department == Department));
+            //runtimeTask = new ObservableCollection<task_book>(Model.ListElement.ListElement.Task_Books.Where(x => (x.Department == Department) &  ((x.status == null) || (x.status == string.Empty))));
+
+            runtimeTask = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => (x.Department == Department) & (x.status!= Model.ListElement.ListElement.List_Status[0])));
+            task_Books = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => (x.Department == Department)&(x.implicit_request_bool==false) & (x.status == Model.ListElement.ListElement.List_Status[0])));
             changeDataTask = new ChangeDataTask_Book();
             changeDataTask.ChangeData(df);
         }

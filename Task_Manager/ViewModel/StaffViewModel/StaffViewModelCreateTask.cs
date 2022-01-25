@@ -23,6 +23,8 @@ namespace Task_Manager.ViewModel.StaffViewModel
         public Visibility list_implicit_requestVisibility { get; set; } = Visibility.Collapsed;
         public Visibility implicit_request_templateVisibility { get; set; } = Visibility.Collapsed;
 
+        public List<string> List_task_type { get; set; } = Model.ListElement.ListElement.List_type_task;
+
 
         private bool _IsChecked;
         public bool IsChecked
@@ -97,39 +99,6 @@ namespace Task_Manager.ViewModel.StaffViewModel
         }
 
 
-
-
-
-
-        private string selectedDepartment= Model.Users.Department;
-
-        //public string SelectedDepartment
-        //{
-        //    get
-        //    {
-        //        implicit_Request = new Model.CrudOperations.list_implicit_request();
-        //        implicit_request_template = new List<View.ChiefView.tecon>();
-
-        //        Task.Run(AsyncSelectListStaffTask);
-
-
-        //        return selectedDepartment;
-        //    }
-        //    set => selectedDepartment = value;
-        //}
-
-        //private async Task AsyncSelectListStaffTask()
-        //{
-        //    ListStaff = null;
-        //    Listname_of_the_task = null;
-        //    list_implicit_request = Model.ListElement.ListElement.Task_Books.Where(x => x.Department == selectedDepartment).Select(x => x.implicit_request).ToList();
-        //    ListStaff = Model.ListElement.ListElement.Task_Books.Where(x => x.Department == selectedDepartment).GroupBy(x => x.executor).Select(x => x.Key).ToList();
-        //    Listname_of_the_task = Model.ListElement.ListElement.Task_Books.Where(x => x.Department == selectedDepartment).GroupBy(x => x.name_of_the_task).Select(x => x.Key).ToList();
-        //    RaisePropertyChanged("ListStaff");
-        //    RaisePropertyChanged("Listname_of_the_task");
-        //    RaisePropertyChanged(" list_implicit_request");
-        //}
-
         public List<string> Listname_of_the_task
         {
             get; set;
@@ -144,7 +113,8 @@ namespace Task_Manager.ViewModel.StaffViewModel
         {
             Task_Book = new Model.task_book();
             Task_Book.Department = Model.Users.Department;
-            Create = new RelayCommand(create);
+            Task_Book.end_date = DateNow;
+            //Create = new RelayCommand(create);
             Openfloderfile = new RelayCommand(openfloderfile);
             list_implicit_request = new Model.CrudOperations.Crud_Operations_Implicit_Request().GetEntityList().Where(x => x.department ==Model.Users.Department).Select(x => x.name).ToList();
    
@@ -159,21 +129,49 @@ namespace Task_Manager.ViewModel.StaffViewModel
             __task_Book.status = string.Empty;
             Task_Book = new Model.task_book();
             Task_Book = __task_Book;
-            Create = new RelayCommand(create);
-          //  Task.Run(AsyncSelectListStaffTask);
+         //   Create = new RelayCommand(create);
             Openfloderfile = new RelayCommand(openfloderfile);
+            if (__task_Book.implicit_request != null)
+            {
+                List<View.ChiefView.gridelement> lis = JsonConvert.DeserializeObject<List<View.ChiefView.gridelement>>(__task_Book.implicit_request); ;
+                List<View.ChiefView.tecon> tecons = new List<View.ChiefView.tecon>();
+                if (lis != null)
+                {
+
+                    list_implicit_request = new Model.CrudOperations.Crud_Operations_Implicit_Request().GetEntityList().Where(x => x.department == Model.Users.Department).Select(x => x.name).ToList();
+                    foreach (var item in lis)
+                    {
+                        tecons.Add(new View.ChiefView.tecon { Content = item.userelement1.Content.ToString(), Text = item.userelement2.Content.ToString() });
+                    }
+                    implicit_request_template = tecons;
+                }
+                _IsChecked = true;
+            }
         }
 
-        public RelayCommand Create { get; set; }
+        public RelayCommand Create { get {
+
+                return new RelayCommand(() => { Task.Run(create); });
+            } }
         void create()
         {
-            Task_Book.implicit_request = implicit_Request.id.ToString();
+
+
+            List<View.ChiefView.gridelement> b = new List<View.ChiefView.gridelement>();
+
+
+            foreach (var item in implicit_request_template)
+            {
+                b.Add(new View.ChiefView.gridelement { userelement1 = new View.ChiefView.userelement { Content= item.Content }, userelement2 = new View.ChiefView.userelement {  Content= item.Text } }) ;
+            }
+
+            Task_Book.implicit_request = JsonConvert.SerializeObject(b);
             Task_Book.from_whom = User;
             Task_Book.start_date = DateNow;
+            Task_Book.status = string.Empty;
             Task_Book.Date_of_compilation = DateTime.Now;
             Task_Book.FilePath = "" + FileName;
-             new Model.CrudOperations.CrudOperations().Create(Task_Book);
-           // MessageBox.Show(Task_Book.implicit_request);
+            new Model.CrudOperations.CrudOperations().Create(Task_Book);
             MessageBox.Show("Запись добавлена");
         }
         public RelayCommand Openfloderfile { get; set; }
@@ -208,7 +206,6 @@ namespace Task_Manager.ViewModel.StaffViewModel
             }
 
 
-            //MessageBox.Show(openFile.SafeFileName);
         }
     }
 }

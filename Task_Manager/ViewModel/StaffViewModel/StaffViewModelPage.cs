@@ -37,7 +37,7 @@ namespace Task_Manager.ViewModel.StaffViewModel
             _con = new ConnectionDataBase();
             runtimeTask = new ObservableCollection<task_book>(Model.ListElement.ListElement.Task_Books.Where(x => (x.Department == Users.Department) & (x.executor == Users.Name) &( (x.status == null) || (x.status ==string.Empty)))) ;
 
-            task_Books = new ObservableCollection<task_book>(Model.ListElement.ListElement.Task_Books.Where(x => (x.Department == Users.Department) & (x.executor == Users.Name) & ((x.status != null) & (x.status != string.Empty))));
+            task_Books = new ObservableCollection<task_book>(Model.ListElement.ListElement.Task_Books.Where(x => (x.Department == Users.Department) & (x.executor == Users.Name)& (x.status == Model.ListElement.ListElement.List_Status[0])));
             changeDataTask = new ChangeDataTask_Book();
           changeDataTask.ChangeData(DataChanfe);
           //  Start();
@@ -46,15 +46,18 @@ namespace Task_Manager.ViewModel.StaffViewModel
         {
             if (condition == ConditionOper.Insert || condition == ConditionOper.Update)
             {
-                
-                new ToastContentBuilder()
-                        .AddArgument("action", "viewConversation")
-                        .AddArgument("conversationId", 9813)
-                        .AddText(task_Book.First().Department)
-                        .AddText(condition.ToString()).Show();
-                runtimeTask = null;
-                runtimeTask = new ObservableCollection<task_book>(Model.ListElement.ListElement.Task_Books.Where(x => (x.Department == Users.Department) & (x.executor == Users.Name) & ((x.status == null) || (x.status == string.Empty))));
-                RaisePropertyChanged("RuntimeTask");
+                if (task_Book.Where(x => (x.Department == Users.Department) & (x.executor == Users.Name) & ((x.status == null) || (x.status == string.Empty))).Count()>0)
+                {
+                    new ToastContentBuilder()
+                      .AddArgument("action", "viewConversation")
+                      .AddArgument("conversationId", 9813)
+                      .AddText(task_Book.First().Department)
+                      .AddText("Новое уведомление").Show();
+                    runtimeTask = null;
+                    runtimeTask = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => (x.Department == Users.Department) & (x.executor == Users.Name) & (x.status !=Model.ListElement.ListElement.List_Status[0] )));
+                    RaisePropertyChanged("RuntimeTask");
+                }
+              
 
             }
 
@@ -108,9 +111,9 @@ namespace Task_Manager.ViewModel.StaffViewModel
                 return new RelayCommand(() =>
                 {
 
-                    task_Books = new ObservableCollection<task_book>(Model.ListElement.ListElement.Task_Books.Where(x => (x.Department == Users.Department) & (x.executor == Users.Name) & ((x.status != null) & (x.status != string.Empty))));
+                    task_Books = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => (x.Department == Users.Department) & (x.executor == Users.Name) & (x.status == Model.ListElement.ListElement.List_Status[0])));
                     //     runtimeTask = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => (x.Department == Department) & (x.status == string.Empty)));
-                    runtimeTask = new ObservableCollection<task_book>(Model.ListElement.ListElement.Task_Books.Where(x => (x.Department == Users.Department) & (x.executor == Users.Name) & ((x.status == null) || (x.status == string.Empty))));
+                    runtimeTask = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => (x.Department == Users.Department) & (x.executor == Users.Name) & (x.status != Model.ListElement.ListElement.List_Status[0])));
                     RaisePropertyChanged("tasks");
                     RaisePropertyChanged("RuntimeTask");
 
@@ -150,16 +153,7 @@ namespace Task_Manager.ViewModel.StaffViewModel
                 });
             }
         }
-        //public RelayCommand Update { get {
 
-        //        return new RelayCommand(() =>
-        //        {
-        //            task_Books = new ObservableCollection<task_book>(new Model.CrudOperations.CrudOperations().GetEntityList().Where(x => x.Department == Users.Department));
-        //            RaisePropertyChanged("tasks");
-
-        //        });
-
-        //    } }
 
     }
 }

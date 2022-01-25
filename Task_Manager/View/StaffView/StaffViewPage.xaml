@@ -8,74 +8,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="StaffViewPage">
-    <!--<Grid><Grid.RowDefinitions><RowDefinition Height="30"/><RowDefinition/></Grid.RowDefinitions>
-        -->
-    <!--<Grid><Grid.ColumnDefinitions ><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions><StackPanel Grid.Column="0"  Orientation="Horizontal" Background="White"><TextBlock Text="Отдел: "></TextBlock><TextBlock Text="{Binding Department}"></TextBlock></StackPanel><Button Command="{Binding Update}" Grid.Column="1" MaxWidth="100" Content="Обновить"></Button></Grid>-->
-    <!--
-        <Grid><Grid.ColumnDefinitions ><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions><StackPanel Grid.Column="0"  Orientation="Horizontal" Background="White"><TextBlock Text="Отдел: "></TextBlock><TextBlock Text="{Binding Department}"></TextBlock></StackPanel><Button Background="Transparent" BorderThickness="0" HorizontalAlignment="Right" Command="{Binding Update}" Grid.Column="1" MaxWidth="100"><Image Source="/icons/viewrefresh.png" Stretch="Uniform"></Image></Button></Grid><TabControl Background="White" Grid.Row="1"><TabItem  Header="Новые запросы"><Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions><Grid.RowDefinitions><RowDefinition /><RowDefinition/><RowDefinition/><RowDefinition Height="50"/></Grid.RowDefinitions><control:FilterDataGrid
-                    Grid.Row="0"
-                    Grid.RowSpan="3"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="3"
-            x:Name="FilterDataGrid"          
-            AlternatingRowBackground="WhiteSmoke"
-
-            Background="Transparent"
-            CanUserAddRows="False"
-                    GridLinesVisibility="None"
-            DateFormatString="d"
-            FilterLanguage="Russian"
-            HorizontalGridLinesBrush="LightGray"
-            IsReadOnly="True"
-                 
-            ItemsSource="{Binding RuntimeTask, UpdateSourceTrigger=PropertyChanged}"
-            RowHeaderWidth="40"
-            ShowElapsedTime="True"
-            ShowStatusBar="True"
-            VerticalGridLinesBrush="LightGray"
-            VerticalScrollBarVisibility="Visible"
-            VirtualizingStackPanel.IsVirtualizing="True">
-                    -->
-    <!--<control:FilterDataGrid.Columns><control:DataGridTemplateColumn
-                    FieldName="Numder"
-                    Header="Номер"
-                    IsColumnFiltered="True"
-                    SortMemberPath="Numder"><control:DataGridTemplateColumn.CellTemplate><DataTemplate ><TextBlock Text="{Binding Number}" /></DataTemplate></control:DataGridTemplateColumn.CellTemplate></control:DataGridTemplateColumn><control:DataGridTextColumn
-                    Binding="{Binding Date_of_compilation}"
-                    Header="Дата составления"
-                    IsColumnFiltered="True" /><control:DataGridTextColumn
-                    Binding="{Binding from_whom}"
-                    Header="От кого"
-                    IsColumnFiltered="True" /><control:DataGridTextColumn
-                    Binding="{Binding task_type}"
-                    Header="Тип задачи"
-                    IsColumnFiltered="True" /><control:DataGridTextColumn
-                    Binding="{Binding name_of_the_task}"
-                    Header="Наименование задачи"
-                    IsColumnFiltered="True" /><control:DataGridTextColumn
-                    Binding="{Binding start_date}"
-                    Header="Дата начала"
-                    IsColumnFiltered="True" /><control:DataGridTextColumn
-                    Binding="{Binding end_date}"
-                    Header="Дата окончания"
-                    IsColumnFiltered="True" /><control:DataGridTextColumn
-                    Binding="{Binding executor}"
-                    Header="Исполнитель"
-                    IsColumnFiltered="True" /><control:DataGridTextColumn
-                    Binding="{Binding priority}"
-                    Header="Приоритет"
-                    IsColumnFiltered="True" /><control:DataGridTextColumn
-                    Binding="{Binding status}"
-                    Header="Статус"
-                    IsColumnFiltered="True" /></control:FilterDataGrid.Columns>-->
-    <!--
-                </control:FilterDataGrid><Button Command="{Binding Task_Confirmation}" CommandParameter="{Binding ElementName=FilterDataGrid, Path=SelectedItem}" Grid.Column="2" Grid.Row="3"
-                            MaxHeight="30" 
-                            MaxWidth="150"
-                            Content="Подтвердить запрос"></Button><Button Command="{Binding Edit_TaskCommand}" CommandParameter="{Binding ElementName=FilterDataGrid, Path=SelectedItem}" Grid.Column="3" Grid.Row="3"
-                            MaxHeight="30" 
-                            MaxWidth="150"
-                            Content="Изменить запрос"></Button></Grid></TabItem><TabItem Header="Текущие задачи"><local:StaffViewListTask Task_Book="{Binding tasks}"></local:StaffViewListTask></TabItem></TabControl>-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -117,9 +49,9 @@
                         x:Name="FilterDataGrid"
             AlternatingRowBackground="WhiteSmoke"
             AlternationCount="2"
-            AutoGenerateColumns="True"
             Background="Transparent"
             CanUserAddRows="False"
+                        AutoGenerateColumns="False"
                     GridLinesVisibility="None"
             DateFormatString="d"
             FilterLanguage="Russian"
@@ -131,7 +63,60 @@
             ShowStatusBar="True"
             VerticalGridLinesBrush="LightGray"
             VerticalScrollBarVisibility="Visible"
-            VirtualizingStackPanel.IsVirtualizing="True" Margin="0,0,-0.333,0"></control:FilterDataGrid>
+            VirtualizingStackPanel.IsVirtualizing="True" Margin="0,0,-0.333,0">
+                        <control:FilterDataGrid.Columns>
+                        <control:DataGridTemplateColumn
+                    FieldName="Numder"
+                    Header="Номер"
+                    IsColumnFiltered="True"
+                    SortMemberPath="Numder">
+                            <control:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate >
+                                    <TextBlock Text="{Binding Number}" />
+                                </DataTemplate>
+                            </control:DataGridTemplateColumn.CellTemplate>
+                        </control:DataGridTemplateColumn>
+                        <control:DataGridTextColumn
+                    Binding="{Binding Date_of_compilation}"
+                    Header="Дата составления"
+                    IsColumnFiltered="True" />
+                        <control:DataGridTextColumn
+                    Binding="{Binding from_whom}"
+                    Header="От кого"
+                    IsColumnFiltered="True" />
+                        <control:DataGridTextColumn
+                    Binding="{Binding task_type}"
+                    Header="Тип задачи"
+                    IsColumnFiltered="True" />
+                        <control:DataGridTextColumn
+                    Binding="{Binding name_of_the_task}"
+                    Header="Наименование задачи"
+                    IsColumnFiltered="True" />
+                        <control:DataGridTextColumn
+                    Binding="{Binding start_date}"
+                    Header="Дата начала"
+                    IsColumnFiltered="True" />
+                        <control:DataGridTextColumn
+                    Binding="{Binding end_date}"
+                    Header="Дата окончания"
+                    IsColumnFiltered="True" />
+                        <control:DataGridTextColumn
+                    Binding="{Binding executor}"
+                    Header="Исполнитель"
+                    IsColumnFiltered="True" />
+                        <control:DataGridTextColumn
+                    Binding="{Binding priority}"
+                    Header="Приоритет"
+                    IsColumnFiltered="True" />
+                        <control:DataGridTextColumn
+                    Binding="{Binding status}"
+                    Header="Статус"
+                    IsColumnFiltered="True" />
+                        </control:FilterDataGrid.Columns>
+                    </control:FilterDataGrid>
+                    
+                    
+                    
                     <Button Command="{Binding Task_Confirmation}" CommandParameter="{Binding ElementName=FilterDataGrid, Path=SelectedItem}" Grid.Column="2" Grid.Row="3"
                             MaxHeight="30" 
                             MaxWidth="150"

@@ -73,7 +73,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Content="Дата планируемого завершения"></Label>
-                    <DatePicker Text="{Binding DateNow}"  SelectedDate="{Binding Task_Book.end_date}"  Grid.Column="1"/>
+                    <DatePicker   SelectedDate="{Binding Task_Book.end_date}" Grid.Column="1"/>
                 </Grid>
                 <Grid >
                     <Grid.ColumnDefinitions>
@@ -96,6 +96,16 @@
                     <ComboBox  Grid.Column="1" IsTextSearchEnabled="True" 
                                   IsEditable="True"
                               ItemsSource="{Binding Listname_of_the_task}" Text="{Binding Task_Book.name_of_the_task}"></ComboBox>
+                </Grid>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MaxWidth="80"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Тип задачи"></Label>
+                    <ComboBox  Grid.Column="1" IsTextSearchEnabled="True" 
+                                  IsEditable="True"
+                              ItemsSource="{Binding List_task_type}" Text="{Binding Task_Book.task_type}"></ComboBox>
                 </Grid>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -161,7 +171,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Label BorderThickness="1" BorderBrush="Black" Grid.Column="0" Content="{Binding Content}"/>
-                            <TextBox IsReadOnly="True" Grid.Column="1" Text="{Binding Text}"></TextBox>
+                            <TextBox  Grid.Column="1" Text="{Binding Text}"></TextBox>
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

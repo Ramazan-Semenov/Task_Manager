@@ -59,5 +59,10 @@ namespace Task_Manager.View.Coordinator
                 DragMove();
             }
         }
+
+        private void Image_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

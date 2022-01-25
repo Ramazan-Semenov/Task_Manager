@@ -24,6 +24,13 @@ namespace Task_Manager.ViewModel.StaffViewModel
             {
                 return new RelayCommand(()=> { PageCurrent = StaffViewPage; RaisePropertyChanged(nameof(CurrentPage)); });
             }
+        } 
+        public RelayCommand Outgoing_tasks_Command
+        {
+            get
+            {
+                return new RelayCommand(()=> { PageCurrent = new View.StaffView.Outgoing_tasks(); RaisePropertyChanged(nameof(CurrentPage)); });
+            }
         }
         public RelayCommand OpenDiagramm
         {

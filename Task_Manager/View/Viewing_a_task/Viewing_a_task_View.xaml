@@ -146,18 +146,43 @@
                             <TextBlock Text="{Binding task_Book.Department}"></TextBlock>
                         </Border>
                     </Grid>
+                    
                 </StackPanel>
             </Grid>
-            <Grid Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="2" Grid.Row="3">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Label Grid.Row="0" Content="Описание задачи"></Label>
-                <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1">
-                    <TextBlock  Text="{Binding task_Book.Description}"/>
-                </Border>
-            </Grid>
+            <StackPanel Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="2" Grid.Row="3">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="120"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Описание задачи"></Label>
+                    <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1">
+                        <TextBlock  Text="{Binding task_Book.Description}"/>
+                    </Border>
+                </Grid>
+                <Grid>
+                    <ItemsControl  Height="150"  x:Name="tStack"  ItemsSource="{Binding implicit_request_template}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label BorderThickness="1" BorderBrush="Black" Grid.Column="0" Content="{Binding Content}"/>
+                                    <TextBox IsReadOnly="True" Grid.Column="1" Text="{Binding Text}"></TextBox>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </StackPanel>
+            
         </Grid>
     </Grid>
 </Window>

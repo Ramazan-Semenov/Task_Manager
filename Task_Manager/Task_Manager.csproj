@@ -75,7 +75,6 @@
     <Compile Include="ViewModel\CoordinatorViewModel\CoordinatorViewModelListTask.cs" />
     <Compile Include="ViewModel\CoordinatorViewModel\CoordinatorViewModelMenu.cs" />
     <Compile Include="ViewModel\CoordinatorViewModel\CoordinatorViewModelPage.cs" />
-    <Compile Include="ViewModel\StaffViewModel\LinkPage_CreateTask.cs" />
     <Compile Include="Model\ConnectionDataBase.cs" />
     <Compile Include="Model\CrudOperations\CrudOperations.cs" />
     <Compile Include="Model\CrudOperations\ICrudOperations.cs" />
@@ -91,6 +90,7 @@
     <Compile Include="ViewModel\StaffViewModel\StaffViewModelEdit.cs" />
     <Compile Include="ViewModel\StaffViewModel\StaffViewModelListTask.cs" />
     <Compile Include="ViewModel\StaffViewModel\StaffViewModelMenu.cs" />
+    <Compile Include="ViewModel\StaffViewModel\StaffViewModelOutgoing.cs" />
     <Compile Include="ViewModel\StaffViewModel\StaffViewModelPage.cs" />
     <Compile Include="ViewModel\Viewing_a_task_ViewModel\Viewing_a_task_ViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -133,6 +133,9 @@
     </Compile>
     <Compile Include="View\DiagramGantt\DiagramGanttView.xaml.cs">
       <DependentUpon>DiagramGanttView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StaffView\Outgoing_tasks.xaml.cs">
+      <DependentUpon>Outgoing_tasks.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StaffView\StaffDiagramView.xaml.cs">
       <DependentUpon>StaffDiagramView.xaml</DependentUpon>
@@ -223,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DiagramGantt\DiagramGanttView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StaffView\Outgoing_tasks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

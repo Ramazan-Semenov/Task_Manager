@@ -18,6 +18,8 @@ namespace Task_Manager.Model
         public string FilePath { get; set; }
         public string Description { get; set; }
         public string implicit_request { get; set; }
+        public bool implicit_request_bool { get; set; }
+
         public override bool Equals(object obj)
         {
             if ((obj as task_book) != null)
