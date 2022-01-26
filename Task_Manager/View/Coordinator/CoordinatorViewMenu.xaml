@@ -56,7 +56,7 @@
                             <TextBlock Grid.Column="1" Text="Главное меню" VerticalAlignment="Center"/>
                         </Grid>
                     </Button>
-                    <Button Command="{Binding create_request}" BorderThickness="0" Background="Transparent">
+                    <!--<Button Command="{Binding create_request}" BorderThickness="0" Background="Transparent">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="25"/>
@@ -65,7 +65,7 @@
                             <Image Source="/icons/op.png" Height="20" VerticalAlignment="Center"/>
                             <TextBlock Grid.Column="1" Text="Создать шаблон запроса" VerticalAlignment="Center"/>
                         </Grid>
-                    </Button>
+                    </Button>-->
                     <!--<Button MaxHeight="30" Command="{Binding opendf}" CommandParameter="Прогнозирование продаж ФРОВ" BorderThickness="0" Background="Transparent"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="25"/><ColumnDefinition/></Grid.ColumnDefinitions><Image Source="/icons/op.png" Height="20" VerticalAlignment="Center"/><TextBlock  Grid.Column="1" TextWrapping="WrapWithOverflow"  Text="Прогнозирование продаж ФРОВ" VerticalAlignment="Center"/></Grid></Button><Button Command="{Binding opendf}" CommandParameter="Развитие отчетности и разработки инстрементов" MaxHeight="30" BorderThickness="0" Background="Transparent"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="25"/><ColumnDefinition/></Grid.ColumnDefinitions><Image Source="/icons/op.png" Height="20" VerticalAlignment="Center"/><TextBlock Grid.Column="1" TextWrapping="WrapWithOverflow"  Text="Развитие отчетности и разработки инстрементов" VerticalAlignment="Center"/></Grid></Button>-->
                     <!--<Button Command="{Binding opendf}" CommandParameter="Взаимодействие КМ" MaxHeight="30" BorderThickness="0" Background="Transparent"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="25"/><ColumnDefinition/></Grid.ColumnDefinitions><Image Source="/icons/op.png" Height="20" VerticalAlignment="Center"/><TextBlock Grid.Column="1" TextWrapping="WrapWithOverflow"  Text="Взаимодействие КМ" VerticalAlignment="Center"/></Grid></Button><Button Command="{Binding opendf}" CommandParameter="Регулярная отчетность"  MaxHeight="30" BorderThickness="0" Background="Transparent"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="25"/><ColumnDefinition/></Grid.ColumnDefinitions><Image Source="/icons/op.png" Height="20" VerticalAlignment="Center"/><TextBlock Grid.Column="1" TextWrapping="WrapWithOverflow"  Text="Регулярная отчетность" VerticalAlignment="Center"/></Grid></Button>-->
                     <Button Command="{Binding ListStaffDiagramCommand}"  MaxHeight="30" BorderThickness="0" Background="Transparent">

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 
 namespace Task_Manager.Model.ListElement
 {
@@ -43,6 +45,23 @@ namespace Task_Manager.Model.ListElement
 
 
             return name_task;
+        }
+
+
+        public static bool Task_Book_null(task_book task_Book)
+        {
+            bool result_null = true;
+            foreach (var item in task_Book.GetType().GetProperties())
+            {
+                if (item.GetValue(task_Book) == null)
+                {
+                    Console.WriteLine(item.Name + " | " + item.GetValue(task_Book) + " Нулевые");
+                    result_null = false;
+                }
+
+            }
+
+            return result_null;
         }
 
     }
