@@ -63,12 +63,22 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\ChangeDataTask_Book.cs" />
+    <Compile Include="Model\CrudOperations\CRUDTask_Book.cs" />
     <Compile Include="Model\CrudOperations\Crud_Operations_Implicit_Request.cs" />
     <Compile Include="Model\CrudOperations\list_implicit_request.cs" />
+    <Compile Include="Model\DateFormat.cs" />
+    <Compile Include="Model\Enums\CRUD.cs" />
+    <Compile Include="Model\Enums\ListsTypeCategoryTask.cs" />
     <Compile Include="Model\ListElement\ListElement.cs" />
+    <Compile Include="Model\NewTaskBook.cs" />
     <Compile Include="Model\SettingPath.cs" />
     <Compile Include="Model\StartDep.cs" />
+    <Compile Include="Model\Structures\Department.cs" />
+    <Compile Include="Model\Structures\User.cs" />
     <Compile Include="Themes\MarginSetter.cs" />
+    <Compile Include="ViewModel\BaseViewModelAll\AbstractClassViewModel\ViewModelCreateTaskAbstract.cs" />
+    <Compile Include="ViewModel\BaseViewModelAll\ViewModelCreateTaskBase.cs" />
+    <Compile Include="ViewModel\ChiefViewModel\ChiefViewModelCRUDTask.cs" />
     <Compile Include="ViewModel\CoordinatorViewModel\CoordinatorListStaffDiagramViewModel.cs" />
     <Compile Include="ViewModel\CoordinatorViewModel\CoordinatorViewModelCreateTask.cs" />
     <Compile Include="ViewModel\CoordinatorViewModel\CoordinatorViewModelEditTask.cs" />
@@ -97,6 +107,9 @@
     <Compile Include="ViewModel\ChiefViewModel\ChiefLinkPage_CreateTask.cs" />
     <Compile Include="View\ChiefView\ChiefViewCreateTask.xaml.cs">
       <DependentUpon>ChiefViewCreateTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChiefView\ChiefViewCRUDTask.xaml.cs">
+      <DependentUpon>ChiefViewCRUDTask.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ChiefView\ChiefViewEditTask.xaml.cs">
       <DependentUpon>ChiefViewEditTask.xaml</DependentUpon>
@@ -178,6 +191,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ChiefView\ChiefViewCreateTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChiefView\ChiefViewCRUDTask.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -316,8 +333,11 @@
     <PackageReference Include="Dapper">
       <Version>2.0.123</Version>
     </PackageReference>
+    <PackageReference Include="Dapper.Contrib">
+      <Version>2.0.78</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies">
-      <Version>1.0.0</Version>
+      <Version>1.0.2</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -325,7 +345,7 @@
       <Version>7.1.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Windows.SDK.Contracts">
-      <Version>10.0.19041.1</Version>
+      <Version>10.0.22000.196</Version>
     </PackageReference>
     <PackageReference Include="MvvmLight">
       <Version>5.4.1.1</Version>

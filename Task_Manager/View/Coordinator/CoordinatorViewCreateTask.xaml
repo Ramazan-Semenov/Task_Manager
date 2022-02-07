@@ -43,7 +43,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" BorderThickness="1" BorderBrush="Black" Background="#b4bdce" Content="Пользователь" />
-            <TextBlock Text="{Binding User}" Grid.Column="1" ></TextBlock>
+            <TextBox IsReadOnly="True" Text="{Binding User}" Grid.Column="1" ></TextBox>
         </Grid>
         <Grid Grid.RowSpan="7" Grid.ColumnSpan="2" Grid.Row="1"  Grid.Column="0">
             <StackPanel>
@@ -85,6 +85,16 @@
                                   IsEditable="True"
                               ItemsSource="{Binding Listname_of_the_task}" Text="{Binding Task_Book.name_of_the_task}"></ComboBox>
                 </Grid>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MaxWidth="80"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Тип задачи"></Label>
+                    <ComboBox  Grid.Column="1" IsTextSearchEnabled="True" 
+                                  IsEditable="True"
+                              ItemsSource="{Binding List_task_type}" Text="{Binding Task_Book.task_type}"></ComboBox>
+                </Grid>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition MaxWidth="100"/>
@@ -93,6 +103,8 @@
                     <Label Grid.Column="0" Content="Исполнитель"></Label>
                     <ComboBox Grid.Column="1" IsTextSearchEnabled="True" 
                                   IsEditable="True"
+                               DisplayMemberPath="Name"
+                              SelectedValuePath="id"
                               ItemsSource="{Binding ListStaff}" Text="{Binding Task_Book.executor}"></ComboBox>
                 </Grid>
                 <Grid>
@@ -113,9 +125,12 @@
                     <Label Grid.Column="0" Content="Отдел"></Label>
                     <ComboBox  Grid.Column="1" IsTextSearchEnabled="True" 
                                   IsEditable="True"
+                                DisplayMemberPath="name"
+                              SelectedValuePath="id"
                                SelectedValue="{Binding SelectedDepartment}"
                               ItemsSource="{Binding ListDepartment}"
-                               Text="{Binding Task_Book.Department}"></ComboBox>
+                              
+                               ></ComboBox>
                 </Grid>
                 <Grid Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="2" Grid.Row="3">
                     <Grid.RowDefinitions>

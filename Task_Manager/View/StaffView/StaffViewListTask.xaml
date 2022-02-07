@@ -66,14 +66,23 @@
                             PassEventArgsToCommand="True" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                    <control:FilterDataGrid.Columns><control:DataGridTemplateColumn
+                    <control:FilterDataGrid.Columns>
+                        <control:DataGridTemplateColumn
                     FieldName="Numder"
                     Header="Номер"
                     IsColumnFiltered="True"
-                    SortMemberPath="Numder"><control:DataGridTemplateColumn.CellTemplate><DataTemplate ><TextBlock Text="{Binding Number}" /></DataTemplate></control:DataGridTemplateColumn.CellTemplate></control:DataGridTemplateColumn><control:DataGridTextColumn
+                    SortMemberPath="Numder">
+                            <control:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate >
+                                    <TextBlock Text="{Binding Number}" />
+                                </DataTemplate>
+                            </control:DataGridTemplateColumn.CellTemplate>
+                        </control:DataGridTemplateColumn>
+                        <control:DataGridTextColumn
                     Binding="{Binding Date_of_compilation}"
                     Header="Дата составления"
-                    IsColumnFiltered="True" /><control:DataGridTextColumn
+                    IsColumnFiltered="True" />
+                        <control:DataGridTextColumn
                     Binding="{Binding from_whom}"
                     Header="От кого"
                     IsColumnFiltered="True" /><control:DataGridTextColumn

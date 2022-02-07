@@ -1,5 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Task_Manager.ViewModel.ChiefViewModel
@@ -15,16 +17,37 @@ namespace Task_Manager.ViewModel.ChiefViewModel
         {
             FrameOpacity = 1;
 
-
+            tabItemsource = new List<TabItem>();
+           
         }
+        private List<TabItem> tabItemsource;
+        public List<TabItem> TabItemSource { get; set; } = new List<TabItem>() { new TabItem { Header = "Развитие отчетности и разработка" } };
 
+        public Visibility visibility
+        {
+            get; set;
+        } = Visibility.Visible;
+  
+        public RelayCommand<string> click
+        {
+            get
+            {
+                return new RelayCommand<string>((string h) =>
+                {
+                    ChiefViewPage = new View.Coordinator.CoordinatorViewPage(h);
+                    PageCurrent = ChiefViewPage; RaisePropertyChanged("CurrentPage");
+
+
+                }); ;
+            }
+        }
         public RelayCommand<string> opendf
         {
             get
             {
                 return new RelayCommand<string>((string department) =>
                 {
-                    ChiefViewPage = new View.ChiefView.ChiefViewPage(department);
+                    ChiefViewPage = new View.Coordinator.CoordinatorViewPage(department);
                     PageCurrent = ChiefViewPage; RaisePropertyChanged("CurrentPage");
                 });
             }
@@ -35,8 +58,41 @@ namespace Task_Manager.ViewModel.ChiefViewModel
             {
                 return new RelayCommand(() =>
                 {
+                    visibility = Visibility.Collapsed;
+
                     PageCurrent = new View.ChiefView.create_request_template();
                     RaisePropertyChanged("CurrentPage");
+                    RaisePropertyChanged("visibility");
+                });
+
+            }
+        }
+        public RelayCommand main_menu
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    visibility = Visibility.Visible;
+
+                    PageCurrent = null;
+                    RaisePropertyChanged("CurrentPage");
+                    RaisePropertyChanged("visibility");
+                });
+
+            }
+        }
+        public RelayCommand ListStaffDiagramCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    visibility = Visibility.Collapsed;
+                    PageCurrent = new View.Coordinator.CoordinatorListStaffDiagramView();
+                    RaisePropertyChanged("CurrentPage");
+                    RaisePropertyChanged("visibility");
+
                 });
 
             }
